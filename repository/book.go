@@ -57,9 +57,6 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 	// }
 
 	// item := Item{}
-	// err = dynamodbattribute.Unmarshal(result.Item["bookId"], &item.bookId)
-	// err = dynamodbattribute.Unmarshal(result.Item["name"], &item.name)
-	// err = dynamodbattribute.Unmarshal(result.Item["price"], &item.price)
 
 	// if err != nil {
 	// 	panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
@@ -97,9 +94,7 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 	for _, i := range result.Items {
 		item := entity.Book{}
 
-		err = dynamodbattribute.Unmarshal(i["bookId"], &item.Id)
-		err = dynamodbattribute.Unmarshal(i["name"], &item.Name)
-		err = dynamodbattribute.Unmarshal(i["price"], &item.Price)
+		err = dynamodbattribute.UnmarshalMap(i, &item)
 
 		if err != nil {
 			log.Fatalf("Got error unmarshalling: %s", err)
