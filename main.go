@@ -1,6 +1,9 @@
 package main
+
 import (
 	"fmt"
+	"log"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -9,9 +12,9 @@ import (
 	"github.com/proudkittapa/cloudComputing/handler"
 	repo "github.com/proudkittapa/cloudComputing/repository"
 	"github.com/proudkittapa/cloudComputing/usecase"
-	"log"
 )
-func main()  {
+
+func main() {
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String("us-east-1"),
 		Credentials: credentials.NewSharedCredentials("", "temp"),
@@ -23,7 +26,6 @@ func main()  {
 
 	svc := dynamodb.New(sess)
 	fmt.Println("svc", svc)
-	fmt.Println("%T\n", svc)
 	e := echo.New()
 	handlerGroup := e.Group("/bababook")
 
