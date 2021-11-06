@@ -7,21 +7,21 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom"; 
-import Page2 from "./page2";
+// import Page2 from "./page2";
 import HomePage from './pages/homePage';
-import ShowMenu from './pages/showMenu';
-import MenuInfo from './pages/menuInfo';
-import ShowCart from './pages/showCart';
-import UpdateMenu from './pages/updateMenu';
-import CreateMenu from './pages/createMenu';
-import ShowOrder from './pages/showOrder';
-import ChangeBill from './pages/changeBill'
-import ShowHistory from './pages/showHistory'
-import OrderInfo from './pages/orderInfo'
-import Report from './pages/report'
-import ShowMoney from './pages/showMoney'
+// import ShowMenu from './pages/showMenu';
+// import MenuInfo from './pages/menuInfo';
+// import ShowCart from './pages/showCart';
+// import UpdateMenu from './pages/updateMenu';
+// import CreateMenu from './pages/createMenu';
+// import ShowOrder from './pages/showOrder';
+// import ChangeBill from './pages/changeBill'
+// import ShowHistory from './pages/showHistory'
+// import OrderInfo from './pages/orderInfo'
+// import Report from './pages/report'
+// import ShowMoney from './pages/showMoney'
 import React, { Component }  from 'react';
-import TestAxios from './pages/testAxios';
+// import TestAxios from './pages/testAxios';
 
 
 function App() {
@@ -29,10 +29,13 @@ function App() {
         // <TestAxios></TestAxios>
         <Router>
             <Switch>
-                <Route exact path="/">
+            <   Route exact path="/">
                     <HomePage />
                 </Route>
-                <Route exact path="/homepage">
+                {/* <Route exact path="/">
+                    <HomePage />
+                </Route> */}
+                {/* <Route exact path="/homepage">
                     <HomePage />
                 </Route>
                 <Route exact path="/showMenu/:page">
@@ -67,7 +70,7 @@ function App() {
                 </Route>
                 <Route exact path="/showMoney">
                     <ShowMoney />
-                </Route>
+                </Route> */}
             </Switch>
         </Router>
     )
