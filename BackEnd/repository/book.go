@@ -60,13 +60,13 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 }
 
 func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, error) {
-	book := entity.Book{
-		Id:       GenerateUUID(),
-		Name:     "Book1",
-		AuthorId: "1",
-		Price:    100,
-		Rating:   10,
-	}
+	// book := entity.Book{
+	// 	Id:       GenerateUUID(),
+	// 	Name:     "Book1",
+	// 	AuthorId: "1",
+	// 	Price:    100,
+	// 	Rating:   10,
+	// }
 	result, err := repo.db.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String("book"),
 		Key: map[string]*dynamodb.AttributeValue{
