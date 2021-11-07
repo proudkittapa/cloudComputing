@@ -16,6 +16,7 @@ type BookRepository interface{
 	CreateBook(c context.Context, book Book) error
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string) error
+	AddBook(c context.Context, bookId string, userId string) error
 }
 
 type BookUseCase interface{
@@ -24,4 +25,5 @@ type BookUseCase interface{
 	CreateBook(c context.Context, book Book) error
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string) error
+	AddBook(c context.Context, bookId string, userId string) error
 }

@@ -20,6 +20,7 @@ func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase){
 	e.POST("/book", handler.CreateBook)
 	e.PUT("/book/:id", handler.Update)
 	e.DELETE("/book/:id", handler.DeleteBook)
+	e.POST("/book/:id/user/:id", handler.GetAll)
 }
 
 func (bookHandler *BookHandler) GetAll(c echo.Context) error{
@@ -150,6 +151,34 @@ func (bookHandler *BookHandler) DeleteBook(c echo.Context) error{
 			Message string "json:\"message\""
 		}{
 			Message: "book is deleted",
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+func (bookHandler *BookHandler) AddBook(c echo.Context) error{
+	ctx := c.Request().Context()
+	var book entity.Book
+	if err := c.Bind(&book); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	err := bookHandler.BookUseCase.CreateBook(ctx, book)
+	if err != nil{
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: "error",
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Message string "json:\"message\""
+		}{
+			Message: "book is created",
 		},
 	}
 	return c.JSON(http.StatusOK, response)

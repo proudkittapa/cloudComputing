@@ -39,3 +39,8 @@ func (useCase *bookUseCase) DeleteBook(c context.Context, id string) error {
 	err := useCase.bookRepo.DeleteBook(c, id)
 	return err
 }
+
+func (useCase *bookUseCase) AddBook(c context.Context, bookId string, userId string) error {
+	err := useCase.bookRepo.AddBook(c, bookId, userId)
+	return err
+}

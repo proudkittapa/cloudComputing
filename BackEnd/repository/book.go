@@ -136,3 +136,9 @@ func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
 	//delete book with the given id
 	return nil
 }
+
+func (repo *BookRepository) AddBook(c context.Context, userId string, bookId string) error {
+	//this is when user want to add book
+	//click add book
+	return nil
+}
