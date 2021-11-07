@@ -3,11 +3,12 @@ package entity
 import "context"
 
 type Book struct{
-	Id string `json:"id"`
+	Id string `json:"bookId"`
 	Name string `json:"name"`
-	AuthorId string `json:"author_id""`
+	UserId string `json:"user_id""`
 	Price float32 `json:"price"`
 	Rating float32 `json:"rating"`
+	Description string `json:"description"`
 }
 
 type BookRepository interface{

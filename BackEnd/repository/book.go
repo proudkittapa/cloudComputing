@@ -24,12 +24,6 @@ func GenerateUUID() string {
 	return uuid.New().String()
 }
 
-type Item struct {
-	price  float32
-	bookId string
-	name   string
-}
-
 func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 	var books []entity.Book
@@ -54,19 +48,15 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 		fmt.Println("bookId:  ", item.Id)
 		fmt.Println("name: ", item.Name)
 		fmt.Println("price:  ", item.Price)
+		fmt.Println("rating: ", item.Rating)
+		fmt.Println("description: ", item.Description)
 		books = append(books, item)
 	}
 	return books, nil
 }
 
 func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, error) {
-	// book := entity.Book{
-	// 	Id:       GenerateUUID(),
-	// 	Name:     "Book1",
-	// 	AuthorId: "1",
-	// 	Price:    100,
-	// 	Rating:   10,
-	// }
+	id = "1"
 	result, err := repo.db.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String("book"),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -91,12 +81,15 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 
 	if err != nil {
 		panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
+		return entity.Book{}, err
 	}
 
 	fmt.Println("Found book:")
 	fmt.Println("bookId:  ", book.Id)
 	fmt.Println("name: ", book.Name)
 	fmt.Println("price:  ", book.Price)
+	fmt.Println("rating: ", book.Rating)
+	fmt.Println("description: ", book.Description)
 	return book, nil
 }
 
