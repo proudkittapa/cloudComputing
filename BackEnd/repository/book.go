@@ -31,59 +31,9 @@ type Item struct {
 }
 
 func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
-	// tableName := "book"
-	// bookId := "069"
-	// name := "Genshim"
 
-	// result, err := repo.db.GetItem(&dynamodb.GetItemInput{
-	// 	TableName: aws.String(tableName),
-	// 	Key: map[string]*dynamodb.AttributeValue{
-	// 		"name": {
-	// 			S: aws.String(name),
-	// 		},
-	// 		"bookId": {
-	// 			S: aws.String(bookId),
-	// 		},
-	// 	},
-	// })
-
-	// if err != nil {
-	// 	log.Fatalf("Got error calling GetItem: %s", err)
-	// }
-
-	// if result.Item == nil {
-	// 	msg := "Could not find '" + name + "'"
-	// 	fmt.Println(msg)
-	// }
-
-	// item := Item{}
-
-	// if err != nil {
-	// 	panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
-	// }
-
-	// fmt.Println("Found item:")
-	// // fmt.Println(item)
-	// fmt.Println("bookId:  ", item.bookId)
-	// fmt.Println("name: ", item.name)
-	// fmt.Println("price:  ", item.price)
 	var books []entity.Book
-	// book := entity.Book{
-	// 	Id:       item.bookId,
-	// 	Name:     item.name,
-	// 	AuthorId: "1",
-	// 	Price: float32(item.price),
-	// 	Rating:   10,
-	// }
-	// books = append(books, book)
-	// //book = entity.Book{
-	// //	Id:       GenerateUUID(),
-	// //	Name:     "Book2",
-	// //	AuthorId: "2",
-	// //	Price:    1200,
-	// //	Rating:   0,
-	// //}
-	// //books = append(books, book)
+
 	result, err := repo.db.Scan(&dynamodb.ScanInput{
 		TableName: aws.String("book"),
 	})
@@ -117,7 +67,36 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 		Price:    100,
 		Rating:   10,
 	}
+	result, err := repo.db.GetItem(&dynamodb.GetItemInput{
+		TableName: aws.String("book"),
+		Key: map[string]*dynamodb.AttributeValue{
+			"bookId": {
+				S: aws.String(id),
+			},
+		},
+	})
 
+	if err != nil {
+		log.Fatalf("Got error calling GetItem: %s", err)
+	}
+
+	if result.Item == nil {
+		msg := "Could not find '" + id + "'"
+		fmt.Println(msg)
+	}
+
+	item := entity.Book{}
+
+	err = dynamodbattribute.UnmarshalMap(result.Item, &item)
+
+	if err != nil {
+		panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
+	}
+
+	fmt.Println("Found item:")
+	fmt.Println("bookId:  ", item.Id)
+	fmt.Println("name: ", item.Name)
+	fmt.Println("price:  ", item.Price)
 	return book, nil
 }
 
