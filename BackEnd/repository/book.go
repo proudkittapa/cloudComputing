@@ -60,7 +60,7 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 	result, err := repo.db.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String("book"),
 		Key: map[string]*dynamodb.AttributeValue{
-			"bookId": {
+			"book_id": {
 				S: aws.String(id),
 			},
 		},
