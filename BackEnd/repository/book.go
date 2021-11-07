@@ -85,18 +85,18 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 		fmt.Println(msg)
 	}
 
-	item := entity.Book{}
+	book := entity.Book{}
 
-	err = dynamodbattribute.UnmarshalMap(result.Item, &item)
+	err = dynamodbattribute.UnmarshalMap(result.Item, &book)
 
 	if err != nil {
 		panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
 	}
 
-	fmt.Println("Found item:")
-	fmt.Println("bookId:  ", item.Id)
-	fmt.Println("name: ", item.Name)
-	fmt.Println("price:  ", item.Price)
+	fmt.Println("Found book:")
+	fmt.Println("bookId:  ", book.Id)
+	fmt.Println("name: ", book.Name)
+	fmt.Println("price:  ", book.Price)
 	return book, nil
 }
 
