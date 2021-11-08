@@ -86,7 +86,7 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 	err = dynamodbattribute.UnmarshalMap(result.Item, &book)
 
 	if err != nil {
-		panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
+		log.Fatalf("Got error unmarshalling: %s", err)
 		return entity.Book{}, err
 	}
 
