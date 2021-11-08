@@ -2,11 +2,11 @@ package entity
 
 import "context"
 
-type UserTransaction struct{
-	Id string `json:"id"`
-	BookId string `json:"book_id"`
-	UserId string `json:"user_id"`
-	Time int64 `json:"time"`
+type UserTransaction struct {
+	TransactionId string `json:"transaction_id"`
+	BookId        string `json:"book_id"`
+	UserId        string `json:"user_id"`
+	Time          int64  `json:"time"`
 }
 
 type UserTransactionRepository interface {
@@ -14,5 +14,4 @@ type UserTransactionRepository interface {
 }
 
 type UserTransactionUseCase interface {
-
 }
