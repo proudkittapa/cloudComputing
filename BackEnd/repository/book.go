@@ -155,8 +155,8 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 				S: aws.String(book.Id),
 			},
 		},
-		ReturnValues: aws.String("UPDATED_NEW"),
-		// UpdateExpression: aws.String("set Rating = :r"),
+		ReturnValues:     aws.String("UPDATED_NEW"),
+		UpdateExpression: aws.String("set Rating = :r"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
@@ -164,7 +164,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 		log.Fatalf("Got error calling UpdateItem: %s", err)
 	}
 
-	fmt.Println("Successfully updated '" + book.Name + "' (" + book.Id)
+	fmt.Println("Successfully updated '" + book.Name + "' (" + book.Id + ")")
 	return nil
 }
 

@@ -15,9 +15,12 @@ import (
 )
 
 func main() {
+	AWS_ACCESS_KEY_ID := "AKIARRGVFMIVDA6ME2WC"
+	AWS_SECRET_ACCESS_KEY := "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"
+
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String("us-east-1"),
-		Credentials: credentials.NewSharedCredentials("", "temp"),
+		Credentials: credentials.NewStaticCredentials(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ""),
 	})
 
 	if err != nil {
