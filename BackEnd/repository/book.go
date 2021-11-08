@@ -132,20 +132,27 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 	//update
 	tableName := "book"
 	input := &dynamodb.UpdateItemInput{
+		ExpressionAttributeNames: map[string]*string{
+			"#N":   aws.String("name"),
+			"#UID": aws.String("user_id"),
+			"#P":   aws.String("price"),
+			"#R":   aws.String("rating"),
+			"#DES": aws.String("description"),
+		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":name": {
+			":n": {
 				S: aws.String(book.Name),
 			},
-			":user_id": {
+			":uid": {
 				S: aws.String(book.UserId),
 			},
-			":price": {
+			":p": {
 				N: aws.String(fmt.Sprintf("%f", book.Price)),
 			},
-			":rating": {
+			":r": {
 				N: aws.String(fmt.Sprintf("%f", book.Rating)),
 			},
-			":description": {
+			":des": {
 				S: aws.String(book.Description),
 			},
 		},
@@ -156,7 +163,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set Rating = :r"),
+		UpdateExpression: aws.String("set #N = :n, #UID = :uid, #P = :p, #R = :r, #DES = :des"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
