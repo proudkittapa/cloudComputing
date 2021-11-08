@@ -28,9 +28,11 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 	var books []entity.Book
 
-	result, err := repo.db.Scan(&dynamodb.ScanInput{
+	input := &dynamodb.ScanInput{
 		TableName: aws.String("book"),
-	})
+	}
+
+	result, err := repo.db.Scan(input)
 	if err != nil {
 		panic(err)
 	}
@@ -57,14 +59,18 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, error) {
 
-	result, err := repo.db.GetItem(&dynamodb.GetItemInput{
-		TableName: aws.String("book"),
+	tableName := "book"
+
+	input := &dynamodb.GetItemInput{
+		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
 			"book_id": {
 				S: aws.String(id),
 			},
 		},
-	})
+	}
+
+	result, err := repo.db.GetItem(input)
 
 	if err != nil {
 		log.Fatalf("Got error calling GetItem: %s", err)
@@ -97,16 +103,7 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 	book.Id = GenerateUUID()
 	//insert to table book
 
-	item := entity.Book{
-		Id:          book.Id,
-		Name:        "Book name",
-		UserId:      "userId",
-		Price:       90,
-		Rating:      5.0,
-		Description: "No Description",
-	}
-
-	av, err := dynamodbattribute.MarshalMap(item)
+	av, err := dynamodbattribute.MarshalMap(book)
 	if err != nil {
 		log.Fatalf("Got error marshalling new movie item: %s", err)
 	}
@@ -119,11 +116,12 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 	}
 
 	_, err = repo.db.PutItem(input)
+
 	if err != nil {
 		log.Fatalf("Got error calling PutItem: %s", err)
 	}
 
-	fmt.Println("Successfully added '" + item.Name + "' (" + item.Id + ") to table " + tableName)
+	fmt.Println("Successfully added '" + book.Name + "' (" + book.Id + ") to table " + tableName)
 	return nil
 }
 
