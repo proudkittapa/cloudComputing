@@ -9,12 +9,14 @@ import (
 type bookUseCase struct{
 	bookRepo entity.BookRepository
 	userRepo entity.UserRepository
+	userTransRepo entity.UserTransactionRepository
 }
 
-func NewBookUseCase(bookRepo entity.BookRepository, userRepo entity.UserRepository) entity.BookUseCase{
+func NewBookUseCase(bookRepo entity.BookRepository, userRepo entity.UserRepository, userTransactionRepo entity.UserTransactionRepository) entity.BookUseCase{
 	return &bookUseCase{
 		bookRepo: bookRepo,
 		userRepo: userRepo,
+		userTransRepo: userTransactionRepo,
 	}
 }
 
@@ -45,6 +47,6 @@ func (useCase *bookUseCase) DeleteBook(c context.Context, id string) error {
 }
 
 func (useCase *bookUseCase) AddBook(c context.Context, bookId string, userId string) error {
-	err := useCase.bookRepo.AddBook(c, bookId, userId)
+	err := useCase.userTransRepo.AddBook(c, bookId, userId)
 	return err
 }
