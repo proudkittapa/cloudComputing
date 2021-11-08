@@ -85,7 +85,7 @@ func (repo *UserRepository) GetById(c context.Context, id string) (entity.User, 
 	err = dynamodbattribute.UnmarshalMap(result.Item, &user)
 
 	if err != nil {
-		panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
+		log.Fatalf("Got error unmarshalling: %s", err)
 		return entity.User{}, err
 	}
 
