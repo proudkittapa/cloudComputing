@@ -3,9 +3,9 @@ package entity
 import "context"
 
 type Book struct {
-	Id          string  `json:"book_id"`
+	BookId      string  `json:"book_id"`
 	Name        string  `json:"name"`
-	UserId      string  `json:"user_id""`
+	UserId      string  `json:"user_id"`
 	Price       float32 `json:"price"`
 	Rating      float32 `json:"rating"`
 	Description string  `json:"description"`
