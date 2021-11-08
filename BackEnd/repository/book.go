@@ -200,3 +200,53 @@ func (repo *BookRepository) AddBook(c context.Context, userId string, bookId str
 
 	return nil
 }
+
+func (repo *BookRepository) CreateBookDB() {
+	tableName := "book"
+	input := &dynamodb.CreateTableInput{
+		AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			{
+				AttributeName: aws.String("book_id"),
+				AttributeType: aws.String("S"),
+			},
+			{
+				AttributeName: aws.String("name"),
+				AttributeType: aws.String("S"),
+			},
+			{
+				AttributeName: aws.String("user_id"),
+				AttributeType: aws.String("S"),
+			},
+			{
+				AttributeName: aws.String("price"),
+				AttributeType: aws.String("N"),
+			},
+			{
+				AttributeName: aws.String("rating"),
+				AttributeType: aws.String("N"),
+			},
+			{
+				AttributeName: aws.String("description"),
+				AttributeType: aws.String("S"),
+			},
+		},
+		KeySchema: []*dynamodb.KeySchemaElement{
+			{
+				AttributeName: aws.String("book_id"),
+				KeyType:       aws.String("HASH"),
+			},
+		},
+		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			ReadCapacityUnits:  aws.Int64(5),
+			WriteCapacityUnits: aws.Int64(5),
+		},
+		TableName: aws.String(tableName),
+	}
+
+	_, err := repo.db.CreateTable(input)
+	if err != nil {
+		log.Fatalf("Got error calling CreateTable: %s", err)
+	}
+
+	fmt.Println("Created the table", tableName)
+}

@@ -15,8 +15,8 @@ import (
 )
 
 func main() {
-	AWS_ACCESS_KEY_ID := "AKIARRGVFMIVDA6ME2WC"
-	AWS_SECRET_ACCESS_KEY := "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"
+	AWS_ACCESS_KEY_ID := "AKIAZ5FBIZKE23526KQT"
+	AWS_SECRET_ACCESS_KEY := "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"
 
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String("us-east-1"),
