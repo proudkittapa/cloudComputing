@@ -20,7 +20,7 @@ func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase){
 	e.POST("/book", handler.CreateBook)
 	e.PUT("/book/:id", handler.Update)
 	e.DELETE("/book/:id", handler.DeleteBook)
-	e.POST("/book/:id/user/:id", handler.GetAll)
+	e.POST("/book/:bookId/user/:userId", handler.AddBook)
 }
 
 func (bookHandler *BookHandler) GetAll(c echo.Context) error{
@@ -158,11 +158,13 @@ func (bookHandler *BookHandler) DeleteBook(c echo.Context) error{
 
 func (bookHandler *BookHandler) AddBook(c echo.Context) error{
 	ctx := c.Request().Context()
+	bookId := c.Param("bookId")
+	userId := c.Param("userId")
 	var book entity.Book
 	if err := c.Bind(&book); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	err := bookHandler.BookUseCase.CreateBook(ctx, book)
+	err := bookHandler.BookUseCase.AddBook(ctx, bookId, userId)
 	if err != nil{
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {

@@ -8,10 +8,14 @@ import (
 
 type bookUseCase struct{
 	bookRepo entity.BookRepository
+	userRepo entity.UserRepository
 }
 
-func NewBookUseCase(bookRepo entity.BookRepository) entity.BookUseCase{
-	return &bookUseCase{bookRepo: bookRepo}
+func NewBookUseCase(bookRepo entity.BookRepository, userRepo entity.UserRepository) entity.BookUseCase{
+	return &bookUseCase{
+		bookRepo: bookRepo,
+		userRepo: userRepo,
+	}
 }
 
 func (useCase *bookUseCase) GetAll(c context.Context) ([]entity.Book, error) {
