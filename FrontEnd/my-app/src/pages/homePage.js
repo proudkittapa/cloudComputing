@@ -1,7 +1,30 @@
-import React from "react"
+import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom";
-// import '/Users/kittapasasivimonpan/Desktop/cloudComputing/FrontEnd/my-app/public/css/bookdisplay.css';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { getBookById } from '../actions/posts';
 function HomePage(){
+    const [bookItem, setBookItems] = useState([])
+    useEffect(() => {
+        getBook()
+    }, [])
+    // let {id} = useParams("id")
+    // console.log("id:", id)
+    let {id} = "1"
+    console.log("id:", id)
+    const getBook = async (e) =>{
+        try{
+            const response = await getBookById(id)
+            // console.log(response.data.data)
+            if (response.status == 200){
+                setBookItems(response.data.data || [])
+                console.log(bookItem)
+                console.log(bookItem.book.book_id)
+            }
+        }
+        catch(error){
+            alert(error)
+        }
+    }
     return(
         <body>        
             <nav class="navbar">
@@ -38,18 +61,19 @@ function HomePage(){
                     </div>
                     <div class="col-lg">
                         <div class="d-flex align-items-end">
-                            <h1>Book Name</h1>
+                            <h1>{bookItem.book.name}</h1>
                             <h2 class="separator"> • </h2>
                             <h2>Firstname Lastname</h2>
                         </div>
                         <div class ="hr">
                             <h3>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></h3>
+                            {/* {bookItem.book.rating} use this variable*/}
                             <br>
                             </br>
                             <div class="pricing-add d-flex align-items-end">
                                 <div class="d-flex">
                                     <h3>Price: </h3>
-                                    <h3>฿200.00</h3>
+                                    <h3>฿{bookItem.book.price}</h3>
                                 </div>
                                 <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> Add Book</button>
                             </div>
@@ -59,7 +83,7 @@ function HomePage(){
                 </div>
                 <h2>Description</h2>
                 <div class="hr"></div>
-                <p class="book-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam libero lorem, iaculis et nibh maximus, vehicula luctus ex. Cras aliquam urna convallis massa malesuada, et faucibus lorem egestas. Vivamus facilisis orci nec felis maximus eleifend. Etiam pellentesque, diam id mollis iaculis, lectus erat commodo magna, quis tincidunt tortor leo vitae erat. Donec gravida consectetur malesuada. Sed auctor mauris a nisl venenatis, ut vestibulum diam scelerisque. Suspendisse congue eros sed finibus tempor. Etiam porta, nisl ut condimentum luctus, orci dolor tempor ante, ac egestas est enim at dolor.</p>
+                <p class="book-desc"> {bookItem.book.description}</p>
             </div>
         </body>
         
