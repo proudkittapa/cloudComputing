@@ -2,16 +2,17 @@ package handler
 
 import (
 	"fmt"
+	"net/http"
+
 	"github.com/labstack/echo"
 	"github.com/proudkittapa/cloudComputing/entity"
-	"net/http"
 )
 
-type BookHandler struct{
+type BookHandler struct {
 	BookUseCase entity.BookUseCase
 }
 
-func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase){
+func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase) {
 	handler := &BookHandler{
 		BookUseCase: BookUseCase,
 	}
@@ -23,11 +24,11 @@ func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase){
 	e.POST("/book/:bookId/user/:userId", handler.AddBook)
 }
 
-func (bookHandler *BookHandler) GetAll(c echo.Context) error{
+func (bookHandler *BookHandler) GetAll(c echo.Context) error {
 	ctx := c.Request().Context()
 	books, err := bookHandler.BookUseCase.GetAll(ctx)
 	fmt.Println("books", books)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""
@@ -48,11 +49,11 @@ func (bookHandler *BookHandler) GetAll(c echo.Context) error{
 	return c.JSON(http.StatusOK, response)
 }
 
-func (bookHandler *BookHandler) GetById(c echo.Context) error{
+func (bookHandler *BookHandler) GetById(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
 	book, err := bookHandler.BookUseCase.GetById(ctx, id)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""
@@ -73,14 +74,14 @@ func (bookHandler *BookHandler) GetById(c echo.Context) error{
 	return c.JSON(http.StatusOK, response)
 }
 
-func (bookHandler *BookHandler) CreateBook(c echo.Context) error{
+func (bookHandler *BookHandler) CreateBook(c echo.Context) error {
 	ctx := c.Request().Context()
 	var book entity.Book
 	if err := c.Bind(&book); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 	err := bookHandler.BookUseCase.CreateBook(ctx, book)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""
@@ -101,16 +102,16 @@ func (bookHandler *BookHandler) CreateBook(c echo.Context) error{
 	return c.JSON(http.StatusOK, response)
 }
 
-func (bookHandler *BookHandler) Update(c echo.Context) error{
+func (bookHandler *BookHandler) Update(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
 	var book entity.Book
 	if err := c.Bind(&book); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	book.Id = id
+	book.BookId = id
 	err := bookHandler.BookUseCase.UpdateBook(ctx, book)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""
@@ -131,11 +132,11 @@ func (bookHandler *BookHandler) Update(c echo.Context) error{
 	return c.JSON(http.StatusOK, response)
 }
 
-func (bookHandler *BookHandler) DeleteBook(c echo.Context) error{
+func (bookHandler *BookHandler) DeleteBook(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
 	err := bookHandler.BookUseCase.DeleteBook(ctx, id)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""
@@ -156,7 +157,7 @@ func (bookHandler *BookHandler) DeleteBook(c echo.Context) error{
 	return c.JSON(http.StatusOK, response)
 }
 
-func (bookHandler *BookHandler) AddBook(c echo.Context) error{
+func (bookHandler *BookHandler) AddBook(c echo.Context) error {
 	ctx := c.Request().Context()
 	bookId := c.Param("bookId")
 	userId := c.Param("userId")
@@ -165,7 +166,7 @@ func (bookHandler *BookHandler) AddBook(c echo.Context) error{
 		return c.JSON(http.StatusBadRequest, err)
 	}
 	err := bookHandler.BookUseCase.AddBook(ctx, bookId, userId)
-	if err != nil{
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
 				Code    int    "json:\"code\""

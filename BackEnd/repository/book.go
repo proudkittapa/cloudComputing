@@ -47,7 +47,7 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 			return []entity.Book{}, err
 		}
 		fmt.Println("Found item:")
-		fmt.Println("bookId:  ", item.Id)
+		fmt.Println("bookId:  ", item.BookId)
 		fmt.Println("name: ", item.Name)
 		fmt.Println("price:  ", item.Price)
 		fmt.Println("rating: ", item.Rating)
@@ -91,7 +91,7 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 	}
 
 	fmt.Println("Found book:")
-	fmt.Println("bookId:  ", book.Id)
+	fmt.Println("bookId:  ", book.BookId)
 	fmt.Println("name: ", book.Name)
 	fmt.Println("price:  ", book.Price)
 	fmt.Println("rating: ", book.Rating)
@@ -100,7 +100,7 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 }
 
 func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) error {
-	book.Id = GenerateUUID()
+	book.BookId = GenerateUUID()
 	//insert to table book
 
 	av, err := dynamodbattribute.MarshalMap(book)
@@ -121,12 +121,11 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 		log.Fatalf("Got error calling PutItem: %s", err)
 	}
 
-	fmt.Println("Successfully added '" + book.Name + "' (" + book.Id + ") to table " + tableName)
+	fmt.Println("Successfully added '" + book.Name + "' (" + book.BookId + ") to table " + tableName)
 	return nil
 }
 
 func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) error {
-	// input: id string
 	//update
 	tableName := "book"
 	input := &dynamodb.UpdateItemInput{
@@ -157,7 +156,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
 			"book_id": {
-				S: aws.String(book.Id),
+				S: aws.String(book.BookId),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
@@ -169,7 +168,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 		log.Fatalf("Got error calling UpdateItem: %s", err)
 	}
 
-	fmt.Println("Successfully updated '" + book.Name + "' (" + book.Id + ")")
+	fmt.Println("Successfully updated '" + book.Name + "' (" + book.BookId + ")")
 	return nil
 }
 
