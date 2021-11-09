@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strconv"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -27,7 +28,7 @@ func (repo *UserTransactionRepository) AddBook(c context.Context, userId string,
 		TransactionId: GenerateUUID(),
 		BookId:        bookId,
 		UserId:        userId,
-		Time:          time.Now().Unix(),
+		Time:          strconv.FormatInt(time.Now().Unix(), 10),
 	}
 	//insert to table book
 
@@ -49,6 +50,6 @@ func (repo *UserTransactionRepository) AddBook(c context.Context, userId string,
 		log.Fatalf("Got error calling PutItem: %s", err)
 	}
 
-	fmt.Println("Successfully added User Transaction '" + userTransaction.UserId + "' to table " + tableName + "at" + time.Unix(userTransaction.Time, 0).Format(time.UnixDate))
+	fmt.Println("Successfully added User Transaction '" + userTransaction.UserId + "' to table " + tableName + "at" + userTransaction.Time)
 	return nil
 }

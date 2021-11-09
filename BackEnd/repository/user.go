@@ -208,3 +208,34 @@ func (repo *UserRepository) Delete(c context.Context, id string) error {
 	fmt.Println("Deleted User Id'" + id + ") from table " + tableName)
 	return nil
 }
+
+func (repo *BookRepository) CreateUserDB() error {
+	tableName := "user"
+	input := &dynamodb.CreateTableInput{
+		AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			{
+				AttributeName: aws.String("user_id"),
+				AttributeType: aws.String("S"),
+			},
+		},
+		KeySchema: []*dynamodb.KeySchemaElement{
+			{
+				AttributeName: aws.String("user_id"),
+				KeyType:       aws.String("HASH"),
+			},
+		},
+		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			ReadCapacityUnits:  aws.Int64(5),
+			WriteCapacityUnits: aws.Int64(5),
+		},
+		TableName: aws.String(tableName),
+	}
+
+	_, err := repo.db.CreateTable(input)
+	if err != nil {
+		log.Fatalf("Got error calling CreateTable: %s", err)
+	}
+
+	fmt.Println("Created the table", tableName)
+	return err
+}

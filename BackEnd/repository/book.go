@@ -194,32 +194,12 @@ func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
 	return nil
 }
 
-func (repo *BookRepository) CreateBookDB() error{
+func (repo *BookRepository) CreateBookDB() error {
 	tableName := "book"
 	input := &dynamodb.CreateTableInput{
 		AttributeDefinitions: []*dynamodb.AttributeDefinition{
 			{
 				AttributeName: aws.String("book_id"),
-				AttributeType: aws.String("S"),
-			},
-			{
-				AttributeName: aws.String("name"),
-				AttributeType: aws.String("S"),
-			},
-			{
-				AttributeName: aws.String("user_id"),
-				AttributeType: aws.String("S"),
-			},
-			{
-				AttributeName: aws.String("price"),
-				AttributeType: aws.String("N"),
-			},
-			{
-				AttributeName: aws.String("rating"),
-				AttributeType: aws.String("N"),
-			},
-			{
-				AttributeName: aws.String("description"),
 				AttributeType: aws.String("S"),
 			},
 		},

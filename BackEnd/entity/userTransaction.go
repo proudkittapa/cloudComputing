@@ -6,7 +6,7 @@ type UserTransaction struct {
 	TransactionId string `json:"transaction_id"`
 	BookId        string `json:"book_id"`
 	UserId        string `json:"user_id"`
-	Time          int64  `json:"time"`
+	Time          string `json:"time"`
 }
 
 type UserTransactionRepository interface {
