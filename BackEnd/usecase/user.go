@@ -7,10 +7,14 @@ import (
 
 type userUseCase struct{
 	userUseCase entity.UserRepository
+	userTransRepo entity.UserTransactionRepository
 }
 
-func NewUserUseCase(user entity.UserUseCase) entity.UserUseCase{
-	return &userUseCase{userUseCase: user}
+func NewUserUseCase(user entity.UserUseCase, userTransRepo entity.UserTransactionRepository) entity.UserUseCase{
+	return &userUseCase{
+		userUseCase: user,
+		userTransRepo: userTransRepo,
+	}
 }
 
 func (useCase *userUseCase) GetAll(c context.Context) ([]entity.User, error) {
@@ -35,5 +39,10 @@ func (useCase *userUseCase) Update(c context.Context, user entity.User) error {
 
 func (useCase *userUseCase) Delete(c context.Context, id string) error {
 	err := useCase.userUseCase.Delete(c, id)
+	return err
+}
+
+func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId string) error {
+	err := useCase.userTransRepo.AddBook(c, userId, bookId)
 	return err
 }

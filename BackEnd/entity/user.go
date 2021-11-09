@@ -27,4 +27,5 @@ type UserUseCase interface {
 	Create(c context.Context, user User) error
 	Update(c context.Context, user User) error
 	Delete(c context.Context, userId string) error
+	AddBook(c context.Context, bookId string, userId string) error
 }

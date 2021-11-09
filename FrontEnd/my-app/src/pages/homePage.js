@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getBookById } from '../actions/posts';
 function HomePage(){
     const [bookItem, setBookItems] = useState({})
-    let id = "1"
+    let {id} = useParams("id")
     console.log("id:", id)
     useEffect(()=>{
         console.log("before get book")

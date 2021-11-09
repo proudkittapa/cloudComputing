@@ -19,6 +19,8 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase){
 	e.POST("/user", handler.Create)
 	e.PUT("/user/:id", handler.Update)
 	e.DELETE("/user/:id", handler.Delete)
+	e.POST("/user/:userId/book/:bookId", handler.AddBook)
+
 }
 
 func (handler *UserHandler) GetAll(c echo.Context) error{
@@ -148,6 +150,36 @@ func (handler *UserHandler) Delete(c echo.Context) error{
 			Message string "json:\"message\""
 		}{
 			Message: "user is deleted",
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+func (handler *UserHandler) AddBook(c echo.Context) error {
+	ctx := c.Request().Context()
+	bookId := c.Param("bookId")
+	userId := c.Param("userId")
+	var book entity.Book
+	if err := c.Bind(&book); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	err := handler.UserUseCase.AddBook(ctx, bookId, userId)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: "error",
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Message string "json:\"message\""
+		}{
+			Message: "book is created",
 		},
 	}
 	return c.JSON(http.StatusOK, response)

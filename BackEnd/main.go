@@ -37,7 +37,7 @@ func main() {
 	userTransactionRepo := repo.NewUserTransactionRepository(svc)
 
 	bookUseCase := usecase.NewBookUseCase(bookRepo, userRepo, userTransactionRepo)
-	userUseCase := usecase.NewUserUseCase(userRepo)
+	userUseCase := usecase.NewUserUseCase(userRepo, userTransactionRepo)
 
 	handler.NewBookHandler(handlerGroup, bookUseCase)
 	handler.NewUserHandler(handlerGroup, userUseCase)

@@ -16,6 +16,10 @@ type UserRepository struct {
 	db *dynamodb.DynamoDB
 }
 
+func (repo *UserRepository) AddBook(c context.Context, bookId string, userId string) error {
+	panic("implement me")
+}
+
 func NewUserRepository(db *dynamodb.DynamoDB) *UserRepository {
 	return &UserRepository{db: db}
 }

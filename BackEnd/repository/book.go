@@ -194,14 +194,7 @@ func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
 	return nil
 }
 
-func (repo *BookRepository) AddBook(c context.Context, userId string, bookId string) error {
-	//this is when user want to add book
-	//click add book
-
-	return nil
-}
-
-func (repo *BookRepository) CreateBookDB() {
+func (repo *BookRepository) CreateBookDB() error{
 	tableName := "book"
 	input := &dynamodb.CreateTableInput{
 		AttributeDefinitions: []*dynamodb.AttributeDefinition{
@@ -249,4 +242,5 @@ func (repo *BookRepository) CreateBookDB() {
 	}
 
 	fmt.Println("Created the table", tableName)
+	return err
 }

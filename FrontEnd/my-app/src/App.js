@@ -29,7 +29,7 @@ function App() {
         // <TestAxios></TestAxios>
         <Router>
             <Switch>
-            <   Route exact path="/">
+            <   Route exact path="/book/:id">
                     <HomePage />
                 </Route>
                 {/* <Route exact path="/">
