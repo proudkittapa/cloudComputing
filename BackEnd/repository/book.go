@@ -126,7 +126,7 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 }
 
 func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) error {
-	//update
+	//TODO - update img link
 	tableName := "book"
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{

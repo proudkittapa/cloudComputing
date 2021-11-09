@@ -9,6 +9,7 @@ type Book struct {
 	Price       float32 `json:"price"`
 	Rating      float32 `json:"rating"`
 	Description string  `json:"description"`
+	Img         string  `json:"img"`
 }
 
 type BookRepository interface {

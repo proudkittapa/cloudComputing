@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getBookById } from '../actions/posts';
+import '../css/bookdisplay.css'
 function HomePage(){
     const [bookItem, setBookItems] = useState({})
     let {id} = useParams("id")
@@ -111,7 +112,7 @@ function HomePage(){
             <div className="container">
                 <div className="row row-book-container row-book-sm row-book-lg">
                     <div className="col-auto">
-                        <img className="book-cover" src="https://i.imgur.com/Io2Jx0c.png"></img>
+                        <img className="book-cover" src={bookItem.img}></img>
                     </div>
                     
                     <div className="col-lg">
