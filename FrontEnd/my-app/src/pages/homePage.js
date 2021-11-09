@@ -20,7 +20,23 @@ function HomePage(){
             console.log(bookItem)
         })
     }
-    console.log(bookItem)
+    // const getBook = ()=>{
+    //     try{
+    //         const response = getBookById(id)
+    //         if (response.status === 200){
+
+    //             const res = response.data.data;
+    //             console.log("res", res)
+    //             setBookItems(res.book)
+    //             // console.log("bookItem", bookItem.book)
+    //             // console.log(bookItem.book.book_id)
+    //         }
+    //     }
+    //     catch(error){
+    //         alert(error)
+    //     }
+    // }
+    // console.log(bookItem)
     // useEffect(() => {
     //     async function getBook(){
     //         try{
@@ -107,7 +123,7 @@ function HomePage(){
                         </div>
                         <div className ="hr">
                             <h3>Rating: <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="far fa-star"></i></h3>
-                            {/* {bookItem.book.rating} */}
+                            {/* {bookItem.rating} */}
                             <br>
                             </br>
                             <div className="pricing-add d-flex align-items-end">
@@ -125,7 +141,7 @@ function HomePage(){
                 
                 <h2>Description</h2>
                 <div className="hr"></div>
-                <p className="book-desc"> des</p>
+                <p className="book-desc"> {bookItem.description}</p>
             </div>
         </body>
         
