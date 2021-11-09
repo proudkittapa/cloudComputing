@@ -53,3 +53,34 @@ func (repo *UserTransactionRepository) AddBook(c context.Context, userId string,
 	fmt.Println("Successfully added User Transaction '" + userTransaction.UserId + "' to table " + tableName + "at" + userTransaction.Time)
 	return nil
 }
+
+func (repo *BookRepository) CreateUserTransactionDB() error {
+	tableName := "user_transaction"
+	input := &dynamodb.CreateTableInput{
+		AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			{
+				AttributeName: aws.String("transaction_id"),
+				AttributeType: aws.String("S"),
+			},
+		},
+		KeySchema: []*dynamodb.KeySchemaElement{
+			{
+				AttributeName: aws.String("transaction_id"),
+				KeyType:       aws.String("HASH"),
+			},
+		},
+		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			ReadCapacityUnits:  aws.Int64(5),
+			WriteCapacityUnits: aws.Int64(5),
+		},
+		TableName: aws.String(tableName),
+	}
+
+	_, err := repo.db.CreateTable(input)
+	if err != nil {
+		log.Fatalf("Got error calling CreateTable: %s", err)
+	}
+
+	fmt.Println("Created the table", tableName)
+	return err
+}
