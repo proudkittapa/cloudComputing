@@ -6,20 +6,41 @@ import { getBookById } from '../actions/posts';
 import '../css/bookdisplay.css'
 function HomePage(){
     const [bookItem, setBookItems] = useState({})
-    let {id} = useParams("id")
-    console.log("id:", id)
+    const [user, setUsers] = useState({})
+    const [addMessage, setAddMessage] = useState("Add Book")
+    let {userId, bookId} = useParams()
+    // console.log("id:", id)
     useEffect(()=>{
         console.log("before get book")
         getBook()
     }, []);
     const getBook = () =>{
-        axios.get(`http://localhost:8080/bababook/book/${id}`)
+        axios.get(`http://localhost:8080/bababook/book/${bookId}`)
         .then((response) => {
             console.log(response);
             const temp = response.data.data.book;
             setBookItems(temp)
+            setUsers(response.data.data.user)
             console.log(bookItem)
         })
+    }
+
+    const addBook = () =>{
+        console.log("in add book")
+        try{
+            axios.post(`http://localhost:8080/bababook/user/${userId}/book/${bookId}`, {})
+            .then((response) =>{
+                if (response.status === 200){
+                    alert("book added")
+                    setAddMessage("Added")
+                }
+                console.log("addbook", response)
+            })
+        }
+        catch(error){
+            alert(error)
+        }
+        
     }
     // const getBook = ()=>{
     //     try{
@@ -120,7 +141,7 @@ function HomePage(){
 
                             <h1>{bookItem.name}</h1>
                             <h2 className="separator"> • </h2>
-                            <h2>Firstname Lastname</h2>
+                            <h2>{user.firstname} {user.lastname}</h2>
                         </div>
                         <div className ="hr">
                             <h3>Rating: <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="far fa-star"></i></h3>
@@ -132,7 +153,7 @@ function HomePage(){
                                     <h3>Price: </h3>
                                     <h3>฿{bookItem.price}</h3>
                                 </div>
-                                <button className="btn btn-success" type="submit"><i className="fas fa-plus"></i> Add Book</button>
+                                <button className="btn btn-success" type="submit" onClick={addBook}><i className="fas fa-plus"></i> {addMessage}</button>
                             </div>
 
                         </div>

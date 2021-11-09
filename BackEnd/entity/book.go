@@ -23,7 +23,7 @@ type BookRepository interface {
 
 type BookUseCase interface {
 	GetAll(c context.Context) ([]Book, error)
-	GetById(c context.Context, bookId string) (Book, error)
+	GetById(c context.Context, bookId string) (Book, User, error)
 	CreateBook(c context.Context, book Book) error
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string) error

@@ -26,9 +26,10 @@ func (useCase *bookUseCase) GetAll(c context.Context) ([]entity.Book, error) {
 	return books, err
 }
 
-func (useCase *bookUseCase) GetById(c context.Context, id string) (entity.Book, error) {
+func (useCase *bookUseCase) GetById(c context.Context, id string) (entity.Book, entity.User, error) {
 	book, err := useCase.bookRepo.GetById(c, id)
-	return book, err
+	user, err := useCase.userRepo.GetById(c, book.UserId)
+	return book, user, err
 }
 
 func (useCase *bookUseCase) CreateBook(c context.Context, book entity.Book) error {

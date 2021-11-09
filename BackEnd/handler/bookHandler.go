@@ -52,7 +52,7 @@ func (bookHandler *BookHandler) GetAll(c echo.Context) error {
 func (bookHandler *BookHandler) GetById(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
-	book, err := bookHandler.BookUseCase.GetById(ctx, id)
+	book, user, err := bookHandler.BookUseCase.GetById(ctx, id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {
@@ -67,8 +67,10 @@ func (bookHandler *BookHandler) GetById(c echo.Context) error {
 	response := entity.ResponseSuccess{
 		Data: struct {
 			Book entity.Book "json:\"book\""
+			User entity.User "json:\"user\""
 		}{
 			Book: book,
+			User: user,
 		},
 	}
 	return c.JSON(http.StatusOK, response)
