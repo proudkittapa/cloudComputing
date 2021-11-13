@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--------CSS-------->
+    <link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link rel="stylesheet" href="main.css">
+    
+    <!--------Scripts-------->
+    <script src="https://kit.fontawesome.com/e8ad538762.js" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bababook</title>
+</head>
+
+<body>
+    <nav className="navbar border-bottom">
+        <div className="container-fluid">
+            <!--Logo (Currently no logo, so have just text)-->
+            <a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a>
+
+            <!--Search Bar, hides when screen is small-->
+            <div className="d-none d-lg-block flex-grow-1 flex-fill">
+                <form className="d-flex input-group">
+                    <input className="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button className="btn btn-navbar" type="button" id="button-addon2"><i className="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div className="d-flex flex-fill align-items-center">
+
+                <a href="/" className="px-3">200.00 THB</a>
+
+                <a href="/">
+                    <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 64 64" style={{enable-background: 'new 0 0 64 64', width:'32px', height:'32px', xml:space:'preserve'}}>
+                        <polyline className="st0" points="31.63,44.51 54.52,61.28 54.5,61 54.5,2.5 9.5,2.5 9.5,61 9.48,61.28 32.23,44.61 "/>
+                        <polygon className="st1" points="32,11.55 35.89,19.42 44.58,20.69 38.29,26.82 39.77,35.47 32,31.39 24.23,35.47 25.71,26.82 
+                            19.42,20.69 28.11,19.42 "/>
+                    </svg>
+                </a>
+                
+                <!--Dropdown Menu-->
+                <div className="flex-fill">
+                    <div className="nav-item dropdown">
+                        <button className="btn btn-navbar rounded-circle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i className="fas fa-user"></i>
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <!--Dropdown Menu Links-->
+                            <a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a>
+                            <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
+                            <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
+                            <hr className="dropdown-divider">
+                            <a className="dropdown-item" href="#"><i className="fas fa-sign-out-alt"></i> Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <iframe src="./testpdffile.pdf#toolbar=0" width="100%" height="100%">
+    </iframe>
+</body>
+</html>

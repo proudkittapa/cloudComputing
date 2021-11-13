@@ -1,0 +1,28 @@
+.bookshelf{
+    padding: 2rem;
+}
+
+#booklist{
+    table-layout: fixed;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2rem;
+}
+
+#booklist th, #booklist td{
+    max-width: 418px;
+    overflow-x: wrap;
+    word-wrap:break-word;
+}
+
+#booklist th{
+    padding: 1.5rem 1rem;
+}
+
+#booklist td{
+    padding: 1rem;
+}
+
+#booklist tr:hover{
+    background-color: #e3eceb;
+}
