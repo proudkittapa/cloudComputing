@@ -1,0 +1,34 @@
+.home-bar{
+    width: 100%;
+    padding: 1rem;
+    background-color: #e3eceb;
+    justify-content: space-between;
+    overflow-x: scroll;
+}
+
+/* Make 2 classes
+    Author - Round
+    Book - Square */
+
+.home-bar-item{
+    border-radius: 10%;
+    min-height: 160px;
+    min-width: 160px;
+    max-height: 160px;
+    max-width: 160px;
+}
+
+.book {
+    border-radius: 10%;
+}
+
+.user {
+    border-radius: 100%;
+}
+
+.see-more {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
