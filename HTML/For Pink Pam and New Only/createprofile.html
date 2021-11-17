@@ -5,7 +5,7 @@
     <link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
             <link rel="stylesheet" href="main.css">
-            <link rel="stylesheet" href="profile.css">
+            <link rel="stylesheet" href="createprofile.css">
 
     <!--------Scripts-------->
     <script src="https://kit.fontawesome.com/e8ad538762.js" crossorigin="anonymous"></script>
@@ -99,15 +99,15 @@
 
         <div class="container content">
         <!-- Start Content -->
-            <!----------------------Profile---------------------->
+            <!----------------------create Profile---------------------->
             <div class="container-fluid" >
+
                 <!---------------------- Profile pic---------------------->
-                <h3 style="padding-left:5%;" >Profile</h3>
                 <div class="row row-cols-1 row-cols-lg-2 g-5">
                     <div class="col-4" style="padding:0px 5% 0px 2%; min-width: 250px;">
                         <a href="tag_a.asp">
                             <div class="authorimg" >
-                                <div class="container" style="padding:20px; margin: 20px; text-alight: center; ">
+                                <div class="container" style="padding:20px; margin: 20px;">
                                     <div class="ratio ratio-1x1 rounded" >
                                         <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/da3c9d43-2638-4757-b3d0-b8d5d0dcd7c7/de548p5-b657cd2a-f663-4540-af13-54f395a585af.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZGEzYzlkNDMtMjYzOC00NzU3LWIzZDAtYjhkNWQwZGNkN2M3XC9kZTU0OHA1LWI2NTdjZDJhLWY2NjMtNDU0MC1hZjEzLTU0ZjM5NWE1ODVhZi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.P7PswzM7IyPk-AdfDkovFGDmU478yifKRzBXu7xlKkE"
                                                 class="img mx-auto d-block" style="min-width: 250px;min-height: 250px;"/>
@@ -117,102 +117,66 @@
                         </a>
                     </div>
 
+                    <!---------------------- Profile input---------------------->
                     <div class="col-8">
-                        <div class="container" style="padding:20px; margin: 20px; text-align: left; ">
-                            <div class="row g-5">
-                                <div class="col">
-                                    <div class="d-flex align-items-baseline"><h1>Name</h1><p>@username</p></div>
+                        <div class="proInput">
+                            <div class="conpad">
+                                <h3 >Create Profile</h3>
+                            </div>
+                            <label for="fullname" class="form-label">Fullname</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                    </svg>
+                                </span>
+                                <input type="email" class="form-control" id="fullname" placeholder="Fullname" value="Gonedanai sosomol">
+                            </div>
 
-                                </div>
+                            <label for="emailAddress" class="form-label">Email address</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                    </svg>
+                                </span>
+                                <input type="email" class="form-control" id="emailAddress" placeholder="name@example.com" value="Gonedanai.s@gmail.com">
                             </div>
-                            <div class="row g-5">
-                                <div class="col-6 col-md-5 col-sm-4">
-                                    <h4>Follower 8</h4>
-                                </div>
-                                <div class="col-6 col-md-5 col-sm-4">
-                                    <h4>Following 8</h4>
-                                </div>
+
+                            <label for="age" class="form-label">Age</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ol" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                                        <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
+                                    </svg>
+                                </span>
+                                <select class="form-select" aria-label="Default select example" id="age">
+                                  <option selected>Open this select menu</option>
+                                    <option value="12">12</option><option value="13">13</option><option value="14">14</option>
+                                    <option value="15">15</option><option value="16">16</option><option value="17">17</option>
+                                    <option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                    <option value="21">21</option><option value="22">22</option><option value="23">23</option>
+                                    <option value="24">24</option><option value="25">25</option><option value="26">26</option>
+                                    <option value="27">27</option><option value="28">28</option><option value="29">29</option>
+                                    <option value="30">30</option><option value="31">31</option><option value="32">32</option>
+                                    <option value="33">33</option><option value="34">34</option><option value="35">35</option>
+                                    <option value="36">36</option><option value="37">37</option><option value="38">38</option>
+                                    <option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                                    <option value="42">42</option><option value="43">43</option><option value="44">44</option>
+                                    <option value="45">45</option><option value="46">46</option><option value="47">47</option>
+                                </select>
                             </div>
-                            <div class="row g-5">
-                                <div class="col">
-                                    <div class="container" padding="50px">
-                                        <button class="btn-pro btn-pro1" href="#" type="submit">Edit Profile</button>
-                                    </div>
-                                </div>
+
+                            <div class="conpad">
+                                <button class="btn-pro btn-pro1" type="submit">Submit</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
-                    <hr width="60%">
 
-                <!---------------------- Description ---------------------->
-                <div class="row">
-                    <div class="col">
-                        <div class="card-body">
-                            <p >Any of your description. </p>
-                            <p >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col col-lg-3 d-flex align-items-stretch mx-auto">
-                        <div class="container-fluid" ><h4 class="text-center">Fav Bookshelf</h4>
-                            <div class="card card-body flex-fill" style="max-width: 250px; margin: 10px; padding-top:20px;">
-                                <a href="tag_a.asp">
-                                    <div class="shelfimg">
-                                        <div class="ratio ratio-1x1 rounded">
-                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-                                                class="img mx-auto d-block" />
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Fav Shelf</h5>
-                                        <p class="card-text text-truncate">by saaasa</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch mx-auto ">
-                        <div class="container-fluid"><h4 class="text-center">Fav Author</h4>
-                            <div class="card card-body flex-fill" style="max-width: 250px; margin: 10px; padding-top:20px; ">
-                                <a href="tag_a.asp">
-                                    <div class="authorimg">
-                                        <div class="ratio ratio-1x1 rounded">
-                                            <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-                                                class="img mx-auto d-block"/>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Fav Author</h5>
-                                        <p class="card-text text-truncate">Author</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch mx-auto">
-                        <div class="container-fluid"><h4 class="text-center">My work</h4>
-                            <div class="card card-body flex-fill" style="max-width: 250px; margin: 10px; padding-top:20px;">
-                                <a href="tag_a.asp">
-                                    <div class="shelfimg">
-                                        <div class="ratio ratio-1x1 rounded">
-                                            <img src="https://media.istockphoto.com/photos/daisy-picture-id172185799?k=20&m=172185799&s=612x612&w=0&h=j59GAht7XA_9oEH0itZ77hBm6u2f4GBkRdzYi2Z4Jts="
-                                                class="img mx-auto d-block" />
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">My work</h5>
-                                        <p class="card-text text-truncate">by Name</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             <!---------------------- End row ---------------------->
             </div>
         <!-- End Content -->
