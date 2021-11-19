@@ -3,11 +3,12 @@ package repository
 import (
 	"context"
 	"fmt"
-	"github.com/pkg/errors"
 	"math/rand"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/pkg/errors"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -45,13 +46,13 @@ func (repo *UserRepository) GetAll(c context.Context) ([]entity.User, error) {
 			return []entity.User{}, err
 		}
 
-		fmt.Println("Found user:")
-		fmt.Println("UserId:  ", user.UserId)
-		fmt.Println("FullName: ", user.FullName)
-		fmt.Println("PaymentId: ", user.PaymentId)
-		fmt.Println("Age: ", user.Age)
-		fmt.Println("Email: ", user.Email)
-		fmt.Println("Role: ", user.Role)
+		// fmt.Println("Found user:")
+		// fmt.Println("UserId:  ", user.UserId)
+		// fmt.Println("FullName: ", user.FullName)
+		// fmt.Println("PaymentId: ", user.PaymentId)
+		// fmt.Println("Age: ", user.Age)
+		// fmt.Println("Email: ", user.Email)
+		// fmt.Println("Role: ", user.Role)
 		Users = append(Users, user)
 	}
 	return Users, nil
@@ -75,7 +76,7 @@ func (repo *UserRepository) GetById(c context.Context, id string) (entity.User, 
 
 	result, err := repo.db.Query(queryInput)
 	if err != nil {
-		return entity.User{},err
+		return entity.User{}, err
 	}
 
 	user := []entity.User{}
@@ -85,7 +86,7 @@ func (repo *UserRepository) GetById(c context.Context, id string) (entity.User, 
 	if err != nil {
 		return entity.User{}, err
 	}
-	if len(user) == 0{
+	if len(user) == 0 {
 		return entity.User{}, errors.New("This user id doesn't exist")
 	}
 
@@ -124,16 +125,19 @@ func (repo *UserRepository) GetByName(c context.Context, name string) ([]entity.
 		}
 		Users = append(Users, user)
 	}
+	if len(Users) == 0 {
+		return []entity.User{}, errors.New("Name doesn't exist")
+	}
 	return Users, nil
 }
 
-func (repo *UserRepository) Create(c context.Context, user entity.User) error {
+func (repo *UserRepository) Create(c context.Context, user entity.User) (string, error) {
 	user.UserId = GenerateUUID()
 	//insert to table book
 
 	av, err := dynamodbattribute.MarshalMap(user)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	tableName := "users"
@@ -146,11 +150,11 @@ func (repo *UserRepository) Create(c context.Context, user entity.User) error {
 	_, err = repo.db.PutItem(input)
 
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	fmt.Println("Successfully added '" + user.FullName + "' (" + user.UserId + ") to table " + tableName)
-	return nil
+	// fmt.Println("Successfully added '" + user.FullName + "' (" + user.UserId + ") to table " + tableName)
+	return user.UserId, nil
 }
 
 func (repo *UserRepository) Update(c context.Context, user entity.User) error {
@@ -197,7 +201,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 		return err
 	}
 
-	fmt.Println("Successfully updated '" + user.FullName + "' (" + user.UserId + ")")
+	// fmt.Println("Successfully updated '" + user.FullName + "' (" + user.UserId + ")")
 	return nil
 }
 
@@ -219,7 +223,7 @@ func (repo *UserRepository) Delete(c context.Context, id string) error {
 		return err
 	}
 
-	fmt.Println("Deleted User Id'" + id + ") from table " + tableName)
+	// fmt.Println("Deleted User Id'" + id + ") from table " + tableName)
 	return nil
 }
 
@@ -258,7 +262,7 @@ func (repo *UserRepository) CreateUserDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return err
 }
 
@@ -289,7 +293,7 @@ func (repo *UserRepository) CreateUserShelfDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return err
 }
 
@@ -320,17 +324,18 @@ func (repo *UserRepository) CreateShelfDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return err
 }
 
 func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
+	bookRepo := NewBookRepository(repo.db)
 	seed := time.Now().UTC().UnixNano()
 	nameGenerator := namegenerator.NewNameGenerator(seed)
 
 	count := int(numOfUser / 4)
 	numOfUser -= count
-	fmt.Println("Normal users: ")
+	// fmt.Println("Normal users: ")
 	for i := 0; i < count; i++ {
 		name := nameGenerator.Generate()
 		splitedName := strings.Split(name, "-")
@@ -350,13 +355,24 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Balance:   100,
 			PaymentId: pid,
 		}
-		repo.Create(c, User)
-		userEntity, _ := repo.GetByName(c, fullname)
-		fmt.Println(name + "\t\t" + userEntity[0].UserId)
+		userId, err := repo.Create(c, User)
+		if err != nil {
+			return err
+		}
+		shelfId, err := bookRepo.CreateShelf(c, "Your Shelf")
+		if err != nil {
+			return err
+		}
+		err = bookRepo.CreateUserShelf(c, userId, shelfId)
+		if err != nil {
+			return err
+		}
+
+		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
 	}
 
 	numOfUser -= count
-	fmt.Println("Subscription users: ")
+	// fmt.Println("Subscription users: ")
 	for i := 0; i < count; i++ {
 		name := nameGenerator.Generate()
 		splitedName := strings.Split(name, "-")
@@ -373,16 +389,26 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Age:       rand.Intn(80-1+1) + 1,
 			Email:     name + "@gmail.com",
 			Role:      "User",
-			Balance:   100,
+			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
 		}
-		repo.Create(c, User)
-		userEntity, _ := repo.GetByName(c, fullname)
-		repo.CreateSubscription(c, userEntity[0].UserId)
-		fmt.Println(name + "\t\t" + userEntity[0].UserId)
+		userId, err := repo.Create(c, User)
+		if err != nil {
+			return err
+		}
+		shelfId, err := bookRepo.CreateShelf(c, "Your Shelf")
+		if err != nil {
+			return err
+		}
+		err = bookRepo.CreateUserShelf(c, userId, shelfId)
+		if err != nil {
+			return err
+		}
+		repo.CreateSubscription(c, userId)
+		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
 	}
 
-	fmt.Println("Authors:")
+	// fmt.Println("Authors:")
 	for i := 0; i < numOfUser; i++ {
 		name := nameGenerator.Generate()
 		splitedName := strings.Split(name, "-")
@@ -399,24 +425,33 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Age:       rand.Intn(80-1+1) + 1,
 			Email:     name + "@gmail.com",
 			Role:      "Author",
-			Balance:   200,
+			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
 		}
-		repo.Create(c, User)
-		userEntity, _ := repo.GetByName(c, fullname)
+		userId, err := repo.Create(c, User)
+		if err != nil {
+			return err
+		}
+		shelfId, err := bookRepo.CreateShelf(c, "Your Shelf")
+		if err != nil {
+			return err
+		}
+		err = bookRepo.CreateUserShelf(c, userId, shelfId)
+		if err != nil {
+			return err
+		}
 		name = nameGenerator.Generate()
 		bookName := strings.Split(name, "-")
 		Book := entity.Book{
 			Name:        bookName[0],
-			UserId:      userEntity[0].UserId,
+			UserId:      userId,
 			Price:       (rand.Float32() * (1000 - 100)) + 100,
 			Rating:      (rand.Float32() * (5 - 1)) + 1,
 			Description: "lorem",
 			Img:         "https://popcat.click/og-card.jpg",
 		}
-		bookRepo := NewBookRepository(repo.db)
 		bookRepo.CreateBook(c, Book)
-		fmt.Println(name + "\t\t" + userEntity[0].UserId)
+		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
 	}
 
 	return nil
@@ -444,7 +479,7 @@ func (repo *UserRepository) CreatePayment(c context.Context, payment entity.Paym
 		return "", err
 	}
 
-	fmt.Println("Successfully added '" + payment.PaymentId + "' (" + payment.CardName + ") to table " + tableName)
+	// fmt.Println("Successfully added '" + payment.PaymentId + "' (" + payment.CardName + ") to table " + tableName)
 	return payment.PaymentId, nil
 }
 
@@ -475,7 +510,7 @@ func (repo *UserRepository) UpdatePayment(c context.Context, userId string, paym
 		return err
 	}
 
-	fmt.Println("Successfully updated '" + paymentId + "' to user '" + userId + "'")
+	// fmt.Println("Successfully updated '" + paymentId + "' to user '" + userId + "'")
 	return nil
 }
 
@@ -506,7 +541,7 @@ func (repo *UserRepository) CreateSubscription(c context.Context, userId string)
 		return err
 	}
 
-	fmt.Println("Successfully created Subscription (" + subscription.SubscriptionId + ") to table " + tableName)
+	// fmt.Println("Successfully created Subscription (" + subscription.SubscriptionId + ") to table " + tableName)
 	return nil
 }
 

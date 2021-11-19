@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"fmt"
+
 	"github.com/pkg/errors"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -46,12 +47,12 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 			return []entity.Book{}, err
 		}
-		fmt.Println("Found item:")
-		fmt.Println("bookId:  ", item.BookId)
-		fmt.Println("name: ", item.Name)
-		fmt.Println("price:  ", item.Price)
-		fmt.Println("rating: ", item.Rating)
-		fmt.Println("description: ", item.Description)
+		// fmt.Println("Found item:")
+		// fmt.Println("bookId:  ", item.BookId)
+		// fmt.Println("name: ", item.Name)
+		// fmt.Println("price:  ", item.Price)
+		// fmt.Println("rating: ", item.Rating)
+		// fmt.Println("description: ", item.Description)
 		books = append(books, item)
 	}
 	return books, nil
@@ -79,13 +80,15 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 	}
 
 	book := []entity.Book{}
-	fmt.Println("results.items: ", result.Items)
-	fmt.Println("results.items: ", result.Items[0])
+	// fmt.Println("results.items: ", result.Items)
+	// fmt.Println("results.items: ", result.Items[0])
 	err = dynamodbattribute.UnmarshalListOfMaps(result.Items, &book)
 	if err != nil {
 		return entity.Book{}, err
 	}
-
+	if len(book) == 0 {
+		return entity.Book{}, errors.New("books id doesn't exist")
+	}
 	return book[0], nil
 }
 
@@ -146,7 +149,7 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 		return err
 	}
 
-	fmt.Println("Successfully added '" + book.Name + "' (" + book.BookId + ") to table " + tableName)
+	// fmt.Println("Successfully added '" + book.Name + "' (" + book.BookId + ") to table " + tableName)
 	return nil
 }
 
@@ -193,7 +196,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 		return err
 	}
 
-	fmt.Println("Successfully updated '" + book.Name + "' (" + book.BookId + ")")
+	// fmt.Println("Successfully updated '" + book.Name + "' (" + book.BookId + ")")
 	return nil
 }
 
@@ -215,7 +218,7 @@ func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
 		return err
 	}
 
-	fmt.Println("Deleted Book Id'" + id + ") from table " + tableName)
+	// fmt.Println("Deleted Book Id'" + id + ") from table " + tableName)
 	return nil
 }
 
@@ -254,7 +257,7 @@ func (repo *BookRepository) CreateBookDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return err
 }
 
@@ -283,7 +286,7 @@ func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (st
 		return "", err
 	}
 
-	fmt.Println("Successfully added '" + shelf.Name + "' (" + shelf.ShelfId + ") to table " + tableName)
+	// fmt.Println("Successfully added '" + shelf.Name + "' (" + shelf.ShelfId + ") to table " + tableName)
 	return shelf.ShelfId, nil
 }
 
@@ -357,7 +360,7 @@ func (repo *BookRepository) AddBookToShelf(c context.Context, shelfId string, bo
 		return err
 	}
 
-	fmt.Println("Successfully updated '" + bookId + "' to Shelf '" + shelfId + "'")
+	// fmt.Println("Successfully updated '" + bookId + "' to Shelf '" + shelfId + "'")
 	return nil
 }
 
@@ -393,8 +396,8 @@ func (repo *BookRepository) GetBooksIdFromShelf(c context.Context, shelfId strin
 		}
 		BooksId = append(BooksId, shelf.BookSet)
 	}
-	fmt.Println("books", BooksId)
-	if len(BooksId) == 0{
+	// fmt.Println("books", BooksId)
+	if len(BooksId) == 0 {
 		return entity.BooksId{}, errors.New("books id doesn't exist")
 	}
 	return BooksId[0], nil
@@ -426,6 +429,6 @@ func (repo *BookRepository) CreateUserShelf(c context.Context, userId, shelfId s
 		return err
 	}
 
-	fmt.Println("Successfully added '" + userShelf.UserShelfId + "' to table " + tableName)
+	// fmt.Println("Successfully added '" + userShelf.UserShelfId + "' to table " + tableName)
 	return nil
 }

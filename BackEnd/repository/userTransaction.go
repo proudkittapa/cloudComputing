@@ -2,8 +2,6 @@ package repository
 
 import (
 	"context"
-	"fmt"
-	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -48,10 +46,10 @@ func (repo *UserTransactionRepository) AddBook(c context.Context, userId string,
 	_, err = repo.db.PutItem(input)
 
 	if err != nil {
-		log.Fatalf("Got error calling PutItem: %s", err)
+		return err
 	}
 
-	fmt.Println("Successfully added User Transaction '" + userTransaction.UserId + "' to table " + tableName + "at" + userTransaction.Time)
+	// fmt.Println("Successfully added User Transaction '" + userTransaction.UserId + "' to table " + tableName + "at" + userTransaction.Time)
 	return nil
 }
 
@@ -82,7 +80,7 @@ func (repo *UserTransactionRepository) CreateUserTransactionDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return nil
 }
 
@@ -113,7 +111,7 @@ func (repo *UserTransactionRepository) CreateSubscriptionDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return nil
 }
 
@@ -152,7 +150,7 @@ func (repo *UserTransactionRepository) CreatePaymentDB() error {
 		return err
 	}
 
-	fmt.Println("Created the table", tableName)
+	// fmt.Println("Created the table", tableName)
 	return nil
 }
 
@@ -258,7 +256,7 @@ func (repo *UserTransactionRepository) GetAllShelfByUserId(c context.Context, us
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
-		panic(err)
+		return Shelves, err
 	}
 
 	// for each shelf_id of user, find book shelves
