@@ -15,7 +15,8 @@ type User struct {
 type UserRepository interface {
 	GetAll(c context.Context) ([]User, error)
 	GetById(c context.Context, userId string) (User, error)
-	Create(c context.Context, user User) error
+	GetByName(c context.Context, fullname string) ([]User, error)
+	Create(c context.Context, user User) (string, error)
 	Update(c context.Context, user User) error
 	Delete(c context.Context, userId string) error
 	CreateUserDB() error
