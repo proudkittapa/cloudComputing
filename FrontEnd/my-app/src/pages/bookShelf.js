@@ -6,7 +6,29 @@ import '../css/main.css'
 import {Link} from 'react-router-dom'
 function BookShelf(){
 
-   let {userId} = useParams()
+    const [user, setUsers] = useState({})
+    let {userId} = useParams()
+    const [shelf, setShelves] = useState({})
+    useEffect(()=>{
+        console.log("before get user")
+        getUser()
+    }, []);
+    const getUser = () =>{
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
+        .then((response) => {
+            console.log(response);
+            setUsers(response.data.data.user)
+        })
+    }
+
+    const getShelf = () => {
+        axios.get(`localhost:8080/bababook/user/${userId}/shelf`)
+        .then((response) => {
+            console.log("getShelf response", response)
+            setShelves(response.data.data.shelves)
+        })
+    }
+
     return(
         <body>
             <nav class="navbar border-bottom">
@@ -22,7 +44,7 @@ function BookShelf(){
 
                 <div class="d-flex flex-fill align-items-center">
 
-                    <a href="/" class="px-3">200.00 THB</a>
+                    <a href="/" class="px-3">{user.balance} THB</a>
 
                     <a href="/">
                     <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
