@@ -7,8 +7,9 @@ type Shelf struct {
 }
 
 type BooksId struct {
-	Books []string `json:"book_set"`
+	Books []string `json:"books"`
 }
+
 type UserShelf struct {
 	UserShelfId string `json:"user_shelf_id"`
 	UserId      string `json:"user_id"`
