@@ -1,0 +1,614 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 14px;
+  }
+  .v12_317 {
+    width: 100%;
+    height: 900px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v12_318 {
+    width: 184px;
+    height: 900px;
+    background: rgba(196,196,196,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v12_319 {
+    width: 100%;
+    height: 99px;
+    background: rgba(245,201,88,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .name {
+    color: #fff;
+  }
+  .v12_321 {
+    width: 134px;
+    height: 59px;
+    background: url("../images/v17_492.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 23px;
+    left: 1135px;
+    overflow: hidden;
+  }
+  .v12_322 {
+    width: 134px;
+    height: 53px;
+    background: rgba(0,0,0,1);
+    opacity: 1;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+  }
+  .v12_323 {
+    width: 88px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 0px;
+    left: 21px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 50px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_324 {
+    width: 117px;
+    height: 117px;
+    background: url("../images/v12_324.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 10px;
+    left: 1296px;
+    border-top-left-radius: 368px;
+    border-top-right-radius: 368px;
+    border-bottom-left-radius: 368px;
+    border-bottom-right-radius: 368px;
+    overflow: hidden;
+  }
+  .v12_325 {
+    width: 75px;
+    color: rgba(97,93,93,1);
+    position: absolute;
+    top: 126px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_326 {
+    width: 167px;
+    height: 39px;
+    background: rgba(245,201,88,1);
+    opacity: 1;
+    position: absolute;
+    top: 157px;
+    left: 9px;
+    overflow: hidden;
+  }
+  .v12_327 {
+    width: 98px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 160px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_328 {
+    width: 98px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 37px;
+    left: 1052px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 40px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_329 {
+    width: 105px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 204px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_330 {
+    width: 110px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 249px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_331 {
+    width: 93px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 293px;
+    left: 18px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_332 {
+    width: 84px;
+    color: rgba(97,93,93,1);
+    position: absolute;
+    top: 477px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_333 {
+    width: 119px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 509px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_334 {
+    width: 126px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 553px;
+    left: 13px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_335 {
+    width: 143px;
+    height: 74px;
+    background: url("../images/v12_335.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 826px;
+    left: 20px;
+    overflow: hidden;
+  }
+  .v12_336 {
+    width: 143px;
+    height: 57px;
+    background: rgba(0,0,0,1);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+  }
+  .v12_337 {
+    width: 94px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 11px;
+    left: 25px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_338 {
+    width: 259px;
+    height: 58px;
+    background: rgba(245,201,88,1);
+    border-radius: 10px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 500px;
+    left: 272px;
+    overflow: hidden;
+  }
+
+  .v12_338:hover{
+    opacity:0.6;
+    transition: 0.5s;
+  }
+  .v12_340 {
+    width: 244px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 11px;
+    left: 8px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v14_6 {
+    width: 175px;
+    height: 57px;
+    background: rgba(196,196,196,1);
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 500px;
+    left: 545px;
+    overflow: hidden;
+  }
+  
+  .v14_6:hover {
+    opacity: 0.6;
+    transition: 0.5s;
+  }
+  .v14_8 {
+    width: 165px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v14_9 {
+    width: 175px;
+    height: 57px;
+    background: rgba(0,0,0,1);
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 500px;
+    left: 734px;
+    overflow: hidden;
+  }
+
+  .v14_9:hover{
+    opacity: 0.6;
+    transition:0.5s;
+  }
+
+  .v14_11 {
+    width: 165px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_341 {
+    width: 193px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 24px;
+    left: 112px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 50px;
+    opacity: 1;
+    text-align: center;
+  }
+  .v12_342 {
+    width: 345px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 160px;
+    left: 280px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_343 {
+    width: 492px;
+    height: 42px;
+    padding-left: 10px;
+    color: rgba(0,0,0,1);
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 25px;
+    border: none;
+    padding-left: 10px;
+    padding-top: 5px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 160px;
+    left: 364px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_344 {
+    width: 113px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 222px;
+    left: 280px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_345 {
+    width: 462px;
+    height: 42px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 222px;
+    left: 394px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_346 {
+    width: 124px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 280px;
+    left: 280px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_347 {
+    width: 124px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 280px;
+    left: 453px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_348 {
+    width: 323px;
+    height: 42px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 280px;
+    left: 533px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_349 {
+    width: 124px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 280px;
+    left: 877px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_350 {
+    width: 132px;
+    height: 42px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 280px;
+    left: 982px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_351 {
+    width: 80px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 220px;
+    left: 278px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_352 {
+    width: 168px;
+    height: 42px;
+    padding-left: 10px;
+    padding-top:5px;
+    color: rgba(0,0,0,1);
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 25px;
+    border: none;
+    padding-left: 10px;
+
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 220px;
+    left: 358px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_353 {
+    width: 124px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 396px;
+    left: 278px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_354 {
+    width: 132px;
+    height: 42px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 396px;
+    left: 394px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_364 {
+    width: 137px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 280px;
+    left: 278px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_365 {
+    width: 699px;
+    height: 42px;
+    padding-left: 10px;
+    color: rgba(0,0,0,1);
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 25px;
+    border: none;
+    padding-left: 10px;
+    padding-top: 5px;
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 280px;
+    left: 415px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  .v12_366 {
+    width: 124px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 340px;
+    left: 278px;
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 30px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v12_367 {
+    width: 132px;
+    height: 42px;
+    padding-left: 10px;
+    color: rgba(0,0,0,1);
+    font-family: Marvel;
+    font-weight: Bold;
+    font-size: 25px;
+    border: none;
+    padding-left: 10px;
+    padding-top: 5px;
+
+    background: rgba(228,228,228,1);
+    opacity: 1;
+    position: absolute;
+    top: 340px;
+    left: 383px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+  }
+  

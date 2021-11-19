@@ -1,0 +1,14 @@
+
+.shelfimg img {
+    border-radius: 10px;
+
+}
+
+.authorimg img {
+    border-radius: 100px;
+
+}
+
+.card:hover {
+  background-color: #e3eceb;
+}

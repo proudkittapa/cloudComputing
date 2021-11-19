@@ -1,0 +1,9 @@
+
+.ratio .img {
+    border-radius: 10px;
+
+}
+
+.card:hover{
+  background-color: #e3eceb;
+}

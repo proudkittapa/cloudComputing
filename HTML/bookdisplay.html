@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--------CSS-------->
+    <link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="bookdisplay.css">
+    <!--------Scripts-------->
+    <script src="https://kit.fontawesome.com/e8ad538762.js" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bababook</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <!--Logo (Currently no logo, so have just text)-->
+            <a class="navbar-brand flex-fill">Bababook</a>
+
+            <!--Search Bar, hides when screen is small-->
+            <div class="d-none d-lg-block flex-fill">
+                <form class="d-flex ">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+            
+            <!--Dropdown Menu-->
+            <div class="dropdown flex-fill">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <!--Search Bar, shows when screen is small-->
+                    <form class="d-flex justify-content-center d-lg-none">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <!--Dropdown Menu Links-->
+                    <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-book"></i> Library</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <hr class="dropdown-divider"></li>
+                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row row-book-container row-book-sm row-book-lg">
+            <div class="col-auto">
+                <!--Book Cover-->
+                <img class="book-cover" src="https://i.imgur.com/Io2Jx0c.png">
+            </div>
+
+            <div class="col-lg">
+                <!--Book/Author Name-->
+                <div class="d-flex align-items-end">
+                    <h1>Book Name</h1>
+                    <h2 class="separator"> • </h2>
+                    <h2>Firstname Lastname</h2>
+                </div>
+
+                <hr>
+
+                <!--Rating/Price/Add Book-->
+                <h3>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></h3>
+                <br>
+                <div class="pricing-add d-flex align-items-end">
+                    <div class="d-flex">
+                        <h3>Price: </h3>
+                        <h3>฿200.00</h3>
+                    </div>
+
+                    <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> Add Book</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <!--Book Description-->
+        <h2>Description</h2>
+        <hr>
+        <p class="book-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam libero lorem, iaculis et nibh maximus, vehicula luctus ex. Cras aliquam urna convallis massa malesuada, et faucibus lorem egestas. Vivamus facilisis orci nec felis maximus eleifend. Etiam pellentesque, diam id mollis iaculis, lectus erat commodo magna, quis tincidunt tortor leo vitae erat. Donec gravida consectetur malesuada. Sed auctor mauris a nisl venenatis, ut vestibulum diam scelerisque. Suspendisse congue eros sed finibus tempor. Etiam porta, nisl ut condimentum luctus, orci dolor tempor ante, ac egestas est enim at dolor.</p>
+    </div>
+
+
+</body>
+
+
+
+<!-- For Ratings: 
+    <i class="fas fa-star"></i> = Full Star
+    <i class="far fa-star"></i> = Empty Star
+
+    Maybe use js to calculate stars? If .5 or higher round up.
+    Ex. Ratings = 4.5/5 ==> Show as 5 stars
+        Ratings = 4.2/5 ==> Show as 4 stars
+
+    For Dropdown:
+    New link ==> <a class="dropdown-item" href="#"><i class="fas fa-ICONNAME"></i> TEXT</a>
+
+    For Icons:
+    Get from https://fontawesome.com/v5.15/icons
+-->
+</html>

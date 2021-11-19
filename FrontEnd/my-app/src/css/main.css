@@ -1,0 +1,167 @@
+/*  Colors: 
+        Links (Teal) = #4db6ac
+        Links Hover (Teal) = #1c8a7f
+        Links (Orange) = #ff8d4e
+        Links Hover (Orange) = #d35827
+        Nav/Sidebar = #e3eceb
+        Most Fonts (Black) = #303036;   */
+
+/*  Try not to change this sheet
+    Because it will effect other pages  */
+
+/* ---------- General CSS ---------- */
+
+html, body{
+    height: 100%;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    margin: auto;
+}
+
+p, h1, h2, h3{
+    color: #303036;
+}
+
+p{
+    font-size: 1.25rem;
+}
+
+hr{
+    width: 100%;
+    border: 2px solid;
+}
+
+a{
+    color: #4db6ac;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover{
+    color: #1c8a7f;
+}
+
+.btn{
+    font-size: 1.25rem;
+}
+
+.container{
+    padding: 2rem 0rem;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e3eceb; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4db6ac; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1c8a7f; 
+}
+
+.content{
+    margin-left: 2rem;
+    width: 100%;
+}
+
+/* ---------- Nav Bar CSS ---------- */
+
+.navbar {
+    min-height: 5rem;
+    width: 100%;
+    background-color: #e3eceb;
+    padding: 0rem 2rem;
+    font-size: 1.25rem;
+    
+}
+
+.navbar-brand{
+    font-size: 2.25rem;
+    color: #4db6ac;
+}
+
+.navbar-brand:hover{
+    color: #1c8a7f;
+}
+
+.btn-navbar{
+    background-color: #4db6ac;
+    color: #ffffff;
+}
+
+.btn-navbar:hover{
+    background-color: #1c8a7f;
+    color: #ffffff;
+}
+
+.dropdown-divider{
+    width: 75%;
+    margin: auto;
+    border: 1px solid;
+}
+
+.flex-fill{
+    padding: 0rem 2rem;
+}
+
+.nav-link {
+    border-radius: 0;
+    color: #4db6ac;
+}
+
+.nav-link :hover{
+    border-radius: 0;
+    color: #1c8a7f;
+}
+
+/* ---------- SVG Vector ---------- */
+
+.st0{
+    fill:#ff8d4e;
+}
+
+.st0:hover{
+    fill:#d35827;
+}
+
+.st1{
+    fill:#ffffff;
+}
+
+/* ---------- Sidebar CSS ---------- */
+
+.sidebar{
+    height: auto;
+    min-width: 104px;
+    background-color: #e3eceb;
+    font-size: 2rem;
+}
+
+.nav-flush .nav-link {
+    border-radius: 0;
+    color: #4db6ac;
+}
+
+.nav-flush .nav-link :hover{
+    border-radius: 0;
+    color: #1c8a7f;
+}
+
+.book-desc{
+    text-align: justify;
+    font-size: 1.125rem;
+}
+
+.active{
+    background-color: #4db6ac;
+}
+
+.active .nav-link{
+    color: #e3eceb;
+}

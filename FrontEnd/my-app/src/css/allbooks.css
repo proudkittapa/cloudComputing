@@ -1,0 +1,62 @@
+.home-bar{
+    width: 100%;
+    padding: 1rem;
+    background-color: #e3eceb;
+    justify-content: space-between;
+    overflow-x: scroll;
+}
+
+/* Make 2 classes
+    Author - Round
+    Book - Square */
+
+.home-bar-item{
+    border-radius: 10%;
+    min-height: 160px;
+    min-width: 160px;
+    max-height: 160px;
+    max-width: 160px;
+}
+
+.book {
+    border-radius: 10%;
+    margin: 25px;
+}
+
+.user {
+    border-radius: 100%;
+}
+
+.see-more {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.allbook-bar{
+    width: 100%;
+    padding: 1rem;
+    background-color: #e3eceb;
+    overflow-x: scroll;
+}
+
+.pagination {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4DB6AC;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #e3eceb;}

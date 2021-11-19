@@ -1,0 +1,15 @@
+
+.shelfimg img {
+    border-radius: 10px;
+
+}
+
+.authorimg img {
+    border-radius: 100%;
+
+}
+
+.card:hover {
+  background-color: grey;
+}
+
