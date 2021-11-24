@@ -90,7 +90,7 @@ func (bookHandler *BookHandler) CreateBook(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 	fmt.Println("book", book)
-	err := bookHandler.BookUseCase.CreateBook(ctx, book)
+	id, err := bookHandler.BookUseCase.CreateBook(ctx, book)
 	if err != nil {
 		fmt.Println()
 		errMessage := err.Error()
@@ -107,8 +107,10 @@ func (bookHandler *BookHandler) CreateBook(c echo.Context) error {
 	response := entity.ResponseSuccess{
 		Data: struct {
 			Message string "json:\"message\""
+			Id string `json:"id"`
 		}{
 			Message: "book is created",
+			Id: id,
 		},
 	}
 	return c.JSON(http.StatusOK, response)
@@ -245,13 +247,28 @@ func (bookHandler *BookHandler) GetBooksFromShelf(c echo.Context) error {
 			},
 		})
 	}
+	type bookReturn struct {
+		Name string `json:"name"`
+		BookId string `json:"book_id"`
+		AuthorName string `json:"author_name"`
+	}
+
+	var result []bookReturn
+	for k, v := range books{
+		res := bookReturn{
+			Name:       v.Name,
+			BookId:     v.BookId,
+			AuthorName: users[k].FullName,
+		}
+		result = append(result, res)
+	}
+	fmt.Println(result)
+
 	response := entity.ResponseSuccess{
 		Data: struct {
-			Book []entity.Book `json:"books"`
-			User []entity.User `json:"users"`
+			Result []bookReturn `json:"books"`
 		}{
-			Book: books,
-			User: users,
+			Result: result,
 		},
 	}
 	return c.JSON(http.StatusOK, response)

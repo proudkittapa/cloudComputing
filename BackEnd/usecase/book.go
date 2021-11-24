@@ -37,9 +37,9 @@ func (useCase *bookUseCase) GetById(c context.Context, id string) (entity.Book, 
 	return book, user, err
 }
 
-func (useCase *bookUseCase) CreateBook(c context.Context, book entity.Book) error {
-	err := useCase.bookRepo.CreateBook(c, book)
-	return err
+func (useCase *bookUseCase) CreateBook(c context.Context, book entity.Book) (string, error) {
+	id, err := useCase.bookRepo.CreateBook(c, book)
+	return id, err
 }
 
 func (useCase *bookUseCase) UpdateBook(c context.Context, book entity.Book) error {

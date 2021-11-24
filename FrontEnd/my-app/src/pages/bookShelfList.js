@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/bookshelflist.css'
+import '../css/main.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router'
 
@@ -9,27 +10,30 @@ function BookShelfList(){
     let {userId, shelfId} = useParams()
     const [user, setUsers] = useState({})
     const [books, setBooks] = useState([])
+
     useEffect(()=>{
         console.log("before get user")
-        getUser()
+        getUserAndShelf()
         getBooksInShelf()
     }, []);
-    const getUser = () =>{
+    const getUserAndShelf = () =>{
         axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
-            console.log("user", user)
         })
+        
     }
 
-    const getBooksInShelf = () => {
+    const getBooksInShelf = () =>{
         axios.get(`http://localhost:8080/bababook/shelf/${shelfId}`)
         .then((response) =>{
             console.log("response", response)
-            setBooks(response.data.data)
+            setBooks(response.data.data.books)
         })
+        
     }
+
 
 
     return(
@@ -119,13 +123,17 @@ function BookShelfList(){
                             <th>Author</th>
                             <th>Date Added</th>
                         </tr>
-                        
+
                         {books.map((item, index) => {
                             return(
                                 <tr key={index}>
-                                <td><a href="">{item.books.name}</a></td>
-                                <td><a href="">{item.users.full_name}</a></td>
+
+                                <Link to={{pathname:`/user/${userId}/book/${item.book_id}`}}>
+                                <td><a href="">{item.name}</a></td>
+                                </Link>
+                                <td><a href="">{item.author_name}</a></td>
                                 <td>11/11/2021</td>
+                                
                                 </tr>
                             )
                         })}

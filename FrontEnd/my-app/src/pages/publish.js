@@ -13,6 +13,7 @@ function Publish(){
     const [bookFile, setBookFile] = useState({})
     const [status, setStatus] = useState("")
     const [user, setUsers] = useState({})
+    const [bookId, setId] = useState("")
     let {userId} = useParams()
     useEffect(()=>{
         console.log("before get user")
@@ -69,10 +70,10 @@ function Publish(){
         try{
             axios.post(`http://localhost:8080/bababook/book`, bookPost)
             .then((response) =>{
-                if (response.status === 200){
-                    alert("book added")
-                    setStatus("successful")
-                }
+                alert("book added")
+                setId(response.data.data.id)
+                setStatus("successful")
+                
                 console.log("addbook", response)
             }) 
         }
@@ -80,7 +81,6 @@ function Publish(){
             alert(error)
         }
     }
-    const bookId = "9135143c-40c1-4f98-aea5-28d23b53cb6f"
 
     if (status == "successful"){
         return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}`}}/>

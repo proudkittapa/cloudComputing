@@ -127,13 +127,13 @@ func (repo *BookRepository) GetByName(c context.Context, name string) ([]entity.
 	return Books, nil
 }
 
-func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) error {
+func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) (string, error) {
 	book.BookId = GenerateUUID()
 	//insert to table book
 
 	av, err := dynamodbattribute.MarshalMap(book)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	tableName := "books"
@@ -146,11 +146,11 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) erro
 	_, err = repo.db.PutItem(input)
 
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	// fmt.Println("Successfully added '" + book.Name + "' (" + book.BookId + ") to table " + tableName)
-	return nil
+	return book.BookId, nil
 }
 
 func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) error {

@@ -16,7 +16,7 @@ type Book struct {
 type BookRepository interface {
 	GetAll(c context.Context) ([]Book, error)
 	GetById(c context.Context, bookId string) (Book, error)
-	CreateBook(c context.Context, book Book) error
+	CreateBook(c context.Context, book Book) (id string, err error)
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string) error
 
@@ -33,7 +33,7 @@ type BookUseCase interface {
 	//book
 	GetAll(c context.Context) ([]Book, error)
 	GetById(c context.Context, bookId string) (Book, User, error)
-	CreateBook(c context.Context, book Book) error
+	CreateBook(c context.Context, book Book) (id string, err error)
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string) error
 	AddBook(c context.Context, bookId string, userId string) error
