@@ -70,6 +70,10 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 			return err
 		}
 		book, err := useCase.bookRepo.GetById(c, bookId)
+		if err != nil{
+			fmt.Println("get by id", err)
+			return err
+		}
 		fmt.Println("book price", book.Price)
 		fmt.Println("user balance", user.Balance)
 		if book.Price <= user.Balance {
@@ -77,26 +81,17 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 			updateBal := user.Balance - book.Price
 			err = useCase.userRepo.UpdateBalance(c, userId, updateBal)
 			if err != nil {
+				fmt.Println("update bal err", err)
 				return err
 			}
 			err = useCase.userTransRepo.AddBook(c, bookId, userId)
 			if err != nil {
+				fmt.Println("add book err ", err)
 				return err
 			}
 		} else {
 			return errors.New("Insufficient balance")
 		}
-		//}else{
-		//
-		//}
-		//checkPayment, err := useCase.userTransRepo.CheckPayment(c, user.PaymentId)
-		//if !checkPayment{
-		//	return errors.New("The payment is invalid")
-		//}
-		//if err != nil{
-		//	return err
-		//}
-		//err = useCase.userTransRepo.AddBook(c, bookId, userId)
 	}
 	return err
 }

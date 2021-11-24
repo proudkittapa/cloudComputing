@@ -84,18 +84,21 @@ func (useCase *bookUseCase) InitDB() error {
 
 
 
-func (useCase *bookUseCase) GetBooksFromShelf(c context.Context, shelfId string) ([]entity.Book, error)  {
+func (useCase *bookUseCase) GetBooksFromShelf(c context.Context, shelfId string) ([]entity.Book, []entity.User, error)  {
 	booksId, err := useCase.bookRepo.GetBooksIdFromShelf(c, shelfId)
 	if err != nil{
-		return []entity.Book{}, err
+		return []entity.Book{}, []entity.User{}, err
 	}
 	var books []entity.Book
+	var users []entity.User
 	for _, v := range booksId.Books{
 		book, err := useCase.bookRepo.GetById(c, v)
 		if err != nil{
-			return []entity.Book{}, err
+			return []entity.Book{}, []entity.User{}, err
 		}
+		user, err := useCase.userRepo.GetById(c, book.UserId)
+		users = append(users, user)
 		books = append(books, book)
 	}
-	return books, err
+	return books, users, err
 }

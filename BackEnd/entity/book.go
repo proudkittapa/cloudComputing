@@ -38,7 +38,7 @@ type BookUseCase interface {
 	DeleteBook(c context.Context, bookId string) error
 	AddBook(c context.Context, bookId string, userId string) error
 	//shelf
-	GetBooksFromShelf(c context.Context, shelfId string) ([]Book, error)
+	GetBooksFromShelf(c context.Context, shelfId string) ([]Book, []User, error)
 
 	InitDB() error
 }

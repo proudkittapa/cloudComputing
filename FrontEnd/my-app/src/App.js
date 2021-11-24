@@ -17,6 +17,7 @@ import React, { Component }  from 'react';
 import BookShelf from './pages/bookShelf';
 import CreateProfile from './pages/createprofile';
 import AllBook from './pages/allbooks';
+import BookShelfList from './pages/bookShelfList';
 
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/allBook">
                     <AllBook />
+                </Route>
+                <Route exact path="/user/:userId/shelf/:shelfId">
+                    <BookShelfList />
                 </Route>
             </Switch>
         </Router>

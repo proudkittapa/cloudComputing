@@ -232,7 +232,7 @@ func (bookHandler *BookHandler) Init(c echo.Context) error {
 func (bookHandler *BookHandler) GetBooksFromShelf(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
-	books, err := bookHandler.BookUseCase.GetBooksFromShelf(ctx, id)
+	books, users, err := bookHandler.BookUseCase.GetBooksFromShelf(ctx, id)
 	if err != nil {
 		errMessage := err.Error()
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
@@ -247,9 +247,11 @@ func (bookHandler *BookHandler) GetBooksFromShelf(c echo.Context) error {
 	}
 	response := entity.ResponseSuccess{
 		Data: struct {
-			Book []entity.Book "json:\"book\""
+			Book []entity.Book `json:"books"`
+			User []entity.User `json:"users"`
 		}{
 			Book: books,
+			User: users,
 		},
 	}
 	return c.JSON(http.StatusOK, response)

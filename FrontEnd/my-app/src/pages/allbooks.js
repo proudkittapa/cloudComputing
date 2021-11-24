@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/History.css'
 import '../css/home.css'
+import '../css/main.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router'
 

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/bookdisplay.css'
 import { Link } from "react-router-dom";
-import e from 'cors';
 import { Redirect } from 'react-router'
 
 function Book(){
