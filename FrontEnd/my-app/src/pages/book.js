@@ -60,7 +60,7 @@ function Book(){
         
         
     }
-    
+
     if (error == "Insufficient balance"){
         return <Redirect to= {{pathname:`/home/${userId}`}}/>
     }
@@ -79,7 +79,7 @@ function Book(){
 
                     <div class="d-flex flex-fill align-items-center">
 
-                        <a href="/" class="px-3">{user.balance} THB</a>
+                        <a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a>
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -154,15 +154,17 @@ function Book(){
 
                             <hr/>
 
-                            <div class="d-flex align-items-end py-1">
-                                <h3 ></h3>
+                            <div class="d-flex align-items-end py-1">                            
+                                {Array.from({ length: Math.ceil([bookItem.rating])}, (_, i) => <h3 key={i}><i className="fas fa-star"></i></h3>)}
+                                {Array.from({ length: 5-Math.ceil([bookItem.rating])}, (_, i) => <h3 key={i}><i className="far fa-star"></i></h3>)}
+                                
                                 <h3 class="px-3"></h3>
                             </div>
                             
                             <div class="pricing-add">
                                 <div class="d-flex">
                                     <h3 class="py-1">Price: </h3>
-                                    <h3 class="py-1 px-3">{bookItem.price} THB</h3>
+                                    <h3 class="py-1 px-3">{(Math.round([bookItem.price] * 100) / 100).toFixed(2)} THB</h3>
                                 </div>
                                 <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button>
                             </div>
