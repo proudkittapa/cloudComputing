@@ -262,21 +262,38 @@ func (repo *BookRepository) CreateBookDB() error {
 }
 
 func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (string, error) {
+	books := entity.BooksId{
+		Books: []string{},
+	}
 	shelf := entity.Shelf{
 		ShelfId: GenerateUUID(),
 		Name:    shelfName,
 	}
 	//insert to table book
 
-	av, err := dynamodbattribute.MarshalMap(shelf)
+	shelfAv, err := dynamodbattribute.MarshalMap(shelf)
 	if err != nil {
 		return "", err
 	}
 
+	booksAv, err := dynamodbattribute.MarshalMap(books)
+	if err != nil {
+		return "", err
+	}
+
+	listAv, err := dynamodbattribute.MarshalList([]string{})
+	if err != nil {
+		return "", err
+	}
+
+	booksAv["books"] = &dynamodb.AttributeValue{L: listAv}
+
+	shelfAv["book_set"] = &dynamodb.AttributeValue{M: booksAv}
+
 	tableName := "shelf"
 
 	input := &dynamodb.PutItemInput{
-		Item:      av,
+		Item:      shelfAv,
 		TableName: aws.String(tableName),
 	}
 
@@ -293,57 +310,22 @@ func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (st
 func (repo *BookRepository) AddBookToShelf(c context.Context, shelfId string, bookId string) error {
 	tableName := "shelf"
 
-	// // retrieve stored data from shelf_id
-	// queryInput := &dynamodb.QueryInput{
-	// 	TableName: aws.String(tableName),
-	// 	KeyConditions: map[string]*dynamodb.Condition{
-	// 		"book_id": {
-	// 			ComparisonOperator: aws.String("EQ"),
-	// 			AttributeValueList: []*dynamodb.AttributeValue{
-	// 				{
-	// 					S: aws.String(shelfId),
-	// 				},
-	// 			},
-	// 		},
-	// 	},
-	// }
+	av := &dynamodb.AttributeValue{
+		S: aws.String(bookId),
+	}
 
-	// result, err := repo.db.Query(queryInput)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	// shelf := entity.Shelf{}
-
-	// err = dynamodbattribute.UnmarshalListOfMaps(result.Items, &shelf)
-
-	// if err != nil {
-	// 	return err
-	// }
-
-	// // add book to the book_set
-	// shelf.BookSet.Books = append(shelf.BookSet.Books, bookId)
-
-	//////// uncomment if needed
-	// av := &dynamodb.AttributeValue{
-	// 	S: aws.String(bookId),
-	//    }
-
-	// var bid []*dynamodb.AttributeValue
-	// bid = append(bid, av)
+	var bid []*dynamodb.AttributeValue
+	bid = append(bid, av)
 
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
-			"#BS":  aws.String("book_set"),
-			"#BID": aws.String("book_id"),
+			"#BS": aws.String("book_set"),
+			"#BK": aws.String("books"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":bid": {
-				S: aws.String(bookId),
+			":bk": {
+				L: bid,
 			},
-			// ":bid": {
-			// 	L: bid,
-			// },
 		},
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -352,7 +334,7 @@ func (repo *BookRepository) AddBookToShelf(c context.Context, shelfId string, bo
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #BS.#BID = list_append(#BS.#BID, :bid)"),
+		UpdateExpression: aws.String("set #BS.#BK = list_append(#BS.#BK, :bk)"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
