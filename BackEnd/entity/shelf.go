@@ -4,6 +4,7 @@ type Shelf struct {
 	ShelfId string  `json:"shelf_id"`
 	Name    string  `json:"name"`
 	BookSet BooksId `json:"book_set"`
+	Img     string  `json:"img"`
 }
 
 type BooksId struct {

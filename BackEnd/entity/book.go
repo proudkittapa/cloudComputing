@@ -10,8 +10,8 @@ type Book struct {
 	Rating      float32 `json:"rating"`
 	Description string  `json:"description"`
 	Img         string  `json:"img"`
+	Url         string  `json:"url"`
 }
-
 
 type BookRepository interface {
 	GetAll(c context.Context) ([]Book, error)
