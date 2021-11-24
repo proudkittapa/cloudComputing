@@ -186,6 +186,9 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			"book_id": {
 				S: aws.String(book.BookId),
 			},
+			"name": {
+				S: aws.String(book.Name),
+			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
 		UpdateExpression: aws.String("set #N = :n, #UID = :uid, #P = :p, #R = :r, #DES = :des"),
@@ -268,6 +271,7 @@ func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (st
 	shelf := entity.Shelf{
 		ShelfId: GenerateUUID(),
 		Name:    shelfName,
+		Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
 	}
 	//insert to table book
 

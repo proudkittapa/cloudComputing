@@ -162,7 +162,6 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
-			"#UID":   aws.String("user_id"),
 			"#FN":    aws.String("full_name"),
 			"#PID":   aws.String("payment_Id"),
 			"#AGE":   aws.String("age"),
@@ -191,9 +190,12 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			"user_id": {
 				S: aws.String(user.UserId),
 			},
+			"full_name": {
+				S: aws.String(user.FullName),
+			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #UID = :uid, #FN = :fn, #LN = :ln, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
+		UpdateExpression: aws.String("set #FN = :fn, #LN = :ln, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
@@ -483,7 +485,7 @@ func (repo *UserRepository) CreatePayment(c context.Context, payment entity.Paym
 	return payment.PaymentId, nil
 }
 
-func (repo *UserRepository) UpdatePayment(c context.Context, userId string, paymentId string) error {
+func (repo *UserRepository) UpdatePayment(c context.Context, userId string, fullName string, paymentId string) error {
 	tableName := "users"
 
 	input := &dynamodb.UpdateItemInput{
@@ -499,6 +501,9 @@ func (repo *UserRepository) UpdatePayment(c context.Context, userId string, paym
 		Key: map[string]*dynamodb.AttributeValue{
 			"user_id": {
 				S: aws.String(userId),
+			},
+			"full_name": {
+				S: aws.String(fullName),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
@@ -545,9 +550,8 @@ func (repo *UserRepository) CreateSubscription(c context.Context, userId string)
 	return nil
 }
 
-func (repo *UserRepository) UpdateBalance(c context.Context, uid string, balance float32) error {
+func (repo *UserRepository) UpdateBalance(c context.Context, uid string, fullName string, balance float32) error {
 	tableName := "users"
-
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
 			"#BAL": aws.String("balance"),
@@ -561,6 +565,9 @@ func (repo *UserRepository) UpdateBalance(c context.Context, uid string, balance
 		Key: map[string]*dynamodb.AttributeValue{
 			"user_id": {
 				S: aws.String(uid),
+			},
+			"full_name": {
+				S: aws.String(fullName),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
