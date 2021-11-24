@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/History.css'
-import '../css/createprofile.css'
+import '../css/home.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router'
 
@@ -49,7 +49,7 @@ function AllBook(){
 
                     <div className="d-flex flex-fill align-items-center">
 
-                        <a href="/" className="px-3">200.00 THB</a>
+                        <a href="/" className="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a>
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -136,13 +136,13 @@ function AllBook(){
                     <br/>
 
                     <h3>All Books</h3>
-                    <div class="container allbook-bar d-flex flex-wrap">
+                    <div class="container home-bar d-flex flex-wrap">
 
                     {books.map((item, index) => {
                         return(
                             <Link to={{pathname:`/user/${userId}/book/${item.book_id}`}}>
                                 <a href="" key={index} value={item.book_id}  >
-                                    <div><img class="home-bar-item book" src={item.img}/></div>
+                                    <div data-toggle="tooltip" data-placement="top" title={item.name}><img class="home-bar-item book" src={item.img}/></div>
                                 </a>
                             </Link>
                         )

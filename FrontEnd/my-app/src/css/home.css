@@ -11,6 +11,8 @@
     Book - Square */
 
 .home-bar-item{
+    padding: 0.125rem 0rem;
+    object-fit: cover; 
     border-radius: 10%;
     min-height: 160px;
     min-width: 160px;
