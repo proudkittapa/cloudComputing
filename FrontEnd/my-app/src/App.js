@@ -18,6 +18,7 @@ import BookShelf from './pages/bookShelf';
 import CreateProfile from './pages/createprofile';
 import AllBook from './pages/allbooks';
 import BookShelfList from './pages/bookShelfList';
+import Payment from './pages/payment';
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/shelf/:shelfId">
                     <BookShelfList />
+                </Route>
+                <Route exact path="/user/:userId/payment">
+                    <Payment />
                 </Route>
             </Switch>
         </Router>

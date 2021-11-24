@@ -27,6 +27,10 @@ func (useCase *userUseCase) GetAll(c context.Context) ([]entity.User, error) {
 	return users, err
 }
 
+func (useCase *userUseCase) GetAllAuthor(c context.Context) ([]entity.User, error){
+	return []entity.User{}, nil
+}
+
 func (useCase *userUseCase) GetById(c context.Context, id string) (entity.User, error) {
 	user, err := useCase.userRepo.GetById(c, id)
 	return user, err

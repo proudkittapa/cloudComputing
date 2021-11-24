@@ -51,4 +51,6 @@ type UserUseCase interface {
 	InitUserShelfDB() error
 	InitShelfDB() error
 	InitAll() error
+
+	GetAllAuthor(c context.Context) ([]User, error)
 }

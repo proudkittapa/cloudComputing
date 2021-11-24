@@ -73,7 +73,6 @@ function Publish(){
                 alert("book added")
                 setId(response.data.data.id)
                 setStatus("successful")
-                
                 console.log("addbook", response)
             }) 
         }

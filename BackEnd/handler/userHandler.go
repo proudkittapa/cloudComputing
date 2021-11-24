@@ -36,6 +36,8 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 	e.POST("/user/:userId/book/:bookId/shelf/:shelfId", handler.AddBookToShelf)
 
 	e.POST("/user/mock/:num", handler.MockUser)
+
+	e.GET("/authors", handler.GetAllAuthor)
 }
 
 func (handler *UserHandler) GetAll(c echo.Context) error {
@@ -56,6 +58,31 @@ func (handler *UserHandler) GetAll(c echo.Context) error {
 	response := entity.ResponseSuccess{
 		Data: struct {
 			Users []entity.User "json:\"users\""
+		}{
+			Users: users,
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+func (handler *UserHandler) GetAllAuthor(c echo.Context) error {
+	ctx := c.Request().Context()
+	users, err := handler.UserUseCase.GetAllAuthor(ctx)
+	if err != nil {
+		errMessage := err.Error()
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: errMessage,
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Users []entity.User `json:"authors"`
 		}{
 			Users: users,
 		},
