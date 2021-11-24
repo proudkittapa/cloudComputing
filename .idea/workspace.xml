@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd106f36-5b2e-4470-aa2b-ba58bc91c91a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/usecase/book.go" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/usecase/book.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/my-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/my-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/my-app/src/pages/bookShelf.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/my-app/src/pages/bookShelf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/my-app/src/pages/publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/my-app/src/pages/publish.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

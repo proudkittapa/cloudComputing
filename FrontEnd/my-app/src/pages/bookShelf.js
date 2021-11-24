@@ -8,24 +8,31 @@ function BookShelf(){
 
     const [user, setUsers] = useState({})
     let {userId} = useParams()
-    const [shelf, setShelves] = useState({})
+    const [shelf, setShelves] = useState([])
     useEffect(()=>{
         console.log("before get user")
         getUser()
+        getShelf()
     }, []);
     const getUser = () =>{
         axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
-            console.log(response);
+            console.log("getUsers", response);
             setUsers(response.data.data.user)
         })
     }
 
     const getShelf = () => {
-        axios.get(`localhost:8080/bababook/user/${userId}/shelf`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}/shelf`)
         .then((response) => {
             console.log("getShelf response", response)
             setShelves(response.data.data.shelves)
+        }).catch(function(error){
+            // if (error.response) {
+            //         console.log("1", error.response.data);
+            //         console.log("2", error.response.status);
+            //         console.log("3", error.response.headers);
+            //       }
         })
     }
 
@@ -119,95 +126,26 @@ function BookShelf(){
                         </a>
                     </div>
                     </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://www.gamemonday.com/wp-content/uploads/2021/10/Botworld-Adventure-13102021-1.jpg" class="img mx-auto d-block"/>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        </a>
-                    </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://images.unsplash.com/photo-1544526226-d4568090ffb8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGQlMjBpbWFnZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-                                class="img mx-auto d-block" />
+                    {shelf.map((item, index) => {
+                        return(
+                            <div class="col col-lg-3 d-flex align-items-stretch">
+                            <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
+                                <a href="tag_a.asp">
+                                <div class="ratio ratio-1x1 rounded">
+                                    <img src="https://www.gamemonday.com/wp-content/uploads/2021/10/Botworld-Adventure-13102021-1.jpg" class="img mx-auto d-block"/>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <h5 class="card-title">{item.name}</h5>
+                                    
+                                </div>
+                                </a>
                             </div>
-                            <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        
                             </div>
-                        </a>
-                    </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-                                class="img mx-auto d-block" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">by saaasa</p>
-                        </div>
-                        </a>
-                    </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-                                class="img mx-auto d-block"/>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        </a>
-                    </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://media.istockphoto.com/photos/daisy-picture-id172185799?k=20&m=172185799&s=612x612&w=0&h=j59GAht7XA_9oEH0itZ77hBm6u2f4GBkRdzYi2Z4Jts="
-                                class="img mx-auto d-block" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">by saaasa</p>
-                        </div>
-                        </a>
-                    </div>
-                    </div>
-
-                    <div class="col col-lg-3 d-flex align-items-stretch">
-                    <div class="card card-body flex-fill" style={{"max-width": "250px", margin: '10px', 'padding-top':'20px'}}>
-                        <a href="tag_a.asp">
-                        <div class="ratio ratio-1x1 rounded">
-                            <img src="https://img-19.ccm2.net/WNCe54PoGxObY8PCXUxMGQ0Gwss=/480x270/smart/d8c10e7fd21a485c909a5b4c5d99e611/ccmcms-commentcamarche/20456790.jpg"
-                                class="img mx-auto d-block" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shelf title</h5>
-                            <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        </a>
-                    </div>
-                    </div>
+                        )
+                    })}
+                  
                 </div>
                 </div>
             </div>

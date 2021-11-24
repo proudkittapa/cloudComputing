@@ -6,7 +6,7 @@ import '../css/main.css'
 import {Link} from 'react-router-dom'
 function History(){
 
-   
+   let {userId} = "37e7cb1b-9711-4e14-b710-ff933087796c"
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -53,20 +53,20 @@ function History(){
             <div className="d-flex">
             <div className="d-flex flex-column sidebar">
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
-                    <li className="nav-item">
-                        <Link to="/home"><a href="#" className="nav-link py-3">
-                            <i className="fas fa-home"></i>
-                        </a></Link>
+                    <li class="nav-item">
+                    <Link to={{pathname:`/home/${userId}`}}><a href="#" className="nav-link py-3">
+                        <i className="fas fa-home"></i>
+                    </a></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/user/1/bookShelf"><a href="#" className="nav-link py-3">
+                        <Link to={{pathname:`/user/${userId}/bookShelf`}}><a href="#" className="nav-link py-3">
                             <i className="fas fa-book"></i>
                         </a></Link>
                     </li>
                     <li className="nav-item">
-                    <a href="#" className="nav-link py-3">
-                        <i className="fas fa-book-open"></i>
-                    </a>
+                        <Link to={{pathname:`/user/${userId}/publish`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-book-open"></i>
+                        </a></Link>
                     </li>
                     <li className="nav-item active">
                     <a href="#" className="nav-link py-3">

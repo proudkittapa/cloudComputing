@@ -2,7 +2,6 @@ package usecase
 
 import (
 	"context"
-	"fmt"
 	"github.com/pkg/errors"
 	"github.com/proudkittapa/cloudComputing/entity"
 )
@@ -23,7 +22,6 @@ func NewBookUseCase(bookRepo entity.BookRepository, userRepo entity.UserReposito
 
 func (useCase *bookUseCase) GetAll(c context.Context) ([]entity.Book, error) {
 	books, err := useCase.bookRepo.GetAll(c)
-	fmt.Println("book usecase", books)
 	return books, err
 }
 

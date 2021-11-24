@@ -6,8 +6,8 @@ const randomBytes = promisify(crypto.randomBytes)
 
 const region = "ap-southeast-1"
 const bucketName = "bababook-bucket"
-const accessKeyId = "AKIAVNJTT3XD4QZOZIUH"
-const secretAccessKey = "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"
+const accessKeyId = process.env.REACT_APP_SECRET_KEY
+const secretAccessKey = process.env.REACT_APP_ACCESS_KEY
 
 const s3 = new aws.S3({
     region,

@@ -82,13 +82,17 @@ func (bookHandler *BookHandler) GetById(c echo.Context) error {
 }
 
 func (bookHandler *BookHandler) CreateBook(c echo.Context) error {
+
 	ctx := c.Request().Context()
 	var book entity.Book
 	if err := c.Bind(&book); err != nil {
+		fmt.Println("err bind", err)
 		return c.JSON(http.StatusBadRequest, err)
 	}
+	fmt.Println("book", book)
 	err := bookHandler.BookUseCase.CreateBook(ctx, book)
 	if err != nil {
+		fmt.Println()
 		errMessage := err.Error()
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
 			Error: struct {

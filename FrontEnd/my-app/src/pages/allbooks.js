@@ -4,9 +4,36 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/History.css'
 import '../css/createprofile.css'
 import {Link} from 'react-router-dom'
-function AllBook(){
+import { Redirect } from 'react-router'
 
-   
+function AllBook(){
+    let {userId} = useParams()
+    const [user, setUsers] = useState({})
+    const [books, setBooks] = useState([])
+
+    useEffect(()=>{
+        console.log("before get user")
+        getUser()
+        getAllBooks()
+    }, []);
+    const getUser = () =>{
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
+        .then((response) => {
+            console.log(response);
+            setUsers(response.data.data.user)
+        })
+    }
+
+    const getAllBooks = () => {
+        axios.get(`http://localhost:8080/bababook/book`)
+        .then((response) =>{
+            setBooks(response.data.data.books)
+            console.log("books", books)
+        }).catch(function (error) {
+            
+        })
+    }
+
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -15,7 +42,7 @@ function AllBook(){
 
                     <div className="d-none d-lg-block flex-grow-1 flex-fill">
                         <form className="d-flex input-group">
-                            <input className="form-control" type="search" placeholder="Search" aria-label="Search" onChange={handleChangeInput}></input>
+                            <input className="form-control" type="search" placeholder="Search" aria-label="Search"></input>
                             <button className="btn btn-navbar" type="button" id="button-addon2"><i className="fas fa-search"></i></button>
                         </form>
                     </div>
@@ -39,7 +66,7 @@ function AllBook(){
                                     <i className="fas fa-user"></i>
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a>
+                                    <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                     <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
                                     <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
                                     <hr className="dropdown-divider"></hr>
@@ -54,25 +81,25 @@ function AllBook(){
             <div className="d-flex">
                 <div className="d-flex flex-column sidebar">
                     <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
-                        <li className="nav-item">
-                            <a href="#" className="nav-link py-3">
+                        <li class="nav-item">
+                        <Link to={{pathname:`/home/${userId}`}}><a href="#" className="nav-link py-3">
                             <i className="fas fa-home"></i>
-                            </a>
+                        </a></Link>
                         </li>
                         <li className="nav-item">
-                            <a href="#" className="nav-link py-3">
+                            <Link to={{pathname:`/user/${userId}/bookShelf`}}><a href="#" className="nav-link py-3">
                                 <i className="fas fa-book"></i>
-                            </a>
-                        </li>
-                        <li className="nav-item active">
-                        <a href="#" className="nav-link py-3">
-                            <i className="fas fa-book-open"></i>
-                        </a>
+                            </a></Link>
                         </li>
                         <li className="nav-item">
-                        <a href="#" className="nav-link py-3">
-                            <i className="fas fa-clock"></i>
-                        </a>
+                            <Link to={{pathname:`/user/${userId}/publish`}}><a href="#" className="nav-link py-3">
+                                <i className="fas fa-book-open"></i>
+                            </a></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={{pathname:`/user/${userId}/history`}}><a href="#" className="nav-link py-3">
+                                <i className="fas fa-clock"></i>
+                            </a></Link>
                         </li>
                         <li className="nav-item">
                         <a href="#" className="nav-link py-3">
@@ -110,66 +137,17 @@ function AllBook(){
 
                     <h3>All Books</h3>
                     <div class="container allbook-bar d-flex flex-wrap">
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item book" src="https://via.placeholder.com/160"/></div>
-                        </a>
+
+                    {books.map((item, index) => {
+                        return(
+                            <Link to={{pathname:`/user/${userId}/book/${item.book_id}`}}>
+                                <a href="" key={index} value={item.book_id}  >
+                                    <div><img class="home-bar-item book" src={item.img}/></div>
+                                </a>
+                            </Link>
+                        )
+                    })}
+                                
                     </div>
                     <br/>
 

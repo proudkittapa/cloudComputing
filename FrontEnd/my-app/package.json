@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "aws-sdk": "^2.1032.0",
+    "aws-sdk": "^2.1035.0",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "install": "^0.13.0",

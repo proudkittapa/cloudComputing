@@ -3,18 +3,17 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/publish.css'
 import {Link} from 'react-router-dom'
-// import { generateUploadURL } from './s3';
-import S3 from "react-aws-s3"
-import aws from 'aws-sdk'
+import { generateUploadURL } from './s3';
+import { Redirect } from 'react-router'
+
+
 function Publish(){
     const [book, setBook] = useState({})
-    const [imgURL, setImgURL] = useState("")
-    const [bookURL, setBookURL] = useState("")
-    const fileImg = useRef();
-    const fileBook = useRef();
+    const [imgFile, setImgFile] = useState({})
+    const [bookFile, setBookFile] = useState({})
+    const [status, setStatus] = useState("")
     const [user, setUsers] = useState({})
     let {userId} = useParams()
-    // console.log("id:", id)
     useEffect(()=>{
         console.log("before get user")
         getUser()
@@ -31,51 +30,48 @@ function Publish(){
         const value = e.target.value
         setBook((oldValue) => ({ ...oldValue, [name]: value }))
     }
-    const createBook = async() =>{
-        let img = fileImg.current.files[0]
-        let newImg = fileImg.current.files[0].name
-        let bookFile = fileBook.current.files[0]
-        let newBookFile = fileBook.current.files[0].name
-        console.log(img, newImg)
 
-        
-        
-        const config = {
-            bucketName: process.env.REACT_APP_BUCKET_NAME,
-            dirName: process.env.REACT_APP_DIR_NAME /* optional */,
-            region: process.env.REACT_APP_REGION,
-            accessKeyId: process.env.REACT_APP_SECRET_KEY,
-            secretAccessKey: process.env.REACT_APP_ACCESS_KEY
-        }
-        const reactS3Client = new S3(config)
-        const s3 = new aws.s3(config)
-        reactS3Client.uploadFile(img, newImg).then(data =>{
-            console.log(data)
-            if (data.status === 204){
-                console.log("success")
-            }else{
-                console.log("fail")
+    const handleImageFile = (e) =>{
+        // e.preventDefault()
+        const value = e.target.files[0]
+        setImgFile(value)
+    }
+
+    const handleBookFile = (e) =>{
+        // e.preventDefault()
+        const value = e.target.files[0]
+        setBookFile(value)
+    }
+    const createBook = async(e) =>{
+        const url = await generateUploadURL()
+        var options = {
+            headers: {
+            'Content-Type': "multipart/form-data"
             }
-            console.log("imgURL", imgURL)
-            setImgURL(data.location)
+        };
+        console.log(url)
+
+        axios.put(url, imgFile, options).then((response) => {
+            console.log("response")
+            console.log(response)
         })
-        reactS3Client.uploadFile(bookFile, newBookFile).then(data =>{
-            console.log(data)
-            if (data.status === 204){
-                console.log("success")
-            }else{
-                console.log("fail")
-            }
-            setBookURL(data.location)
+        const imgURL = url.split('?')[0]
+
+        const BookUrl = await generateUploadURL()
+        axios.put(BookUrl, bookFile, options).then((response) => {
+            console.log("response")
+            console.log(response)
         })
-        
-        const bookPost = {...book, price:book.price, name:book.name, description:book.description, img:bookURL, user_id:userId}
+        const bookURL = BookUrl.split('?')[0]
+
+        const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId}
         console.log("in create book", bookPost)
         try{
             axios.post(`http://localhost:8080/bababook/book`, bookPost)
             .then((response) =>{
                 if (response.status === 200){
                     alert("book added")
+                    setStatus("successful")
                 }
                 console.log("addbook", response)
             }) 
@@ -83,6 +79,11 @@ function Publish(){
         catch(error){
             alert(error)
         }
+    }
+    const bookId = "9135143c-40c1-4f98-aea5-28d23b53cb6f"
+
+    if (status == "successful"){
+        return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}`}}/>
     }
 
     return(
@@ -168,7 +169,7 @@ function Publish(){
                             <form method="post" enctype="multipart/form-data">
                                 <div className="upload-book"></div>
                                 <br></br>
-                                <input type="file" className="form-control" id="img_url"  accept="image/*" ref={fileImg}/>
+                                <input type="file" className="form-control" id="img_url"  accept="image/*" onChange={handleImageFile}/>
                             </form>
                         </div>
 
@@ -190,7 +191,7 @@ function Publish(){
 
                             <div className="pub-item">
                                 <h3>Upload Book</h3>
-                                <input type="file" className="form-control" id="book"  accept=".pdf" ref={fileBook}/>
+                                <input type="file" className="form-control" id="book"  accept=".pdf" onChange={handleBookFile}/>
                             </div>
 
                             <div className="form-group pub-item">

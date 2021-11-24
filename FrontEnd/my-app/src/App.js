@@ -5,7 +5,8 @@ import {
     Route,
     Link,
     useRouteMatch,
-    useParams
+    useParams,
+    Redirect
 } from "react-router-dom"; 
 import Book from './pages/book';
 import Profile from './pages/profile';
@@ -15,6 +16,7 @@ import Publish from './pages/publish';
 import React, { Component }  from 'react';
 import BookShelf from './pages/bookShelf';
 import CreateProfile from './pages/createprofile';
+import AllBook from './pages/allbooks';
 
 
 function App() {
@@ -22,6 +24,9 @@ function App() {
         // <TestAxios></TestAxios>
         <Router>
             <Switch>
+                {/* <Route exact path="/">
+                   <Redirect to="/user/:userId/allBook" />
+               </Route> */}
                 <Route exact path="/user/:userId/book/:bookId">
                     <Book />
                 </Route>
@@ -32,7 +37,8 @@ function App() {
                     <History />
                 </Route>
                 <Route exact path="/home/:userId">
-                    <Home />
+                    {/* <Home /> */}
+                    <AllBook/>
                 </Route>
                 <Route exact path="/user/:userId/bookShelf">
                     <BookShelf />
@@ -42,6 +48,9 @@ function App() {
                 </Route>
                 <Route exact path="/createProfile">
                     <CreateProfile />
+                </Route>
+                <Route exact path="/user/:userId/allBook">
+                    <AllBook />
                 </Route>
             </Switch>
         </Router>
