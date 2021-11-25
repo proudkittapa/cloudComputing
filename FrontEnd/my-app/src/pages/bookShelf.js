@@ -51,7 +51,7 @@ function BookShelf(){
 
                 <div class="d-flex flex-fill align-items-center">
 
-                    <a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a>
+                    <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a></Link>
 
                     <a href="/">
                     <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -68,7 +68,7 @@ function BookShelf(){
                         <i class="fas fa-user"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <Link to="/user/1"><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
+                        <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                         <a class="dropdown-item" href="#"><i class="fas fa-book"></i> Account</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
                         <hr class="dropdown-divider"></hr>

@@ -154,7 +154,6 @@ func (repo *BookRepository) CreateBook(c context.Context, book entity.Book) (str
 }
 
 func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) error {
-	//TODO - update img link
 	tableName := "books"
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
@@ -163,6 +162,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			"#P":   aws.String("price"),
 			"#R":   aws.String("rating"),
 			"#DES": aws.String("description"),
+			"#IMG": aws.String("img"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
 			":n": {
@@ -180,6 +180,9 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			":des": {
 				S: aws.String(book.Description),
 			},
+			":img": {
+				S: aws.String(book.Img),
+			},
 		},
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -191,7 +194,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #N = :n, #UID = :uid, #P = :p, #R = :r, #DES = :des"),
+		UpdateExpression: aws.String("set #N = :n, #UID = :uid, #P = :p, #R = :r, #DES = :des, #IMG = :img"),
 	}
 
 	_, err := repo.db.UpdateItem(input)

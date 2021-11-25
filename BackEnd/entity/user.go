@@ -22,12 +22,12 @@ type UserRepository interface {
 	CreateUserDB() error
 
 	CreatePayment(c context.Context, payment Payment) (string, error)
-	UpdatePayment(c context.Context, userId string, paymentId string) error
+	UpdatePayment(c context.Context, userId string, fullName string, paymentId string) error
 	MockUser(c context.Context, numOfUser int) error
 	CreateUserShelfDB() error
 	CreateShelfDB() error
 	CreateSubscription(c context.Context, userId string) error
-	UpdateBalance(c context.Context, uid string, balance float32) error
+	UpdateBalance(c context.Context, uid string, fullName string, balance float32) error
 }
 
 type UserUseCase interface {

@@ -6,7 +6,7 @@ import '../css/main.css'
 import {Link} from 'react-router-dom'
 function History(){
 
-   let {userId} = "37e7cb1b-9711-4e14-b710-ff933087796c"
+   let {userId} = useParams()
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -21,7 +21,7 @@ function History(){
 
                     <div className="d-flex flex-fill align-items-center">
 
-                        <a href="/" className="px-3">200.00 THB</a>
+                        <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">200 THB</a></Link>
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -38,7 +38,7 @@ function History(){
                                     <i className="fas fa-user"></i>
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <Link to="/user/1"><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
+                                    <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                     <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
                                     <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
                                     <hr className="dropdown-divider"></hr>

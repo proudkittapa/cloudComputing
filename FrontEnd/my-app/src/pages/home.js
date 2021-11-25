@@ -35,7 +35,7 @@ function Home(){
 
                     <div className="d-flex flex-fill align-items-center">
 
-                        <a href="/" className="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a>
+                        <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a></Link>
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"

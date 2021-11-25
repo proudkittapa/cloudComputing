@@ -59,7 +59,7 @@ function Payment(){
 
                 <div className="d-flex flex-fill align-items-center">
 
-                    <a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a>
+                    <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a></Link>
 
                     <a href="/">
                         <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -76,7 +76,7 @@ function Payment(){
                                 <i className="fas fa-user"></i>
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a>
+                                <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                 <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
                                 <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
                                 <hr className="dropdown-divider"></hr>
@@ -91,25 +91,25 @@ function Payment(){
         <div className="d-flex">
             <div className="d-flex flex-column sidebar">
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
-                    <li className="nav-item">
-                        <a href="#" className="nav-link py-3">
+                    <li class="nav-item">
+                    <Link to={{pathname:`/home/${userId}`}}><a href="#" className="nav-link py-3">
                         <i className="fas fa-home"></i>
-                        </a>
+                    </a></Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className="nav-link py-3">
+                        <Link to={{pathname:`/user/${userId}/bookShelf`}}><a href="#" className="nav-link py-3">
                             <i className="fas fa-book"></i>
-                        </a>
+                        </a></Link>
                     </li>
                     <li className="nav-item">
-                    <a href="#" className="nav-link py-3">
-                        <i className="fas fa-book-open"></i>
-                    </a>
+                        <Link to={{pathname:`/user/${userId}/publish`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-book-open"></i>
+                        </a></Link>
                     </li>
                     <li className="nav-item">
-                    <a href="#" className="nav-link py-3">
-                        <i className="fas fa-clock"></i>
-                    </a>
+                        <Link to={{pathname:`/user/${userId}/history`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-clock"></i>
+                        </a></Link>
                     </li>
                     <li className="nav-item">
                     <a href="#" className="nav-link py-3">

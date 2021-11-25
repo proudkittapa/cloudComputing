@@ -6,7 +6,7 @@ import '../css/createprofile.css'
 import {Link} from 'react-router-dom'
 function CreateProfile(){
 
-   
+    let {userId} = useParams()
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -39,7 +39,7 @@ function CreateProfile(){
                                     <i className="fas fa-user"></i>
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a>
+                                    <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                     <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
                                     <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
                                     <hr className="dropdown-divider"></hr>

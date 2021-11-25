@@ -19,6 +19,7 @@ import CreateProfile from './pages/createprofile';
 import AllBook from './pages/allbooks';
 import BookShelfList from './pages/bookShelfList';
 import Payment from './pages/payment';
+import AddMoney from './pages/addMoney';
 
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/payment">
                     <Payment />
+                </Route>
+                <Route exact path="/user/:userId/addMoney">
+                    <AddMoney />
                 </Route>
             </Switch>
         </Router>

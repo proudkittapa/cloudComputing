@@ -1,0 +1,21 @@
+.form-check-input, .form-check-label{
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem ;
+}
+
+.form-check-input{
+    margin-top: 1rem;
+}
+
+.form-check-input:checked {
+    background-color: #4db6ac;
+    border-color: #4db6ac;
+}
+
+.form-check-input:checked ~ .form-check-label{
+    width: 100%;
+    background-color: #e3eceb;
+    color: #4db6ac;
+    font-weight: bold;
+}

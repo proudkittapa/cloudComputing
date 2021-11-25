@@ -83,7 +83,8 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 		if book.Price <= user.Balance {
 			fmt.Println("")
 			updateBal := user.Balance - book.Price
-			err = useCase.userRepo.UpdateBalance(c, userId, updateBal)
+
+			err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, updateBal)
 			if err != nil {
 				fmt.Println("update bal err", err)
 				return err
@@ -118,7 +119,11 @@ func (useCase *userUseCase) CreatePayment(c context.Context, userId string, paym
 	if err != nil {
 		return err
 	}
-	err = useCase.userRepo.UpdatePayment(c, userId, paymentId)
+	user, err := useCase.userRepo.GetById(c, userId)
+	if err != nil {
+		return err
+	}
+	err = useCase.userRepo.UpdatePayment(c, userId, user.FullName, paymentId)
 	return err
 }
 

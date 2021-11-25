@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 	"github.com/proudkittapa/cloudComputing/entity"
 	"net/http"
@@ -38,6 +39,27 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 	e.POST("/user/mock/:num", handler.MockUser)
 
 	e.GET("/authors", handler.GetAllAuthor)
+
+	e.GET("/test", handler.Test)
+
+}
+
+func (handler *UserHandler) Test(c echo.Context) error {
+	fmt.Println("enter here")
+	cookie, err := c.Cookie("jwt")
+	if err != nil{
+		return c.JSON(http.StatusUnauthorized, err)
+	}
+	SecretKey := "secret"
+	token, err := jwt.ParseWithClaims(cookie.Value, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(SecretKey), nil
+	})
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, err)
+	}
+	claims := token.Claims.(*jwt.StandardClaims)
+	fmt.Println("claims", claims)
+	return c.JSON(http.StatusOK, "test success")
 }
 
 func (handler *UserHandler) GetAll(c echo.Context) error {
