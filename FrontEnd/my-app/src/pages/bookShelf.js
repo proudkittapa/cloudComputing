@@ -112,9 +112,9 @@ function BookShelf(){
                 </div>
            
                 <div class="container-fluid content" >
-                <div class="row g-3">
+                <div class="row g-3 pt-4">
                     <div class="col order-first col-lg-3 d-flex align-items-stretch">
-                    <Link to={{pathname:`/user/${userId}/createShelf`}}><div href="/" class="card card-body flex-fill" style={{"width": "250px", margin: '10px', 'paddingTop':'20px', "height": "300px"}}>
+                    <Link to={{pathname:`/user/${userId}/createShelf`}}><div href="/" class="card card-body flex-fill card-book">
                         <a href="tag_a.asp">
                             <div class="ratio ratio-1x1 rounded">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Plus_font_awesome.svg/1200px-Plus_font_awesome.svg.png"
@@ -129,15 +129,13 @@ function BookShelf(){
                     {shelf.map((item, index) => {
                         return(
                             <div class="col col-lg-3 d-flex align-items-stretch" key={index}><Link to={{pathname:`/user/${userId}/shelf/${item.id}`}}>
-                            <div class="card card-body flex-fill" style={{"width": "250px", margin: '10px', 'paddingTop':'20px', "height": "300px"}}>
+                            <div class="card card-body flex-fill card-book">
                                 <a href="tag_a.asp">
                                 <div class="ratio ratio-1x1 rounded">
                                     <img src="https://www.gamemonday.com/wp-content/uploads/2021/10/Botworld-Adventure-13102021-1.jpg" class="img mx-auto d-block"/>
                                 </div>
                                 <div class="card-body">
-                                    
                                     <h5 class="card-title">{item.name}</h5>
-                                    
                                 </div>
                                 </a>
                             </div>

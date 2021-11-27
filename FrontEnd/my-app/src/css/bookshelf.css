@@ -7,3 +7,10 @@
 .card:hover{
   background-color: #e3eceb;
 }
+
+.card-book{
+  width: 250px;
+  margin: 10px;
+  padding-top: 2rem;
+  height: 300px;
+}

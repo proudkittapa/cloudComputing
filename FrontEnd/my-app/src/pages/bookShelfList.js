@@ -139,6 +139,7 @@ function BookShelfList(){
                         })}
                     </table>
                 </div>
+                <button className="btn btn-danger" type="submit"><i className="fas fa-times-circle py-1"></i>Delete Bookshelf</button>
             </div>
         </div>
 

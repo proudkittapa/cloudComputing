@@ -43,6 +43,12 @@ function CreateProfile(){
                                 <button className="btn btn-navbar rounded-circle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="fas fa-user"></i>
                                 </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <Link to="/user/1"><a className="dropdown-item" href="#"><i class="fas fa-sign-in-alt"></i> Log In</a></Link>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Register</a>
+                                    <hr class="dropdown-divider"></hr>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                </div>
                             </div>
                         </div>
                     </div>

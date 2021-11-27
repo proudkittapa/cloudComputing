@@ -39,7 +39,7 @@ func main() {
 		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
 	}))
 	handlerGroup := e.Group("/bababook")
-	authGroup := e.Group("/oauth")
+	// authGroup := e.Group("/oauth")
 
 	bookRepo := repo.NewBookRepository(svc)
 	userRepo := repo.NewUserRepository(svc)
@@ -54,6 +54,6 @@ func main() {
 	handler.NewBookHandler(handlerGroup, bookUseCase)
 	handler.NewUserHandler(handlerGroup, userUseCase)
 	handler.NewUserTransactionHandler(handlerGroup, userTransactionUseCase)
-	handler.NewAuthHandler(authGroup)
+	// handler.NewAuthHandler(authGroup)
 	e.Logger.Fatal(e.Start(":8080"))
 }

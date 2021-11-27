@@ -53,8 +53,7 @@ function Profile(){
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <Link to="/user/1"><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-book"></i> Account</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a>
                                     <hr class="dropdown-divider"></hr>
                                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
@@ -116,22 +115,17 @@ function Profile(){
                                 <div class="container" style={{padding:'20px', margin: '20px', 'text-align': 'left'}}>
                                     <div class="row g-5">
                                         <div class="col">
-                                            <div class="d-flex align-items-baseline"><h1>{user.full_name}</h1></div>
+                                            <div class="d-flex align-items-baseline">
+                                                <h1>{user.full_name}</h1>
+                                                <h2 class="flex-fill">@Username</h2>
+                                                </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="row g-5">
-                                        <div class="col-6 col-md-5 col-sm-4">
-                                            <h4>Follower 8</h4>
-                                        </div>
-                                        <div class="col-6 col-md-5 col-sm-4">
-                                            <h4>Following 8</h4>
                                         </div>
                                     </div>
                                     <div class="row g-5">
                                         <div class="col">
                                             <div class="container" padding="50px">
-                                                <button class="btn-pro btn-pro1" href="#" type="submit">Edit Profile</button>
+                                                <button class="btn-pro btn-pro1" href="#" type="submit"><i class="fas fa-cog"></i> Edit Account Settings</button>
                                             </div>
                                         </div>
                                     </div>
