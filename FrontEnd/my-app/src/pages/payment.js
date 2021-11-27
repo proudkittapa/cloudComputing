@@ -33,11 +33,11 @@ function Payment(){
     const createPayment = () =>{
         const paymentPost = {...payment, card_name:payment.card_name, card_number:payment.card_number, exp:payment.exp, ccv:payment.ccv}
         console.log("paymentPost", paymentPost)
-        // axios.post(`http://localhost:8080/bababook/user/${userId}/payment`, paymentPost)
-        // .then((response) => {
-        //     setStatus("successful")
-        //     console.log("CreatePayment", response)
-        // })
+        axios.post(`http://localhost:8080/bababook/user/${userId}/payment`, paymentPost)
+        .then((response) => {
+            setStatus("successful")
+            console.log("CreatePayment", response)
+        })
     }
 
     if (status == "successful"){
