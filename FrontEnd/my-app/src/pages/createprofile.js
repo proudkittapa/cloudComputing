@@ -71,6 +71,16 @@ function CreateProfile(){
                         <input type="text" className="form-control" id="fullname" placeholder="Fullname"></input>
                     </div>
 
+                    <label for="fullname" className="form-label">Username</label>
+                    <div className="input-group mb-3">
+                        <span className="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                        </span>
+                        <input type="text" className="form-control" id="fullname" placeholder="Username"></input>
+                    </div>
+
                     <label for="emailAddress" className="form-label">Email address</label>
                     <div className="input-group mb-3">
                         <span className="input-group-text">
