@@ -128,6 +128,9 @@ func (useCase *userUseCase) CreatePayment(c context.Context, userId string, paym
 }
 
 func (useCase *userUseCase) CreateShelf(c context.Context, userId string, shelfName string) error {
+	if shelfName == ""{
+		return errors.New("Shelf name can't be empty")
+	}
 	_, err := useCase.userRepo.GetById(c, userId)
 	if err != nil {
 		return err
@@ -212,10 +215,11 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 	if err != nil {
 		return 0, err
 	}
-	err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, balance)
+	currentBalance = user.Balance+balance
+
+	err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, currentBalance)
 	if err != nil{
 		return 0, err
 	}
-	currentBalance = user.Balance+balance
 	return currentBalance, err
 }

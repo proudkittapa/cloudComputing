@@ -26,19 +26,25 @@ function AddMoney(){
         })
     }    
 
-    const addBalance = () =>{
+    const addBalance = (e) =>{
         console.log("balance", balance)
+        e.preventDefault()
         const balancePut = {balance:+balance}
         axios.put(`http://localhost:8080/bababook/user/${userId}/payment`, balancePut)
         .then((response) => {
             setStatus("successful")
             console.log("addBalance", response)
+            alert("The balance is updated")
         })
     }
 
     const handleChangeInput = (e) => {
         setBalance(e.target.value)
     }
+    if (status == "successful"){
+        return <Redirect to= {{pathname:`/home/${userId}`}}/>
+    }
+
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -118,7 +124,7 @@ function AddMoney(){
                     <h3>Add Funds to Your Wallet</h3>
                     <br/>
 
-                    <form  enctype="multipart/form-data">
+                    <form enctype="multipart/form-data">
                         <div className="form-check">
                             <input className="form-check-input" type="radio" name="add_money_radio" id="add_fifty" value={50} onChange={handleChangeInput} defaultChecked/>
                             <label className="form-check-label" for="add_fifty">
@@ -150,7 +156,7 @@ function AddMoney(){
                             </label>
                         </div>
                         <br/>
-                        <button className="btn btn-success" type="submit"><i className="fas fa-wallet py-1" onClick={addBalance}></i> Add Funds</button>
+                        <button className="btn btn-success" type="submit" onClick={addBalance}><i className="fas fa-wallet py-1"></i> Add Funds</button>
                     </form>
                 </div>
             </div>

@@ -6,7 +6,6 @@ import '../css/createprofile.css'
 import {Link} from 'react-router-dom'
 function CreateProfile(){
 
-    let {userId} = useParams()
     return(
         <body>
             <nav className="navbar border-bottom">

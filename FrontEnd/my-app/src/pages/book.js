@@ -43,7 +43,7 @@ function Book(){
         .then((response) =>{
             console.log("response", response)
             if (response.status === 200){
-                alert("book added")
+                alert("book added to Your Shelf")
                 setAddMessage("Added")
             }
         }).catch(function(error) {
@@ -57,7 +57,10 @@ function Book(){
             setError(error.response.data.error.message)
         })
         
-        
+    }
+
+    if (addMessage == "Added"){
+        return <Redirect to= {{pathname:`/user/${userId}/bookShelf`}}/>
     }
 
     if (error == "Insufficient balance"){
