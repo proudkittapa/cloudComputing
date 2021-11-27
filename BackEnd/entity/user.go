@@ -19,7 +19,7 @@ type UserRepository interface {
 	GetByName(c context.Context, fullname string) ([]User, error)
 	Create(c context.Context, user User) (string, error)
 	Update(c context.Context, user User) error
-	Delete(c context.Context, userId string) error
+	Delete(c context.Context, userId string, userName string) error
 	CreateUserDB() error
 
 	CreatePayment(c context.Context, payment Payment) (string, error)
@@ -29,12 +29,14 @@ type UserRepository interface {
 	CreateShelfDB() error
 	CreateSubscription(c context.Context, userId string) error
 	UpdateBalance(c context.Context, uid string, fullName string, balance float32) error
+	GetAllAuthors(c context.Context) ([]User, error)
+	GetAllUsers(c context.Context) ([]User, error)
 }
 
 type UserUseCase interface {
 	GetAll(c context.Context) ([]User, error)
 	GetById(c context.Context, userId string) (User, error)
-	Create(c context.Context, user User) error
+	Create(c context.Context, user User) (string, error)
 	Update(c context.Context, user User) error
 	Delete(c context.Context, userId string) error
 	AddBook(c context.Context, bookId string, userId string) error
@@ -54,4 +56,5 @@ type UserUseCase interface {
 	InitAll() error
 
 	GetAllAuthor(c context.Context) ([]User, error)
+	GetAllUsers(c context.Context) ([]User, error)
 }

@@ -18,7 +18,7 @@ type BookRepository interface {
 	GetById(c context.Context, bookId string) (Book, error)
 	CreateBook(c context.Context, book Book) (id string, err error)
 	UpdateBook(c context.Context, book Book) error
-	DeleteBook(c context.Context, bookId string) error
+	DeleteBook(c context.Context, bookId string, userName string) error
 
 	CreateShelf(c context.Context, shelfName string) (string, error)       //Create New shelf
 	AddBookToShelf(c context.Context, shelfId string, bookId string) error //Add book to existing shelf

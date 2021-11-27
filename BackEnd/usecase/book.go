@@ -60,7 +60,11 @@ func (useCase *bookUseCase) UpdateBook(c context.Context, book entity.Book) erro
 }
 
 func (useCase *bookUseCase) DeleteBook(c context.Context, id string) error {
-	err := useCase.bookRepo.DeleteBook(c, id)
+	book, err := useCase.bookRepo.GetById(c, id)
+	if err != nil{
+		return err
+	}
+	err = useCase.bookRepo.DeleteBook(c, id, book.Name)
 	return err
 }
 

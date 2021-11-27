@@ -5,7 +5,22 @@ import '../css/History.css'
 import '../css/createprofile.css'
 import {Link} from 'react-router-dom'
 function CreateProfile(){
+    const [user, setUser] = useState({})
+    const [status, setStatus] = useState("")
 
+    const handleChangeInput = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setUser((oldValue) => ({ ...oldValue, [name]: value }))
+    }
+
+    const CreateUser = () => {
+        const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:user.role}
+        axios.post(`http://localhost:8080/bababook/user`, userTemp)
+        .then((response) =>{
+            setStatus("successful")
+        })
+    }
     return(
         <body>
             <nav className="navbar border-bottom">

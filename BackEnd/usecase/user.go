@@ -28,7 +28,13 @@ func (useCase *userUseCase) GetAll(c context.Context) ([]entity.User, error) {
 }
 
 func (useCase *userUseCase) GetAllAuthor(c context.Context) ([]entity.User, error){
-	return []entity.User{}, nil
+	authors, err := useCase.userRepo.GetAllAuthors(c)
+	return authors, err
+}
+
+func (useCase *userUseCase) GetAllUsers(c context.Context) ([]entity.User, error){
+	users, err := useCase.userRepo.GetAllUsers(c)
+	return users, err
 }
 
 func (useCase *userUseCase) GetById(c context.Context, id string) (entity.User, error) {
@@ -36,15 +42,15 @@ func (useCase *userUseCase) GetById(c context.Context, id string) (entity.User, 
 	return user, err
 }
 
-func (useCase *userUseCase) Create(c context.Context, user entity.User) error {
+func (useCase *userUseCase) Create(c context.Context, user entity.User) (string,error) {
 	id, err := useCase.userRepo.Create(c, user)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	err = useCase.CreateShelf(c, id, "Your Shelf")
 
-	return err
+	return id, err
 }
 
 func (useCase *userUseCase) Update(c context.Context, user entity.User) error {
@@ -53,7 +59,11 @@ func (useCase *userUseCase) Update(c context.Context, user entity.User) error {
 }
 
 func (useCase *userUseCase) Delete(c context.Context, id string) error {
-	err := useCase.userRepo.Delete(c, id)
+	user, err := useCase.userRepo.GetById(c, id)
+	if err != nil{
+		return err
+	}
+	err = useCase.userRepo.Delete(c, id, user.Username)
 	return err
 }
 

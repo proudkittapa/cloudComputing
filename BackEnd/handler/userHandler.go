@@ -18,7 +18,7 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 		UserUseCase: UserUseCase,
 	}
 	e.POST("/init", handler.InitAll)
-	e.GET("/user", handler.GetAll)
+	e.GET("/users", handler.GetAll)
 	e.GET("/user/:id", handler.GetById)
 	e.POST("/user", handler.Create)
 	e.PUT("/user/:id", handler.Update)
@@ -38,7 +38,8 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 
 	e.POST("/user/mock/:num", handler.MockUser)
 
-	e.GET("/authors", handler.GetAllAuthor)
+	e.GET("/role/authors", handler.GetAllAuthor)
+	e.GET("/role/users", handler.GetAllUsers)
 
 	e.GET("/test", handler.Test)
 
@@ -112,6 +113,32 @@ func (handler *UserHandler) GetAllAuthor(c echo.Context) error {
 	return c.JSON(http.StatusOK, response)
 }
 
+func (handler *UserHandler) GetAllUsers(c echo.Context) error {
+	ctx := c.Request().Context()
+	users, err := handler.UserUseCase.GetAllUsers(ctx)
+	if err != nil {
+		errMessage := err.Error()
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: errMessage,
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Users []entity.User `json:"users"`
+		}{
+			Users: users,
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+
 func (handler *UserHandler) GetById(c echo.Context) error {
 	ctx := c.Request().Context()
 	id := c.Param("id")
@@ -144,7 +171,7 @@ func (handler *UserHandler) Create(c echo.Context) error {
 	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	err := handler.UserUseCase.Create(ctx, user)
+	id, err := handler.UserUseCase.Create(ctx, user)
 	if err != nil {
 		errMessage := err.Error()
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
@@ -160,8 +187,10 @@ func (handler *UserHandler) Create(c echo.Context) error {
 	response := entity.ResponseSuccess{
 		Data: struct {
 			Message string "json:\"message\""
+			Id string `json:"id"`
 		}{
 			Message: "user is created",
+			Id : id,
 		},
 	}
 	return c.JSON(http.StatusOK, response)
