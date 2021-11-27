@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -31,7 +30,7 @@ func main() {
 	}
 
 	svc := dynamodb.New(sess)
-	fmt.Println("svc", svc)
+	//fmt.Println("svc", svc)
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins:     []string{"http://localhost:3000", "http://localhost:8080"},
@@ -40,6 +39,7 @@ func main() {
 		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
 	}))
 	handlerGroup := e.Group("/bababook")
+	authGroup := e.Group("/oauth")
 
 	bookRepo := repo.NewBookRepository(svc)
 	userRepo := repo.NewUserRepository(svc)
@@ -49,8 +49,11 @@ func main() {
 	userUseCase := usecase.NewUserUseCase(userRepo, userTransactionRepo, bookRepo)
 	userTransactionUseCase := usecase.NewUserTransactionUseCase(userTransactionRepo)
 
+	//middlewares.InitAuthMiddleware(handlerGroup)
+
 	handler.NewBookHandler(handlerGroup, bookUseCase)
 	handler.NewUserHandler(handlerGroup, userUseCase)
 	handler.NewUserTransactionHandler(handlerGroup, userTransactionUseCase)
+	handler.NewAuthHandler(authGroup)
 	e.Logger.Fatal(e.Start(":8080"))
 }

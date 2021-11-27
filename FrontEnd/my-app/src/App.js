@@ -20,6 +20,7 @@ import AllBook from './pages/allbooks';
 import BookShelfList from './pages/bookShelfList';
 import Payment from './pages/payment';
 import AddMoney from './pages/addMoney';
+import CreateShelf from './pages/createShelf';
 
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/addMoney">
                     <AddMoney />
+                </Route>
+                <Route exact path="/user/:userId/createShelf">
+                    <CreateShelf />
                 </Route>
             </Switch>
         </Router>

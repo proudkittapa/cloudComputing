@@ -10,9 +10,35 @@ import { Redirect } from 'react-router'
 
 
 function AddMoney(){
-    
+    const [user, setUsers] = useState({})
+    const [balance, setBalance] = useState(50)
+    const [status, setStatus] = useState("")
+
     let {userId} = useParams()
-    
+    useEffect(()=>{
+        getUser()
+    }, []);
+    const getUser = () =>{
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
+        .then((response) => {
+            console.log(response);
+            setUsers(response.data.data.user)
+        })
+    }    
+
+    const addBalance = () =>{
+        console.log("balance", balance)
+        const balancePut = {balance:+balance}
+        axios.put(`http://localhost:8080/bababook/user/${userId}/payment`, balancePut)
+        .then((response) => {
+            setStatus("successful")
+            console.log("addBalance", response)
+        })
+    }
+
+    const handleChangeInput = (e) => {
+        setBalance(e.target.value)
+    }
     return(
         <body>
             <nav className="navbar border-bottom">
@@ -28,8 +54,7 @@ function AddMoney(){
 
                     <div className="d-flex flex-fill align-items-center">
 
-                        {/* <a href="/" className="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a> */}
-                        <a href="/" className="px-3">200 THB</a>
+                        <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a></Link>
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -93,39 +118,39 @@ function AddMoney(){
                     <h3>Add Funds to Your Wallet</h3>
                     <br/>
 
-                    <form method="post" enctype="multipart/form-data">
+                    <form  enctype="multipart/form-data">
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_fifty"/>
+                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_fifty" value={50} onChange={handleChangeInput} defaultChecked/>
                             <label className="form-check-label" for="add_fifty">
                                 Add 50 THB
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_hundred"/>
+                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_hundred" value={100} onChange={handleChangeInput}/>
                             <label className="form-check-label" for="add_hundred">
                                 Add 100 THB
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_twofifty"/>
+                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_twofifty" value={250} onChange={handleChangeInput}/>
                             <label className="form-check-label" for="add_twofifty">
                                 Add 250 THB
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_fivehun"/>
+                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_fivehun" value={500} onChange={handleChangeInput}/>
                             <label className="form-check-label" for="add_fivehun">
                                 Add 500 THB
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_thousand"/>
+                            <input className="form-check-input" type="radio" name="add_money_radio" id="add_thousand" value={1000} onChange={handleChangeInput} />
                             <label className="form-check-label" for="add_thousand">
                                 Add 1000 THB
                             </label>
                         </div>
                         <br/>
-                        <button className="btn btn-success" type="submit"><i className="fas fa-wallet py-1"></i> Add Funds</button>
+                        <button className="btn btn-success" type="submit"><i className="fas fa-wallet py-1" onClick={addBalance}></i> Add Funds</button>
                     </form>
                 </div>
             </div>

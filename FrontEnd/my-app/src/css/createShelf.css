@@ -1,0 +1,38 @@
+.row-book-container{
+    padding-bottom: 2rem;
+}
+
+.upload-book{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 258px;
+    height: 400px;
+    margin: auto;
+    object-fit: cover;
+    background-color: #e3eceb;
+}
+.separator{
+    padding: 0rem 1rem;
+}
+
+.pricing-add{
+    width: 75%;
+    justify-content: space-between;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.pub-item{
+    padding-bottom: 2rem;
+}

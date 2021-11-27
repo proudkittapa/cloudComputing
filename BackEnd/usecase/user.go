@@ -208,5 +208,14 @@ func (useCase *userUseCase) CreateSubscription(c context.Context, userId string)
 }
 
 func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance float32) (currentBalance float32, err error) {
-	return 0, nil
+	user, err := useCase.userRepo.GetById(c, userId)
+	if err != nil {
+		return 0, err
+	}
+	err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, balance)
+	if err != nil{
+		return 0, err
+	}
+	currentBalance = user.Balance+balance
+	return currentBalance, err
 }

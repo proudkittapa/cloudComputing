@@ -548,6 +548,7 @@ func (handler *UserHandler) AddBalance(c echo.Context) error {
 	if err := c.Bind(&balance); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
+	fmt.Println("Add bal", balance)
 	balanceLeft, err := handler.UserUseCase.AddBalance(ctx, id, balance.Balance)
 	if err != nil {
 		errMessage := err.Error()

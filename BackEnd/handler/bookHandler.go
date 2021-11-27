@@ -30,7 +30,7 @@ func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase) {
 func (bookHandler *BookHandler) GetAll(c echo.Context) error {
 	ctx := c.Request().Context()
 	books, err := bookHandler.BookUseCase.GetAll(ctx)
-	fmt.Println("books", books)
+	//fmt.Println("books", books)
 	if err != nil {
 		errMessage := err.Error()
 		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
@@ -262,7 +262,7 @@ func (bookHandler *BookHandler) GetBooksFromShelf(c echo.Context) error {
 		}
 		result = append(result, res)
 	}
-	fmt.Println(result)
+	//fmt.Println(result)
 
 	response := entity.ResponseSuccess{
 		Data: struct {
