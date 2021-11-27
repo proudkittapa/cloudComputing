@@ -419,6 +419,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
+			Username:  splitedName[0] + splitedName[1],
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
 			Email:     name + "@gmail.com",
@@ -456,6 +457,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
+			Username:  splitedName[0] + splitedName[1],
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
 			Email:     name + "@gmail.com",
@@ -492,6 +494,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
+			Username:  splitedName[0] + splitedName[1],
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
 			Email:     name + "@gmail.com",
