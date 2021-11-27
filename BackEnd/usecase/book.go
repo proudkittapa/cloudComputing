@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"fmt"
 	"github.com/pkg/errors"
 	"github.com/proudkittapa/cloudComputing/entity"
 )
@@ -38,7 +39,18 @@ func (useCase *bookUseCase) GetById(c context.Context, id string) (entity.Book, 
 }
 
 func (useCase *bookUseCase) CreateBook(c context.Context, book entity.Book) (string, error) {
+	user, err := useCase.userRepo.GetById(c, book.UserId)
+	if err != nil{
+		fmt.Println("get by id", err)
+		return "", err
+	}
 	id, err := useCase.bookRepo.CreateBook(c, book)
+	if err != nil{
+		fmt.Println("create", err)
+		return "", err
+	}
+	user.Role = "Author"
+	err = useCase.userRepo.Update(c, user)
 	return id, err
 }
 

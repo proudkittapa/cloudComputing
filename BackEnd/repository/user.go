@@ -195,7 +195,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #FN = :fn, #LN = :ln, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
+		UpdateExpression: aws.String("set #FN = :fn, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
 	}
 
 	_, err := repo.db.UpdateItem(input)

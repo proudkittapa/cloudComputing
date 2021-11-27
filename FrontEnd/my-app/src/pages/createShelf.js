@@ -26,8 +26,11 @@ function CreateShelf(){
         })
     }    
 
-    const newShelf = () =>{
+    const newShelf = (e) =>{
         const shelfName = {name:shelf}
+        e.preventDefault()
+
+        console.log("shelf", shelf)
         axios.post(`http://localhost:8080/bababook/user/${userId}/shelf`, shelfName)
         .then((response) => {
             setStatus("successful")
@@ -39,6 +42,9 @@ function CreateShelf(){
         setShelf(e.target.value)
     }
     
+    if (status == "successful"){
+        return <Redirect to= {{pathname:`/user/${userId}/bookShelf`}}/>
+    }
     return(
         <body>
         <nav className="navbar border-bottom">
@@ -115,7 +121,7 @@ function CreateShelf(){
             </div>
             
             <div className="container content">
-                <form method="post" enctype="multipart/form-data">
+                <form enctype="multipart/form-data">
             
                 <div className="pub-item">
                     <h3>Bookshelf Name</h3>
@@ -129,7 +135,7 @@ function CreateShelf(){
                 </div>
 
                 <br/>
-                <button className="btn btn-success" type="submit"><i className="fas fa-book py-1" onClick={newShelf}></i> Create Bookshelf</button>
+                <button className="btn btn-success" type="submit" onClick={newShelf}><i className="fas fa-book py-1" ></i> Create Bookshelf</button>
                 </form>
                 </div>
             </div>
