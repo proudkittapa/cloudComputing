@@ -157,7 +157,6 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 	tableName := "books"
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
-			"#N":   aws.String("name"),
 			"#UID": aws.String("user_id"),
 			"#P":   aws.String("price"),
 			"#R":   aws.String("rating"),
@@ -165,9 +164,6 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			"#IMG": aws.String("img"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":n": {
-				S: aws.String(book.Name),
-			},
 			":uid": {
 				S: aws.String(book.UserId),
 			},
@@ -194,7 +190,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #N = :n, #UID = :uid, #P = :p, #R = :r, #DES = :des, #IMG = :img"),
+		UpdateExpression: aws.String("set #UID = :uid, #P = :p, #R = :r, #DES = :des, #IMG = :img"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
@@ -206,7 +202,7 @@ func (repo *BookRepository) UpdateBook(c context.Context, book entity.Book) erro
 	return nil
 }
 
-func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
+func (repo *BookRepository) DeleteBook(c context.Context, id string, name string) error {
 	//delete book with the given id
 	tableName := "books"
 
@@ -214,6 +210,9 @@ func (repo *BookRepository) DeleteBook(c context.Context, id string) error {
 		Key: map[string]*dynamodb.AttributeValue{
 			"book_id": {
 				S: aws.String(id),
+			},
+			"name": {
+				S: aws.String(name),
 			},
 		},
 		TableName: aws.String(tableName),

@@ -276,7 +276,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 	return nil
 }
 
-func (repo *UserRepository) Delete(c context.Context, id string) error {
+func (repo *UserRepository) Delete(c context.Context, id string, username string) error {
 	//delete user with the given id
 	tableName := "users"
 
@@ -284,6 +284,9 @@ func (repo *UserRepository) Delete(c context.Context, id string) error {
 		Key: map[string]*dynamodb.AttributeValue{
 			"user_id": {
 				S: aws.String(id),
+			},
+			"uesrname": {
+				S: aws.String(username),
 			},
 		},
 		TableName: aws.String(tableName),
