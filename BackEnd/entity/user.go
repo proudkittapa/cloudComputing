@@ -4,6 +4,7 @@ import "context"
 
 type User struct {
 	UserId    string  `json:"user_id"`
+	Username  string  `json:"username"`
 	FullName  string  `json:"full_name"`
 	Age       int     `json:"age"`
 	Email     string  `json:"email"`

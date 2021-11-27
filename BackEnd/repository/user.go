@@ -46,13 +46,6 @@ func (repo *UserRepository) GetAll(c context.Context) ([]entity.User, error) {
 			return []entity.User{}, err
 		}
 
-		// fmt.Println("Found user:")
-		// fmt.Println("UserId:  ", user.UserId)
-		// fmt.Println("FullName: ", user.FullName)
-		// fmt.Println("PaymentId: ", user.PaymentId)
-		// fmt.Println("Age: ", user.Age)
-		// fmt.Println("Email: ", user.Email)
-		// fmt.Println("Role: ", user.Role)
 		Users = append(Users, user)
 	}
 	return Users, nil
@@ -108,6 +101,82 @@ func (repo *UserRepository) GetByName(c context.Context, name string) ([]entity.
 			},
 		},
 		FilterExpression: aws.String("#name = :n"),
+	}
+
+	result, err := repo.db.Scan(input)
+	if err != nil {
+		return []entity.User{}, err
+	}
+
+	for _, i := range result.Items {
+		user := entity.User{}
+
+		err = dynamodbattribute.UnmarshalMap(i, &user)
+
+		if err != nil {
+			return []entity.User{}, err
+		}
+		Users = append(Users, user)
+	}
+	if len(Users) == 0 {
+		return []entity.User{}, errors.New("Name doesn't exist")
+	}
+	return Users, nil
+}
+
+func (repo *UserRepository) GetAllAuthors(c context.Context) ([]entity.User, error) {
+	var Users []entity.User
+
+	input := &dynamodb.ScanInput{
+		TableName: aws.String("users"),
+		ExpressionAttributeNames: map[string]*string{
+			"#ROLE": aws.String("role"),
+		},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":r": {
+
+				S: aws.String("Author"),
+			},
+		},
+		FilterExpression: aws.String("#ROLE = :r"),
+	}
+
+	result, err := repo.db.Scan(input)
+	if err != nil {
+		return []entity.User{}, err
+	}
+
+	for _, i := range result.Items {
+		user := entity.User{}
+
+		err = dynamodbattribute.UnmarshalMap(i, &user)
+
+		if err != nil {
+			return []entity.User{}, err
+		}
+		Users = append(Users, user)
+	}
+	if len(Users) == 0 {
+		return []entity.User{}, errors.New("Name doesn't exist")
+	}
+	return Users, nil
+}
+
+func (repo *UserRepository) GetAllUsers(c context.Context) ([]entity.User, error) {
+	var Users []entity.User
+
+	input := &dynamodb.ScanInput{
+		TableName: aws.String("users"),
+		ExpressionAttributeNames: map[string]*string{
+			"#ROLE": aws.String("role"),
+		},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":r": {
+
+				S: aws.String("User"),
+			},
+		},
+		FilterExpression: aws.String("#ROLE = :r"),
 	}
 
 	result, err := repo.db.Scan(input)
@@ -190,12 +259,12 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			"user_id": {
 				S: aws.String(user.UserId),
 			},
-			"full_name": {
-				S: aws.String(user.FullName),
+			"username": {
+				S: aws.String(user.Username),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #FN = :fn, #LN = :ln, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
+		UpdateExpression: aws.String("set #FN = :fn, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
@@ -238,7 +307,7 @@ func (repo *UserRepository) CreateUserDB() error {
 				AttributeType: aws.String("S"),
 			},
 			{
-				AttributeName: aws.String("full_name"),
+				AttributeName: aws.String("username"),
 				AttributeType: aws.String("S"),
 			},
 		},
@@ -248,7 +317,7 @@ func (repo *UserRepository) CreateUserDB() error {
 				KeyType:       aws.String("HASH"),
 			},
 			{
-				AttributeName: aws.String("full_name"),
+				AttributeName: aws.String("username"),
 				KeyType:       aws.String("RANGE"),
 			},
 		},
@@ -485,7 +554,7 @@ func (repo *UserRepository) CreatePayment(c context.Context, payment entity.Paym
 	return payment.PaymentId, nil
 }
 
-func (repo *UserRepository) UpdatePayment(c context.Context, userId string, fullName string, paymentId string) error {
+func (repo *UserRepository) UpdatePayment(c context.Context, userId string, username string, paymentId string) error {
 	tableName := "users"
 
 	input := &dynamodb.UpdateItemInput{
@@ -502,8 +571,8 @@ func (repo *UserRepository) UpdatePayment(c context.Context, userId string, full
 			"user_id": {
 				S: aws.String(userId),
 			},
-			"full_name": {
-				S: aws.String(fullName),
+			"username": {
+				S: aws.String(username),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
@@ -550,7 +619,7 @@ func (repo *UserRepository) CreateSubscription(c context.Context, userId string)
 	return nil
 }
 
-func (repo *UserRepository) UpdateBalance(c context.Context, uid string, fullName string, balance float32) error {
+func (repo *UserRepository) UpdateBalance(c context.Context, uid string, username string, balance float32) error {
 	tableName := "users"
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
@@ -566,8 +635,8 @@ func (repo *UserRepository) UpdateBalance(c context.Context, uid string, fullNam
 			"user_id": {
 				S: aws.String(uid),
 			},
-			"full_name": {
-				S: aws.String(fullName),
+			"username": {
+				S: aws.String(username),
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
