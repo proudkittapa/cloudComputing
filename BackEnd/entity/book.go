@@ -14,7 +14,7 @@ type Book struct {
 }
 
 type BookRepository interface {
-	GetAll(c context.Context) ([]Book, error)
+	GetAll(c context.Context, pagination Pagination) ([]Book, error)
 	GetById(c context.Context, bookId string) (Book, error)
 	CreateBook(c context.Context, book Book) (id string, err error)
 	UpdateBook(c context.Context, book Book) error
