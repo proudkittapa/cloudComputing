@@ -40,7 +40,7 @@ function BookShelf(){
         <body>
             <nav class="navbar border-bottom">
                 <div class="container-fluid">
-                <a class="navbar-brand flex-fill" href="/"><i class="fas fa-book"></i> Bababook</a>
+                <Link to={{pathname:`/home/${userId}`}}><a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a></Link>
 
                 <div class="d-none d-lg-block flex-grow-1 flex-fill">
                     <form class="d-flex input-group">
