@@ -433,7 +433,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "User",
 			Balance:   100,
 			PaymentId: pid,
-			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Jiso.jfif",
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/User" + strconv.Itoa(i) + ".jpg",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -448,7 +448,6 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			return err
 		}
 
-		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
 	}
 
 	numOfUser -= count
@@ -472,7 +471,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "User",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
-			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Rose.jfif",
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/User" + strconv.Itoa(i+count) + ".jpg",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -510,7 +509,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "Author",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
-			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Author.jfif",
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/User" + strconv.Itoa(i+2*count) + ".jpg",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -532,7 +531,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Price:       (rand.Float32() * (1000 - 100)) + 100,
 			Rating:      (rand.Float32() * (5 - 1)) + 1,
 			Description: "lorem",
-			Img:         "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Popcat.jfif",
+			Img:         "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Book" + strconv.Itoa(count) + ".jpg",
 		}
 		bookRepo.CreateBook(c, Book)
 		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
