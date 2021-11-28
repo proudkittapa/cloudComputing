@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/pkg/errors"
 	"github.com/proudkittapa/cloudComputing/entity"
 )
 
@@ -303,4 +304,72 @@ func (repo *UserTransactionRepository) GetAllShelfByUserId(c context.Context, us
 
 	}
 	return Shelves, nil
+}
+
+func (repo *UserTransactionRepository) GetDefaultShelfByUserId(c context.Context, userId string) (string, error) {
+
+	// find shelf_id from user_id
+	input := &dynamodb.ScanInput{
+		TableName: aws.String("user_shelf"),
+		ExpressionAttributeNames: map[string]*string{
+			"#uid": aws.String("user_id"),
+		},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":uid": {
+
+				S: aws.String(userId),
+			},
+		},
+		FilterExpression: aws.String("#uid = :uid"),
+	}
+
+	result, err := repo.db.Scan(input)
+	if err != nil {
+		return "", err
+	}
+
+	// for each shelf_id of user, find book shelves
+	for _, i := range result.Items {
+		userShelf := entity.UserShelf{}
+
+		err = dynamodbattribute.UnmarshalMap(i, &userShelf)
+
+		if err != nil {
+			return "", err
+		}
+
+		// get all shelves from a shelf_id
+		input := &dynamodb.ScanInput{
+			TableName: aws.String("shelf"),
+			ExpressionAttributeNames: map[string]*string{
+				"#sid": aws.String("shelf_id"),
+			},
+			ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+				":sid": {
+
+					S: aws.String(userShelf.ShelfId),
+				},
+			},
+			FilterExpression: aws.String("#sid = :sid"),
+		}
+
+		result, err := repo.db.Scan(input)
+		if err != nil {
+			return "", err
+		}
+
+		for _, i := range result.Items {
+			shelf := entity.Shelf{}
+
+			err = dynamodbattribute.UnmarshalMap(i, &shelf)
+
+			if err != nil {
+				return "", err
+			}
+			if shelf.Name == "Your Shelf" {
+				return shelf.ShelfId, nil
+			}
+		}
+	}
+	return "", errors.New("Could not find Default Shelf")
 }
