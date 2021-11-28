@@ -104,7 +104,7 @@ function Profile(){
                                     <div class="authorimg" >
                                         <div class="container" style={{padding:'20px', margin: '20px', 'text-align': 'center' }}>
                                             <div class="ratio ratio-1x1 rounded" >
-                                                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/da3c9d43-2638-4757-b3d0-b8d5d0dcd7c7/de548p5-b657cd2a-f663-4540-af13-54f395a585af.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZGEzYzlkNDMtMjYzOC00NzU3LWIzZDAtYjhkNWQwZGNkN2M3XC9kZTU0OHA1LWI2NTdjZDJhLWY2NjMtNDU0MC1hZjEzLTU0ZjM5NWE1ODVhZi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.P7PswzM7IyPk-AdfDkovFGDmU478yifKRzBXu7xlKkE"
+                                                <img src={user.img}
                                                         class="img mx-auto d-block" style={{'min-width': '250px', 'min-height': '250px'}}/>
                                             </div>
                                         </div>

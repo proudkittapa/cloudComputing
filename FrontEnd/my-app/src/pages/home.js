@@ -19,6 +19,7 @@ function Home(){
             setUsers(response.data.data.user)
         })
     }
+    
 
     return(
         <body>
