@@ -22,13 +22,13 @@ type UserRepository interface {
 	Delete(c context.Context, userId string, userName string) error
 	CreateUserDB() error
 
-	CreatePayment(c context.Context, payment Payment) (string, error)
-	UpdatePayment(c context.Context, userId string, fullName string, paymentId string) error
+	CreatePayment(c context.Context, payment Payment) (string, error) //TODO add get payment by id
+	UpdatePayment(c context.Context, userId string, username string, paymentId string) error
 	MockUser(c context.Context, numOfUser int) error
 	CreateUserShelfDB() error
 	CreateShelfDB() error
 	CreateSubscription(c context.Context, userId string) error
-	UpdateBalance(c context.Context, uid string, fullName string, balance float32) error
+	UpdateBalance(c context.Context, uid string, username string, balance float32) error
 	GetAllAuthors(c context.Context) ([]User, error)
 	GetAllUsers(c context.Context) ([]User, error)
 }

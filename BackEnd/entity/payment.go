@@ -17,3 +17,4 @@ type PaymentUseCase interface {
 type Balance struct {
 	Balance float32 `json:"balance"`
 }
+

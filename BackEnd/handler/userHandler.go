@@ -547,7 +547,7 @@ func (handler *UserHandler) InitAll(c echo.Context) error {
 
 func (handler *UserHandler) CreateSubscription(c echo.Context) error {
 	ctx := c.Request().Context()
-	userId := c.Param(":userId")
+	userId := c.Param("userId")
 	err := handler.UserUseCase.CreateSubscription(ctx, userId)
 	if err != nil {
 		errMessage := err.Error()

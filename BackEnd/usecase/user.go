@@ -70,38 +70,30 @@ func (useCase *userUseCase) Delete(c context.Context, id string) error {
 func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId string) error {
 	//buy book
 	check, err := useCase.userTransRepo.CheckSubscription(c, userId)
+	user, err := useCase.userRepo.GetById(c, userId)
 	if err != nil {
-		fmt.Println("here checkkk")
 		return err
 	}
-	fmt.Println("check", check)
+	book, err := useCase.bookRepo.GetById(c, bookId)
+	if err != nil{
+		return err
+	}
+	if err != nil {
+		return err
+	}
 	if check {
 		err = useCase.userTransRepo.AddBook(c, bookId, userId)
 	} else {
-		user, err := useCase.userRepo.GetById(c, userId)
-		if err != nil {
-			fmt.Println("err get by id", err)
-			return err
-		}
-		book, err := useCase.bookRepo.GetById(c, bookId)
-		if err != nil{
-			fmt.Println("get by id", err)
-			return err
-		}
-		fmt.Println("book price", book.Price)
-		fmt.Println("user balance", user.Balance)
+
 		if book.Price <= user.Balance {
-			fmt.Println("")
 			updateBal := user.Balance - book.Price
 
 			err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, updateBal)
 			if err != nil {
-				fmt.Println("update bal err", err)
 				return err
 			}
 			err = useCase.userTransRepo.AddBook(c, bookId, userId)
 			if err != nil {
-				fmt.Println("add book err ", err)
 				return err
 			}
 		} else {
@@ -134,7 +126,7 @@ func (useCase *userUseCase) CreatePayment(c context.Context, userId string, paym
 	if err != nil {
 		return err
 	}
-	err = useCase.userRepo.UpdatePayment(c, userId, user.FullName, paymentId)
+	err = useCase.userRepo.UpdatePayment(c, userId, user.Username, paymentId)
 	return err
 }
 
@@ -209,12 +201,19 @@ func (useCase *userUseCase) InitAll() error {
 }
 
 func (useCase *userUseCase) CreateSubscription(c context.Context, userId string) error {
+	//TODO check if the subscription is already exist or not
 	user, err := useCase.userRepo.GetById(c, userId)
 	if err != nil {
+		fmt.Println("get by id ", err)
 		return err
 	}
 	if user.Balance >= 50 {
 		err = useCase.userRepo.CreateSubscription(c, userId)
+		if err != nil{
+			fmt.Println("create sub", err)
+			return err
+		}
+		err = useCase.userRepo.UpdateBalance(c, userId, user.Username, user.Balance-50)
 	} else {
 		return errors.New("Can't create subscription. The balance in the wallet is not enough")
 	}
@@ -228,7 +227,7 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 	}
 	currentBalance = user.Balance+balance
 
-	err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, currentBalance)
+	err = useCase.userRepo.UpdateBalance(c, userId, user.Username, currentBalance)
 	if err != nil{
 		return 0, err
 	}
