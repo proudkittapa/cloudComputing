@@ -69,8 +69,7 @@ function BookShelf(){
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
-                        <a class="dropdown-item" href="#"><i class="fas fa-book"></i> Account</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
                         <hr class="dropdown-divider"></hr>
                         <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                         </div>

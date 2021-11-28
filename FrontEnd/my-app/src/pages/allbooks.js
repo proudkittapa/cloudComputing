@@ -49,8 +49,7 @@ function AllBook(){
         <body>
             <nav className="navbar border-bottom">
                 <div className="container-fluid">
-                    <a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a>
-
+                    <Link to={{pathname:`/home/${userId}`}}><a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a></Link>
                     <div className="d-none d-lg-block flex-grow-1 flex-fill">
                         <form className="d-flex input-group">
                             <input className="form-control" type="search" placeholder="Search" aria-label="Search"></input>
@@ -78,7 +77,7 @@ function AllBook(){
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                                    <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
                                     <hr class="dropdown-divider"></hr>
                                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>

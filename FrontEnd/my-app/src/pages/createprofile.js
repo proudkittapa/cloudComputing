@@ -34,7 +34,7 @@ function CreateProfile(){
         <body>
             <nav className="navbar border-bottom">
                 <div className="container-fluid">
-                    <a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a>
+                    <Link to={{pathname:`/home/${userId}`}}><a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a></Link>
 
                     <div className="d-none d-lg-block flex-grow-1 flex-fill">
                         <form className="d-flex input-group">
