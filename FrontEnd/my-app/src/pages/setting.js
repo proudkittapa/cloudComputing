@@ -189,16 +189,17 @@ function AccountSetting(){
                         <h3>Description</h3>
                         <textarea className="form-control" id="description" rows="5"></textarea>
                     </div> */}
-        
+
+                    <button className="btn btn-success" type="submit"><i className="fas fa-save py-1"></i>Save Changes</button>
+                    </form>
+                    <br/>
+                    <hr/>
                     <div className="form-group pub-item">
                         <h3>Payment</h3>
                         <h3><i className="fas fa-credit-card py-1"></i> {paymentName}</h3>
                         <h3><i className="fas fa-credit-card py-1"></i> {() => test}</h3>
-                        <h3><a href={`/user/${userId}/payment`} target="_blank" rel="noopener noreferrer"><i className="fas fa-plus py-1"></i> Add Payment Method</a></h3>
+                        <h3><a href={`/user/${userId}/payment`} rel="noopener noreferrer"><i className="fas fa-plus py-1"></i> Add Payment Method</a></h3>
                     </div>
-
-                    <button className="btn btn-success" type="submit"><i className="fas fa-save py-1"></i>Save Changes</button>
-                    </form>
                 </div>
         </div>
 
