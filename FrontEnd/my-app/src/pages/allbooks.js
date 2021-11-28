@@ -11,11 +11,13 @@ function AllBook(){
     let {userId} = useParams()
     const [user, setUsers] = useState({})
     const [books, setBooks] = useState([])
+    const [authors, setAuthors] = useState([])
 
     useEffect(()=>{
         console.log("before get user")
         getUser()
         getAllBooks()
+        getAuthors()
     }, []);
     const getUser = () =>{
         axios.get(`http://localhost:8080/bababook/user/${userId}`)
@@ -32,6 +34,14 @@ function AllBook(){
             console.log("books", books)
         }).catch(function (error) {
             
+        })
+    }
+
+    const getAuthors = () =>{
+        axios.get(`http://localhost:8080/bababook/role/authors`)
+        .then((response) => {
+            console.log("authors", response);
+            setAuthors(response.data.data.authors)
         })
     }
 
@@ -113,24 +123,15 @@ function AllBook(){
                 <div className="container content">
                     <h3>Featured Author</h3>
                     <div class="container home-bar d-flex">
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
-                        <a href="">
-                            <div><img class="home-bar-item user" src="https://via.placeholder.com/160"/></div>
-                        </a>
+                        {authors.map((item, index) =>{
+                            return(
+                            <a href="">
+                                <div><img class="home-bar-item user" src={item.img}/></div>
+                            </a>
+                            )
+                        })}
+                        
+                        
                         <a href="/" class="home-bar-item see-more"><i class="fas fa-plus"></i></a>
                     </div>
                     <br/>

@@ -88,7 +88,7 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 		if book.Price <= user.Balance {
 			updateBal := user.Balance - book.Price
 
-			err = useCase.userRepo.UpdateBalance(c, userId, user.FullName, updateBal)
+			err = useCase.userRepo.UpdateBalance(c, userId, user.Username, updateBal)
 			if err != nil {
 				return err
 			}
