@@ -108,6 +108,7 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 			return errors.New("Insufficient balance")
 		}
 	}
+	//TODO add book to default shelf but how to get book id
 	return err
 }
 func (useCase *userUseCase) InitUserDB() error {

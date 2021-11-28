@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/History.css'
 import '../css/createprofile.css'
+import { Redirect } from 'react-router'
+
 import {Link} from 'react-router-dom'
 function CreateProfile(){
     const [user, setUser] = useState({})
     const [status, setStatus] = useState("")
+    const [userId, setUserId] = useState("")
 
     const handleChangeInput = (e) => {
         const name = e.target.name
@@ -15,11 +18,17 @@ function CreateProfile(){
     }
 
     const CreateUser = () => {
-        const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:user.role}
+        const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:user.role, username:user.username}
         axios.post(`http://localhost:8080/bababook/user`, userTemp)
         .then((response) =>{
+            console.log("response", response)
+            setUserId(response.data.data.id)
             setStatus("successful")
         })
+    }
+
+    if (status == "successful"){
+        return <Redirect to= {{pathname:`/home/${userId}`}}/>
     }
     return(
         <body>
@@ -44,7 +53,7 @@ function CreateProfile(){
                                     <i className="fas fa-user"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <Link to="/user/1"><a className="dropdown-item" href="#"><i class="fas fa-sign-in-alt"></i> Log In</a></Link>
+                                    <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i class="fas fa-sign-in-alt"></i> Log In</a></Link>
                                     <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Register</a>
                                     <hr class="dropdown-divider"></hr>
                                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
@@ -68,7 +77,7 @@ function CreateProfile(){
                                 <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                             </svg>
                         </span>
-                        <input type="text" className="form-control" id="fullname" placeholder="Fullname"></input>
+                        <input type="text" className="form-control" id="fullname" placeholder="Fullname" name="full_name" onChange={handleChangeInput}></input>
                     </div>
 
                     <label for="fullname" className="form-label">Username</label>
@@ -78,7 +87,7 @@ function CreateProfile(){
                                 <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                             </svg>
                         </span>
-                        <input type="text" className="form-control" id="fullname" placeholder="Username"></input>
+                        <input type="text" className="form-control" id="fullname" placeholder="Username" name="username" onChange={handleChangeInput}></input>
                     </div>
 
                     <label for="emailAddress" className="form-label">Email address</label>
@@ -88,7 +97,7 @@ function CreateProfile(){
                             <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
                             </svg>
                         </span>
-                        <input type="email" className="form-control" id="emailAddress" placeholder="name@example.com"></input>
+                        <input type="email" className="form-control" id="emailAddress" placeholder="name@example.com" name="email" onChange={handleChangeInput}></input>
                     </div>
                     
                     <label for="age" className="form-label">Password</label>
@@ -109,11 +118,11 @@ function CreateProfile(){
                                 <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
                             </svg>
                         </span>
-                        <input type="number" class="form-control" id="age" placeholder="Age" min="13"/>
+                        <input type="number" class="form-control" id="age" placeholder="Age" min="13" name="age" onChange={handleChangeInput}/>
                     </div>
 
                     <div className="conpad">
-                        <button className="btn-pro btn-pro1" type="submit">Submit</button>
+                        <button className="btn-pro btn-pro1" type="submit" onClick={CreateUser}>Submit</button>
                     </div>
 
                 </div>

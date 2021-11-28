@@ -33,6 +33,7 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 
 	e.POST("/user/:userId/payment", handler.CreatePayment)
 	e.PUT("/user/:userId/payment", handler.AddBalance)
+	//TODO get payment
 
 	e.POST("/user/:userId/book/:bookId/shelf/:shelfId", handler.AddBookToShelf)
 

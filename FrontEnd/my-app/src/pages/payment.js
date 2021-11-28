@@ -77,7 +77,7 @@ function Payment(){
                                 <i className="fas fa-user"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link to="/user/1"><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
+                                <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a>
                                 <hr class="dropdown-divider"></hr>
                                 <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>

@@ -22,7 +22,8 @@ func NewBookUseCase(bookRepo entity.BookRepository, userRepo entity.UserReposito
 }
 
 func (useCase *bookUseCase) GetAll(c context.Context) ([]entity.Book, error) {
-	books, err := useCase.bookRepo.GetAll(c)
+	pag := entity.Pagination{}
+	books, err := useCase.bookRepo.GetAll(c, pag )
 	return books, err
 }
 
