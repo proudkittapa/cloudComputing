@@ -236,6 +236,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			"#AGE":   aws.String("age"),
 			"#EMAIL": aws.String("email"),
 			"#ROLE":  aws.String("role"),
+			"#IMG":   aws.String("img"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
 			":fn": {
@@ -253,6 +254,9 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			":ro": {
 				S: aws.String(user.Role),
 			},
+			":img": {
+				S: aws.String(user.Img),
+			},
 		},
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -264,7 +268,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 			},
 		},
 		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set #FN = :fn, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro"),
+		UpdateExpression: aws.String("set #FN = :fn, #PID = :pid, #AGE = :age, #EMAIL = :em, #ROLE = :ro, #IMG = :img"),
 	}
 
 	_, err := repo.db.UpdateItem(input)
@@ -429,6 +433,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "User",
 			Balance:   100,
 			PaymentId: pid,
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Jiso.jfif",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -467,6 +472,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "User",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Rose.jfif",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -504,6 +510,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Role:      "Author",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
+			Img:       "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Author.jfif",
 		}
 		userId, err := repo.Create(c, User)
 		if err != nil {
@@ -525,7 +532,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Price:       (rand.Float32() * (1000 - 100)) + 100,
 			Rating:      (rand.Float32() * (5 - 1)) + 1,
 			Description: "lorem",
-			Img:         "https://popcat.click/og-card.jpg",
+			Img:         "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Popcat.jfif",
 		}
 		bookRepo.CreateBook(c, Book)
 		// fmt.Println(name + "\t\t" + userEntity[0].UserId)
@@ -592,6 +599,41 @@ func (repo *UserRepository) UpdatePayment(c context.Context, userId string, user
 
 	// fmt.Println("Successfully updated '" + paymentId + "' to user '" + userId + "'")
 	return nil
+}
+
+func (repo *UserRepository) GetPaymentById(c context.Context, id string) (entity.Payment, error) {
+
+	queryInput := &dynamodb.QueryInput{
+		TableName: aws.String("payments"),
+		KeyConditions: map[string]*dynamodb.Condition{
+			"payment_id": {
+				ComparisonOperator: aws.String("EQ"),
+				AttributeValueList: []*dynamodb.AttributeValue{
+					{
+						S: aws.String(id),
+					},
+				},
+			},
+		},
+	}
+
+	result, err := repo.db.Query(queryInput)
+	if err != nil {
+		return entity.Payment{}, err
+	}
+
+	payment := []entity.Payment{}
+
+	err = dynamodbattribute.UnmarshalListOfMaps(result.Items, &payment)
+	//fmt.Println("user", user)
+	if err != nil {
+		return entity.Payment{}, err
+	}
+	if len(payment) == 0 {
+		return entity.Payment{}, errors.New("This payment id doesn't exist")
+	}
+
+	return payment[0], nil
 }
 
 func (repo *UserRepository) CreateSubscription(c context.Context, userId string) error {

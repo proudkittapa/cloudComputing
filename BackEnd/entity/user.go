@@ -11,6 +11,7 @@ type User struct {
 	Role      string  `json:"role"`
 	PaymentId string  `json:"payment_id"`
 	Balance   float32 `json:"balance"`
+	Img       string  `json:"img"`
 }
 
 type UserRepository interface {
