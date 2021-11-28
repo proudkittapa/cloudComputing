@@ -285,7 +285,7 @@ func (repo *UserRepository) Delete(c context.Context, id string, username string
 			"user_id": {
 				S: aws.String(id),
 			},
-			"uesrname": {
+			"username": {
 				S: aws.String(username),
 			},
 		},

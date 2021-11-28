@@ -31,13 +31,14 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 	input := &dynamodb.ScanInput{
 		TableName: aws.String("books"),
+		Limit:     aws.Int64(5),
 	}
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
 		return []entity.Book{}, err
 	}
-	if result.LastEvaluatedKey != nil {
+	for result.LastEvaluatedKey != nil {
 		input.ExclusiveStartKey = result.LastEvaluatedKey
 		result, err = repo.db.Scan(input)
 		if err != nil {
