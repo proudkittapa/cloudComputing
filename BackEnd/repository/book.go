@@ -313,6 +313,27 @@ func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (st
 	return shelf.ShelfId, nil
 }
 
+func (repo *BookRepository) DeleteShelf(c context.Context, id string) error {
+	//delete book with the given id
+	tableName := "shelf"
+
+	input := &dynamodb.DeleteItemInput{
+		Key: map[string]*dynamodb.AttributeValue{
+			"shelf_id": {
+				S: aws.String(id),
+			},
+		},
+		TableName: aws.String(tableName),
+	}
+
+	_, err := repo.db.DeleteItem(input)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (repo *BookRepository) AddBookToShelf(c context.Context, shelfId string, bookId string) error {
 	tableName := "shelf"
 
