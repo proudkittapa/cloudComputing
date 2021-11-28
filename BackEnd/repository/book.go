@@ -25,25 +25,28 @@ func GenerateUUID() string {
 	return uuid.New().String()
 }
 
-func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
+func (repo *BookRepository) GetAll(c context.Context, page entity.Pagination) ([]entity.Book, error) {
 
 	var books []entity.Book
-
+	offset := 1
 	input := &dynamodb.ScanInput{
 		TableName: aws.String("books"),
-		Limit:     aws.Int64(5),
+		Limit:     aws.Int64(int64(page.Limit)),
 	}
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
 		return []entity.Book{}, err
 	}
-	for result.LastEvaluatedKey != nil {
+	offset += 1
+
+	for result.LastEvaluatedKey != nil && offset == page.Offset {
 		input.ExclusiveStartKey = result.LastEvaluatedKey
 		result, err = repo.db.Scan(input)
 		if err != nil {
 			return []entity.Book{}, err
 		}
+		offset += 1
 	}
 
 	for _, i := range result.Items {
@@ -116,20 +119,11 @@ func (repo *BookRepository) GetByName(c context.Context, name string) ([]entity.
 			},
 		},
 		FilterExpression: aws.String("#name = :n"),
-		Limit:            aws.Int64(5),
 	}
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
 		return []entity.Book{}, err
-	}
-
-	if result.LastEvaluatedKey != nil {
-		input.ExclusiveStartKey = result.LastEvaluatedKey
-		result, err = repo.db.Scan(input)
-		if err != nil {
-			return []entity.Book{}, err
-		}
 	}
 
 	for _, i := range result.Items {
