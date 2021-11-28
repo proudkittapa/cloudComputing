@@ -37,6 +37,13 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 	if err != nil {
 		return []entity.Book{}, err
 	}
+	if result.LastEvaluatedKey != nil {
+		input.ExclusiveStartKey = result.LastEvaluatedKey
+		result, err = repo.db.Scan(input)
+		if err != nil {
+			return []entity.Book{}, err
+		}
+	}
 
 	for _, i := range result.Items {
 		item := entity.Book{}
@@ -47,12 +54,6 @@ func (repo *BookRepository) GetAll(c context.Context) ([]entity.Book, error) {
 
 			return []entity.Book{}, err
 		}
-		// fmt.Println("Found item:")
-		// fmt.Println("bookId:  ", item.BookId)
-		// fmt.Println("name: ", item.Name)
-		// fmt.Println("price:  ", item.Price)
-		// fmt.Println("rating: ", item.Rating)
-		// fmt.Println("description: ", item.Description)
 		books = append(books, item)
 	}
 	return books, nil
@@ -77,6 +78,13 @@ func (repo *BookRepository) GetById(c context.Context, id string) (entity.Book, 
 	result, err := repo.db.Query(queryInput)
 	if err != nil {
 		return entity.Book{}, err
+	}
+	if result.LastEvaluatedKey != nil {
+		queryInput.ExclusiveStartKey = result.LastEvaluatedKey
+		result, err = repo.db.Query(queryInput)
+		if err != nil {
+			return entity.Book{}, err
+		}
 	}
 
 	book := []entity.Book{}
@@ -107,11 +115,20 @@ func (repo *BookRepository) GetByName(c context.Context, name string) ([]entity.
 			},
 		},
 		FilterExpression: aws.String("#name = :n"),
+		Limit:            aws.Int64(5),
 	}
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
 		return []entity.Book{}, err
+	}
+
+	if result.LastEvaluatedKey != nil {
+		input.ExclusiveStartKey = result.LastEvaluatedKey
+		result, err = repo.db.Scan(input)
+		if err != nil {
+			return []entity.Book{}, err
+		}
 	}
 
 	for _, i := range result.Items {
