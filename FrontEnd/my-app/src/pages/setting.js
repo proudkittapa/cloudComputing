@@ -16,6 +16,7 @@ function AccountSetting(){
     const [paymentNumber, setPaymentNumber] = useState("XXXX-XXXX-XXXX-X000")
     const [havePayment, setHavePayment] = useState(true)
     const [imgFile, setImgFile] = useState({})
+    const empty = {}
 
     useEffect(()=>{
         console.log("before get user")
@@ -55,21 +56,28 @@ function AccountSetting(){
     }
 
     const update = async(e) => {
-        e.preventDefault()
+        console.log("imgFile", imgFile)
+        // e.preventDefault()
         const url = await generateUploadURL()
+        let realURL = user.img
+
         var options = {
             headers: {
             'Content-Type': "multipart/form-data"
             }
         };
         console.log(url)
-
-        axios.put(url, imgFile, options).then((response) => {
-            console.log("response")
-            console.log(response)
-        })
-        const imgURL = url.split('?')[0]
-        
+        // if (imgFile.File)
+        if (imgFile.name != undefined){
+            // console.log("null here")
+            axios.put(url, imgFile, options).then((response) => {
+                console.log("response")
+                console.log(response)
+            })
+            const imgURL = url.split('?')[0]
+            realURL = imgURL    
+        }
+    
         let tempFullName = user.full_name
         let tempEmail = user.email
 
@@ -79,10 +87,7 @@ function AccountSetting(){
         if (userUpdate.email != undefined){
             tempEmail = userUpdate.email
         }
-        let realURL = user.img
-        if (imgURL != undefined){
-            realURL = imgURL
-        }
+     
         const userTemp = {...userUpdate, full_name:tempFullName, age:+user.age, email:tempEmail, role:user.role, username:user.username, img:realURL}
         console.log(userTemp)
         try{
@@ -103,7 +108,9 @@ function AccountSetting(){
     const handleImageFile = (e) =>{
         // e.preventDefault()
         const value = e.target.files[0]
-        setImgFile(value)
+        if (value != null){
+            setImgFile(value)
+        }
     }
 
     if (status == "successful"){
