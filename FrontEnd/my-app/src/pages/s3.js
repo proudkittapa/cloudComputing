@@ -6,15 +6,15 @@ const randomBytes = promisify(crypto.randomBytes)
 
 const region = "ap-southeast-1"
 const bucketName = "bababook-bucket"
-const accessKeyId = process.env.REACT_APP_SECRET_KEY
-const secretAccessKey = process.env.REACT_APP_ACCESS_KEY
+const accessKeyId = "AKIAVNJTT3XDVXHH2HH5"
+const secretAccessKey = "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"
 
 const s3 = new aws.S3({
     region,
     accessKeyId,
     secretAccessKey,
     signatureVersion : 'v4'
-
+    
 })
 
 export const generateUploadURL = async() =>{

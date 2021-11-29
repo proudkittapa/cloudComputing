@@ -232,7 +232,7 @@ func (repo *UserRepository) Update(c context.Context, user entity.User) error {
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames: map[string]*string{
 			"#FN":    aws.String("full_name"),
-			"#PID":   aws.String("payment_Id"),
+			"#PID":   aws.String("payment_id"),
 			"#AGE":   aws.String("age"),
 			"#EMAIL": aws.String("email"),
 			"#ROLE":  aws.String("role"),
