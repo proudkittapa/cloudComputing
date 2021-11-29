@@ -10,6 +10,7 @@ function Book(){
     const [user, setUsers] = useState({})
     const [author, setAuthor] = useState({})
     const [addMessage, setAddMessage] = useState("Add Book")
+    const [clickRead, setClickRead] = useState(false)
 
     const [error, setError] = useState("");
     let {userId, bookId} = useParams()
@@ -60,7 +61,8 @@ function Book(){
     }
 
     const read = () =>{
-        return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}/read`}}/>
+        console.log("url", bookItem.url)
+        setClickRead(true)
     }
 
     if (addMessage == "Added"){
@@ -69,6 +71,11 @@ function Book(){
 
     if (error == "Insufficient balance"){
         return <Redirect to= {{pathname:`/home/${userId}`}}/>
+    }
+
+    if (clickRead){
+        return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}/read`}}/>
+
     }
     return(
         <body>

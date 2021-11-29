@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/bookdisplay.css'
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router'
-import { PDFReader, MobilePDFReader } from 'react-read-pdf';
+// import { PDFReader, MobilePDFReader } from 'react-read-pdf';
+import { PDFViewer } from 'react-view-pdf';
 
 function Read(){
     const [bookItem, setBookItems] = useState({})
@@ -77,8 +78,8 @@ function Read(){
                 </div>
             </div>
         </nav>
-        {/* <PDFReader url={"http://www.africau.edu/images/default/sample.pdf"}/> */}
-        <embed src="https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/e5eeab8be3d1049fe4b2f61ac23aea5d#toolbar=0" height="100%" width="100%"/>
+
+        <PDFViewer url={bookItem.url} />
 
         </body>
     )

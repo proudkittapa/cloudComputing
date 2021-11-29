@@ -59,7 +59,12 @@ function Publish(){
         const imgURL = url.split('?')[0]
 
         const BookUrl = await generateUploadURL()
-        axios.put(BookUrl, bookFile, options).then((response) => {
+        var options2 = {
+            headers: {
+            'Content-Type': "application/pdf"
+            }
+        };
+        axios.put(BookUrl, bookFile, options2).then((response) => {
             console.log("response")
             console.log(response)
         })
