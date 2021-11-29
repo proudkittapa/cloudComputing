@@ -23,7 +23,7 @@ import AddMoney from './pages/addMoney';
 import CreateShelf from './pages/createShelf';
 import AccountSetting from './pages/setting';
 import Subscription from './pages/subscription';
-
+import Read from './pages/read';
 
 function App() {
     return (
@@ -75,6 +75,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/subscription">
                     <Subscription />
+                </Route>
+                <Route exact path="/user/:userId/book/:bookId/read">
+                    <Read />
                 </Route>
             </Switch>
         </Router>

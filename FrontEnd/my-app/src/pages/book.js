@@ -59,6 +59,10 @@ function Book(){
         
     }
 
+    const read = () =>{
+        return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}/read`}}/>
+    }
+
     if (addMessage == "Added"){
         return <Redirect to= {{pathname:`/user/${userId}/bookShelf`}}/>
     }
@@ -168,7 +172,7 @@ function Book(){
                                     <h3 class="py-1 px-3">{(Math.round([bookItem.price] * 100) / 100).toFixed(2)} THB</h3>
                                 </div>
                                 <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button> 
-                                <button class="btn btn-sub" type="submit"><i class="fas fa-book-open py-1"></i> Read</button>
+                                <button class="btn btn-sub" type="submit" onClick={read}><i class="fas fa-book-open py-1"></i> Read</button>
                             </div>
                         </div>
                     </div>

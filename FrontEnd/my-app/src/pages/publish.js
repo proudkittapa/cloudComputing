@@ -65,12 +65,12 @@ function Publish(){
         })
         const bookURL = BookUrl.split('?')[0]
 
-        const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId, url:BookUrl}
+        const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId, url:bookURL}
         console.log("in create book", bookPost)
         try{
             axios.post(`http://localhost:8080/bababook/book`, bookPost)
             .then((response) =>{
-                alert("book added")
+                alert("book is published")
                 setId(response.data.data.id)
                 setStatus("successful")
                 console.log("addbook", response)
