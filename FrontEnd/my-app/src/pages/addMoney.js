@@ -13,7 +13,7 @@ function AddMoney(){
     const [user, setUsers] = useState({})
     const [balance, setBalance] = useState(50)
     const [status, setStatus] = useState("")
-
+    const [errorMess, setErrorMess] = useState("")
     let {userId} = useParams()
     useEffect(()=>{
         getUser()
@@ -36,6 +36,10 @@ function AddMoney(){
             console.log("addBalance", response)
             alert("The balance is updated")
         })
+        .catch(function(error) {
+            alert(error.response.data.error.message)
+            setErrorMess("error")
+        })
     }
 
     const handleChangeInput = (e) => {
@@ -43,6 +47,10 @@ function AddMoney(){
     }
     if (status == "successful"){
         return <Redirect to= {{pathname:`/home/${userId}`}}/>
+    }
+
+    if (errorMess == "error"){
+        return <Redirect to= {{pathname:`/user/${userId}/setting`}}/>
     }
 
     return(
