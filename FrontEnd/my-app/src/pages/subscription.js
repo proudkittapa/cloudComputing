@@ -49,7 +49,7 @@ function Subscription(){
     }
 
     if (status == "successful"){
-    return <Redirect to= {{pathname:`/user/${userId}`}}/>
+        return <Redirect to= {{pathname:`/home/${userId}`}}/>
     }
     
 
