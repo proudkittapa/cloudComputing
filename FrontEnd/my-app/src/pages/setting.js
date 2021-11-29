@@ -57,7 +57,7 @@ function AccountSetting(){
 
     const update = async(e) => {
         console.log("imgFile", imgFile)
-        // e.preventDefault()
+        e.preventDefault()
         const url = await generateUploadURL()
         let realURL = user.img
 
@@ -67,9 +67,7 @@ function AccountSetting(){
             }
         };
         console.log(url)
-        // if (imgFile.File)
         if (imgFile.name != undefined){
-            // console.log("null here")
             axios.put(url, imgFile, options).then((response) => {
                 console.log("response")
                 console.log(response)
