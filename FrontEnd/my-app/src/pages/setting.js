@@ -79,7 +79,11 @@ function AccountSetting(){
         if (userUpdate.email != undefined){
             tempEmail = userUpdate.email
         }
-        const userTemp = {...userUpdate, full_name:tempFullName, age:+user.age, email:tempEmail, role:user.role, username:user.username, img:imgURL}
+        let realURL = user.img
+        if (imgURL != undefined){
+            realURL = imgURL
+        }
+        const userTemp = {...userUpdate, full_name:tempFullName, age:+user.age, email:tempEmail, role:user.role, username:user.username, img:realURL}
         console.log(userTemp)
         try{
             axios.put(`http://localhost:8080/bababook/user/${userId}`, userTemp)
