@@ -101,7 +101,7 @@ function Profile(){
                         <h3 style={{"padding-left":"5%"}} >Profile</h3>
                         <div class="row row-cols-1 row-cols-lg-2 g-5">
                             <div class="col-4" style={{padding:'0px 5% 0px 2%', 'min-width': '250px'}}>
-                                <a href="tag_a.asp">
+                                <a>
                                     <div class="authorimg" >
                                         <div class="container" style={{padding:'20px', margin: '20px', 'text-align': 'center' }}>
                                             <div class="ratio ratio-1x1 rounded" >

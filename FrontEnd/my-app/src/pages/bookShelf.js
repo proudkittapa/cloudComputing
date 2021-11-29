@@ -121,7 +121,7 @@ function BookShelf(){
                                 class="img mx-auto d-block" />
                             </div>
                             <div class="card-body">
-                            <h5 class="card-title">Add new book shelf</h5>
+                            <h5 class="card-title">Add book shelf</h5>
                             </div>
                         </a>
                     </div></Link>
