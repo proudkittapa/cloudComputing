@@ -28,7 +28,7 @@ function CreateShelf(){
     }    
 
     const newShelf = async(e) =>{
-
+        e.preventDefault()
         const url = await generateUploadURL()
         var options = {
             headers: {
@@ -42,17 +42,20 @@ function CreateShelf(){
             console.log(response)
         })
         const imgURL = url.split('?')[0]
-
-
         const shelfName = {name:shelf, img:imgURL}
         e.preventDefault()
 
         console.log("shelf", shelf)
+        
         axios.post(`http://localhost:8080/bababook/user/${userId}/shelf`, shelfName)
         .then((response) => {
             setStatus("successful")
             console.log("createShelf", response)
         })
+        .catch(function(error) {
+            alert(error.response.data.error.message)
+        })
+        
     }
 
     const handleChangeInput = (e) => {

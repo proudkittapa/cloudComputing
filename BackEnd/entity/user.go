@@ -62,4 +62,6 @@ type UserUseCase interface {
 	GetAllUsers(c context.Context) ([]User, error)
 
 	GetPayment(c context.Context, id string)(Payment, error)
+
+	CheckSubscription(c context.Context, userId string)(bool, error)
 }

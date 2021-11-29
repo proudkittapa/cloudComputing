@@ -27,6 +27,7 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 	e.POST("/user/init", handler.InitUser)
 	e.POST("/shelf/init", handler.InitUserShelf)
 	e.POST("/user/:userId/subscription", handler.CreateSubscription)
+	e.GET("/user/:userId/subscription", handler.CheckSubscription)
 
 	e.GET("/user/:userId/shelf", handler.GetAllShelf)
 	e.POST("/user/:userId/shelf", handler.CreateShelf)
@@ -625,6 +626,33 @@ func (handler *UserHandler) GetPayment(c echo.Context) error {
 			Payment entity.Payment "json:\"payment\""
 		}{
 			Payment: payment,
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+
+func (handler *UserHandler) CheckSubscription(c echo.Context) error {
+	ctx := c.Request().Context()
+	userId := c.Param("userId")
+	check, err := handler.UserUseCase.CheckSubscription(ctx, userId)
+	if err != nil {
+		errMessage := err.Error()
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: errMessage,
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Subscription bool "json:\"subscription\""
+		}{
+			Subscription: check,
 		},
 	}
 	return c.JSON(http.StatusOK, response)

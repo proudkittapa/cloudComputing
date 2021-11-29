@@ -261,3 +261,7 @@ func (useCase *userUseCase) GetPayment(c context.Context, id string)(entity.Paym
 	return payment, err
 }
 
+func(useCase *userUseCase) CheckSubscription(c context.Context, userId string)(bool, error){
+	check, err := useCase.userTransRepo.CheckSubscription(c, userId)
+	return check, err
+}
