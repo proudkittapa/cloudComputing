@@ -233,6 +233,10 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 	if err != nil {
 		return 0, err
 	}
+	check, err := useCase.userTransRepo.CheckPayment(c, user.PaymentId)
+	if !check{
+		return 0, errors.New("No payment added in this account")
+	}
 	currentBalance = user.Balance+balance
 
 	err = useCase.userRepo.UpdateBalance(c, userId, user.Username, currentBalance)
@@ -244,6 +248,9 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 
 func (useCase *userUseCase) GetPayment(c context.Context, id string)(entity.Payment, error){
 	user, err := useCase.userRepo.GetById(c, id)
+	if err != nil{
+		return entity.Payment{}, err
+	}
 	payment, err := useCase.userRepo.GetPaymentById(c, user.PaymentId)
 	return payment, err
 }
