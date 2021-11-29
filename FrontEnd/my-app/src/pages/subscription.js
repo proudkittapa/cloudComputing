@@ -9,13 +9,13 @@ import { Redirect } from 'react-router'
 function Subscription(){
     const [user, setUsers] = useState({})
     const [status, setStatus] = useState("")
-
+    const [subscribe, setSubscribe] = useState(false)
     let {userId} = useParams()
     
-
     useEffect(()=>{
         console.log("before get user")
         getUser()
+        checkSubscription()
     }, []);
     const getUser = () =>{
         try{
@@ -32,6 +32,23 @@ function Subscription(){
         
     }
 
+    const checkSubscription = () =>{
+        try{
+            axios.get(`http://localhost:8080/bababook/user/${userId}/subscription`)
+            .then((response) => {
+                console.log("sub",response);
+                setSubscribe(response.data.data.subscription)
+                if (response.data.data.subscription == true){
+                    alert("You already subscribe")
+                }
+            })
+        }
+        catch(error){
+            console.log("error", error)
+
+        }
+    }
+
     const clickSubscribe = async(e) =>{
         try{
             axios.post(`http://localhost:8080/bababook/user/${userId}/subscription`, {})
@@ -39,6 +56,7 @@ function Subscription(){
                 console.log("sub",response);
                 alert("subscribe")
                 setStatus(response.data.data.message)
+                
             })
         }
         catch(error){
@@ -51,6 +69,9 @@ function Subscription(){
         return <Redirect to={{pathname:`/user/${userId}`}}/>
     }
     
+    if (subscribe){
+        return <Redirect to={{pathname:`/user/${userId}`}}/>
+    }
 
     return(
         <body>
