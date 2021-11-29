@@ -1,11 +1,12 @@
 package repository
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"math/rand"
+	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/pkg/errors"
@@ -13,7 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"github.com/goombaio/namegenerator"
 	"github.com/proudkittapa/cloudComputing/entity"
 )
 
@@ -23,6 +23,25 @@ type UserRepository struct {
 
 func NewUserRepository(db *dynamodb.DynamoDB) *UserRepository {
 	return &UserRepository{db: db}
+}
+
+func UrlToLines(url string) ([]string, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	// return LinesFromReader(resp.Body)
+	var lines []string
+	scanner := bufio.NewScanner(resp.Body)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+	resp.Body.Close()
+
+	return lines, nil
 }
 
 func (repo *UserRepository) GetAll(c context.Context) ([]entity.User, error) {
@@ -408,16 +427,18 @@ func (repo *UserRepository) CreateShelfDB() error {
 
 func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 	bookRepo := NewBookRepository(repo.db)
-	seed := time.Now().UTC().UnixNano()
-	nameGenerator := namegenerator.NewNameGenerator(seed)
-
+	text, err := UrlToLines("https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/name.txt")
+	if err != nil {
+		return err
+	}
+	nameCount := 0
 	count := int(numOfUser / 4)
 	numOfUser -= count
 	// fmt.Println("Normal users: ")
 	for i := 0; i < count; i++ {
-		name := nameGenerator.Generate()
-		splitedName := strings.Split(name, "-")
-		fullname := splitedName[0] + " " + splitedName[1]
+		username := text[nameCount] + text[nameCount+1]
+		fullname := text[nameCount] + " " + text[nameCount+1]
+		nameCount += 2
 		Payment := entity.Payment{
 			CardNumber: "1234567890123456",
 			Exp:        "06/22",
@@ -426,10 +447,10 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
-			Username:  splitedName[0] + splitedName[1],
+			Username:  username,
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
-			Email:     name + "@gmail.com",
+			Email:     username + "@gmail.com",
 			Role:      "User",
 			Balance:   100,
 			PaymentId: pid,
@@ -457,9 +478,9 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 	numOfUser -= count
 	// fmt.Println("Subscription users: ")
 	for i := 0; i < count; i++ {
-		name := nameGenerator.Generate()
-		splitedName := strings.Split(name, "-")
-		fullname := splitedName[0] + " " + splitedName[1]
+		username := text[nameCount] + text[nameCount+1]
+		fullname := text[nameCount] + " " + text[nameCount+1]
+		nameCount += 2
 		Payment := entity.Payment{
 			CardNumber: "1234567890123456",
 			Exp:        "06/22",
@@ -468,10 +489,10 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
-			Username:  splitedName[0] + splitedName[1],
+			Username:  username,
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
-			Email:     name + "@gmail.com",
+			Email:     username + "@gmail.com",
 			Role:      "User",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
@@ -499,9 +520,9 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 
 	// fmt.Println("Authors:")
 	for i := 0; i < numOfUser; i++ {
-		name := nameGenerator.Generate()
-		splitedName := strings.Split(name, "-")
-		fullname := splitedName[0] + " " + splitedName[1]
+		username := text[nameCount] + text[nameCount+1]
+		fullname := text[nameCount] + " " + text[nameCount+1]
+		nameCount += 2
 		Payment := entity.Payment{
 			CardNumber: "1234567890123456",
 			Exp:        "06/22",
@@ -510,10 +531,10 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		}
 		pid, _ := repo.CreatePayment(c, Payment)
 		User := entity.User{
-			Username:  splitedName[0] + splitedName[1],
+			Username:  username,
 			FullName:  fullname,
 			Age:       rand.Intn(80-1+1) + 1,
-			Email:     name + "@gmail.com",
+			Email:     username + "@gmail.com",
 			Role:      "Author",
 			Balance:   (rand.Float32() * (1000 - 100)) + 100,
 			PaymentId: pid,
@@ -535,10 +556,10 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 		if err != nil {
 			return err
 		}
-		name = nameGenerator.Generate()
-		bookName := strings.Split(name, "-")
+		bookName := text[nameCount]
+		nameCount++
 		Book := entity.Book{
-			Name:        bookName[0],
+			Name:        bookName,
 			UserId:      userId,
 			Price:       (rand.Float32() * (1000 - 100)) + 100,
 			Rating:      (rand.Float32() * (5 - 1)) + 1,
