@@ -124,19 +124,18 @@ function BookShelfList(){
                             <th>Date Added</th>
                         </tr>
 
-                        {books.map((item, index) => {
+                        {books && (books.map((item, index) => {
                             return(
                                 <tr key={index}>
-
                                 <Link to={{pathname:`/user/${userId}/book/${item.book_id}`}}>
                                 <td><a href="">{item.name}</a></td>
                                 </Link>
                                 <td><a href="">{item.author_name}</a></td>
                                 <td>11/11/2021</td>
-                                
+
                                 </tr>
                             )
-                        })}
+                        }))}
                     </table>
                 </div>
                 <button className="btn btn-danger" type="submit"><i className="fas fa-times-circle py-1"></i>Delete Bookshelf</button>
