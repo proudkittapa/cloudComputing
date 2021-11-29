@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/subscription.css'
-import '../css/createprofile.css'
+import '../css/main.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router'
 
@@ -23,7 +23,6 @@ function Subscription(){
             .then((response) => {
                 console.log(response);
                 setUsers(response.data.data.user)
-
             })
         }
         catch(error){
@@ -33,14 +32,13 @@ function Subscription(){
         
     }
 
-    const clickSubscribe = () =>{
+    const clickSubscribe = async(e) =>{
         try{
             axios.post(`http://localhost:8080/bababook/user/${userId}/subscription`, {})
             .then((response) => {
-                console.log(response);
-                
-                setStatus("successfull")
-                alert("subscribe", status)
+                console.log("sub",response);
+                alert("subscribe")
+                setStatus(response.data.data.message)
             })
         }
         catch(error){
@@ -49,8 +47,8 @@ function Subscription(){
         }
     }
 
-    if (status == "successful"){
-        return <Redirect to= {{pathname:`/home/${userId}`}}/>
+    if (status == "subscription is created"){
+        return <Redirect to={{pathname:`/user/${userId}`}}/>
     }
     
 
@@ -142,7 +140,8 @@ function Subscription(){
                         <br/>
                         With Bababook Premium, you can read any book on our website instantly without buying it!
                     </p>
-                    <button className="btn btn-sub" type="submit" onClick={clickSubscribe}><i className="fas fa-star py-1"></i>Subscribe Now</button>
+    
+                    <button className="btn btn-sub" onClick={clickSubscribe}><i className="fas fa-star py-1"></i>Subscribe Now</button>
                     </div>
                 </div>
             </div>
