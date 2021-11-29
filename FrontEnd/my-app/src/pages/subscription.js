@@ -38,8 +38,9 @@ function Subscription(){
             axios.post(`http://localhost:8080/bababook/user/${userId}/subscription`, {})
             .then((response) => {
                 console.log(response);
-                alert("subscribe")
+                
                 setStatus("successfull")
+                alert("subscribe", status)
             })
         }
         catch(error){
