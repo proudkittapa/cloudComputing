@@ -116,11 +116,12 @@ function AccountSetting(){
                             <button className="btn btn-navbar rounded-circle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-user"></i>
                             </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                 <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
-                                <hr className="dropdown-divider"></hr>
-                                <a className="dropdown-item" href="#"><i className="fas fa-sign-out-alt"></i> Log Out</a>
+                                <Link to={{pathname:`/user/${userId}/subscription`}}><a class="dropdown-item" href="#"><i class="fas fa-star"></i> Subscription</a></Link>
+                                <hr class="dropdown-divider"></hr>
+                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                             </div>
                         </div>
                     </div>

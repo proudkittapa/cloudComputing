@@ -99,6 +99,7 @@ function Book(){
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                     <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
+                                    <Link to={{pathname:`/user/${userId}/subscription`}}><a class="dropdown-item" href="#"><i class="fas fa-star"></i> Subscription</a></Link>
                                     <hr class="dropdown-divider"></hr>
                                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
@@ -166,7 +167,8 @@ function Book(){
                                     <h3 class="py-1">Price: </h3>
                                     <h3 class="py-1 px-3">{(Math.round([bookItem.price] * 100) / 100).toFixed(2)} THB</h3>
                                 </div>
-                                <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button>
+                                <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button> 
+                                <button class="btn btn-sub" type="submit"><i class="fas fa-book-open py-1"></i> Read</button>
                             </div>
                         </div>
                     </div>

@@ -58,7 +58,7 @@ function Subscription(){
         <body>
         <nav className="navbar border-bottom">
             <div className="container-fluid">
-                <a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a>
+                <Link to={{pathname:`/home/${userId}`}}><a className="navbar-brand flex-fill" href="/"><i className="fas fa-book"></i> Bababook</a></Link>
 
                 <div className="d-none d-lg-block flex-grow-1 flex-fill">
                     <form className="d-flex input-group">
@@ -69,7 +69,7 @@ function Subscription(){
 
                 <div className="d-flex flex-fill align-items-center">
 
-                    <a href="/" className="px-3">{user.balance} THB</a>
+                    <Link to={{pathname:`/user/${userId}/addMoney`}}><a href="/" class="px-3">{(Math.round([user.balance] * 100) / 100).toFixed(2)} THB</a></Link>
 
                     <a href="/">
                         <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -85,12 +85,12 @@ function Subscription(){
                             <button className="btn btn-navbar rounded-circle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-user"></i>
                             </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a>
-                                <a className="dropdown-item" href="#"><i className="fas fa-book"></i> Account</a>
-                                <a className="dropdown-item" href="#"><i className="fas fa-cog"></i> Settings</a>
-                                <hr className="dropdown-divider"></hr>
-                                <a className="dropdown-item" href="#"><i className="fas fa-sign-out-alt"></i> Log Out</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
+                                <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
+                                <Link to={{pathname:`/user/${userId}/subscription`}}><a class="dropdown-item" href="#"><i class="fas fa-star"></i> Subscription</a></Link>
+                                <hr class="dropdown-divider"></hr>
+                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                             </div>
                         </div>
                     </div>
@@ -101,25 +101,25 @@ function Subscription(){
         <div className="d-flex">
             <div className="d-flex flex-column sidebar">
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
+                    <li class="nav-item">
+                        <Link to={{pathname:`/home/${userId}`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-home"></i>
+                        </a></Link>
+                    </li>
                     <li className="nav-item">
-                        <a href="#" className="nav-link py-3">
-                        <i className="fas fa-home"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="nav-link py-3">
+                        <Link to={{pathname:`/user/${userId}/bookShelf`}}><a href="#" className="nav-link py-3">
                             <i className="fas fa-book"></i>
-                        </a>
+                        </a></Link>
                     </li>
-                    <li>
-                    <a href="#" className="nav-link py-3">
-                        <i className="fas fa-book-open"></i>
-                    </a>
+                    <li className="nav-item">
+                        <Link to={{pathname:`/user/${userId}/publish`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-book-open"></i>
+                        </a></Link>
                     </li>
-                    <li>
-                    <a href="#" className="nav-link py-3">
-                        <i className="fas fa-clock"></i>
-                    </a>
+                    <li className="nav-item">
+                        <Link to={{pathname:`/user/${userId}/history`}}><a href="#" className="nav-link py-3">
+                            <i className="fas fa-clock"></i>
+                        </a></Link>
                     </li>
                     <li>
                     <a href="#" className="nav-link py-3">
@@ -136,7 +136,9 @@ function Subscription(){
                     <br/>
                     <h1 className="card-title"><i className="fas fa-book"></i> Bababook Premium</h1>
                     <p className="card-text">
-                        Want to read every book on Bababook? Join Bababook Premium for the low price of <b>50 Baht/Month</b>
+                        Want to read every book on Bababook?
+                        <br/>
+                        Join Bababook Premium for the low price of <b>50 Baht/Month</b>
                         <br/>
                         With Bababook Premium, you can read any book on our website instantly without buying it!
                     </p>

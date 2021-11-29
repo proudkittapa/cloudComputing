@@ -53,7 +53,7 @@
 
     .pricing-add{
         width: 75%;
-        justify-content: space-between;
+        justify-content: space-around; 
     }
 
     .btn{
@@ -63,4 +63,15 @@
     .book-desc{
         text-align: justify;
         font-size: 1.125rem;
+    }
+
+    .btn-sub{
+        background-color: #4db6ac;
+        color: #ffffff;
+        margin: 0rem 2rem;
+    }
+    
+    .btn-sub:hover{
+        background-color: #1c8a7f;
+        color: #ffffff;
     }

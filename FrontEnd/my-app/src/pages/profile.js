@@ -55,6 +55,7 @@ function Profile(){
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <Link to={{pathname:`/user/${userId}`}}><a className="dropdown-item" href="#"><i className="fas fa-user"></i> Profile</a></Link>
                                     <Link to={{pathname:`/user/${userId}/setting`}}><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></Link>
+                                    <Link to={{pathname:`/user/${userId}/subscription`}}><a class="dropdown-item" href="#"><i class="fas fa-star"></i> Subscription</a></Link>
                                     <hr class="dropdown-divider"></hr>
                                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
@@ -126,7 +127,7 @@ function Profile(){
                                     <div class="row g-5">
                                         <div class="col">
                                             <div class="container" padding="50px">
-                                                <button class="btn-pro btn-pro1" href="#" type="submit"><i class="fas fa-cog"></i> Edit Account Settings</button>
+                                                <Link to={{pathname:`/user/${userId}/setting`}}><button class="btn-pro btn-pro1" href="#" type="submit"><i class="fas fa-cog"/> Edit Account Settings</button></Link>
                                             </div>
                                         </div>
                                     </div>
