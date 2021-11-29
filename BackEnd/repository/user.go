@@ -440,8 +440,8 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			return err
 		}
 		shelf := entity.Shelf{
-			Name:    "Your Shelf",
-			Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
+			Name: "Your Shelf",
+			Img:  "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
 		}
 		shelfId, err := bookRepo.CreateShelf(c, shelf)
 		if err != nil {
@@ -482,8 +482,8 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			return err
 		}
 		shelf := entity.Shelf{
-			Name:    "Your Shelf",
-			Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
+			Name: "Your Shelf",
+			Img:  "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
 		}
 		shelfId, err := bookRepo.CreateShelf(c, shelf)
 		if err != nil {
@@ -524,8 +524,8 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			return err
 		}
 		shelf := entity.Shelf{
-			Name:    "Your Shelf",
-			Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
+			Name: "Your Shelf",
+			Img:  "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
 		}
 		shelfId, err := bookRepo.CreateShelf(c, shelf)
 		if err != nil {

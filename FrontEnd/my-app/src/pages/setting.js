@@ -5,6 +5,7 @@ import '../css/accountsettings.css'
 import '../css/createprofile.css'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router'
+import { generateUploadURL } from './s3';
 
 function AccountSetting(){
     const [user, setUsers] = useState({})
@@ -14,6 +15,7 @@ function AccountSetting(){
     const [paymentName, setPaymentName] = useState("No card attached to account")
     const [paymentNumber, setPaymentNumber] = useState("XXXX-XXXX-XXXX-X000")
     const [havePayment, setHavePayment] = useState(true)
+    const [imgFile, setImgFile] = useState({})
 
     useEffect(()=>{
         console.log("before get user")
@@ -52,33 +54,53 @@ function AccountSetting(){
         setUserUpdate((oldValue) => ({ ...oldValue, [name]: value }))
     }
 
-    const update = () => {
-        const userTemp = {...userUpdate, full_name:userUpdate.full_name, age:+userUpdate.age, email:userUpdate.email, role:userUpdate.role, username:user.username}
+    const update = async(e) => {
+        e.preventDefault()
+        const url = await generateUploadURL()
+        var options = {
+            headers: {
+            'Content-Type': "multipart/form-data"
+            }
+        };
+        console.log(url)
+
+        axios.put(url, imgFile, options).then((response) => {
+            console.log("response")
+            console.log(response)
+        })
+        const imgURL = url.split('?')[0]
+        
+        let tempFullName = user.full_name
+        let tempEmail = user.email
+
+        if (userUpdate.full_name != undefined){
+            tempFullName = userUpdate.full_name
+        }
+        if (userUpdate.email != undefined){
+            tempEmail = userUpdate.email
+        }
+        const userTemp = {...userUpdate, full_name:tempFullName, age:+user.age, email:tempEmail, role:user.role, username:user.username, img:imgURL}
+        console.log(userTemp)
         try{
-            axios.put(`http://localhost:8080/bababook/user`, userTemp)
+            axios.put(`http://localhost:8080/bababook/user/${userId}`, userTemp)
             .then((response) =>{
                 console.log("response", response)
                 setStatus("successful")
+                alert("success")
             })
         }
         catch(error){
+            alert("error", error)
             console.log("error", error)
         }
     }
+    
 
-
-
-
-    const test = ()  =>{
-        console.log("pay", user.payment_id)
-
-        return (paymentNumber)
+    const handleImageFile = (e) =>{
+        // e.preventDefault()
+        const value = e.target.files[0]
+        setImgFile(value)
     }
-    // if (havePayment){
-    //     //getPayment
-    //     setPaymentNumber("test 000000")
-    //     setPaymentName("test have payment")
-    // }
 
     if (status == "successful"){
         return <Redirect to= {{pathname:`/user/${userId}`}}/>
@@ -165,21 +187,21 @@ function AccountSetting(){
 
                 <h3>Account Settings</h3>
                 <hr/>
-                <form method="post" enctype="multipart/form-data">
+                <form enctype="multipart/form-data">
 
                     <div className="pub-item">
                         <h3>Profile Picture</h3>
-                        <input type="file" className="form-control" id="img_url"  accept="image/*"/>
+                        <input type="file" className="form-control" id="img_url"  accept="image/*" onChange={handleImageFile}/>
                     </div>
 
                     <div className="pub-item">
                         <h3>Name</h3>
-                        <input type="text" className="form-control" id="name" placeholder="Fullname"/>
+                        <input type="text" className="form-control" id="name" placeholder={user.full_name} name="full_name" onChange={handleChangeInput}/>
                     </div>
         
                     <div className="pub-item">
                         <h3>Email</h3>
-                        <input type="email" className="form-control" id="name" placeholder="name@example.com"/>
+                        <input type="email" className="form-control" id="name" placeholder={user.email} name="email" onChange={handleChangeInput}/>
                     </div>
 
                     <div className="pub-item">
@@ -192,7 +214,7 @@ function AccountSetting(){
                         <textarea className="form-control" id="description" rows="5"></textarea>
                     </div> */}
 
-                    <button className="btn btn-success" type="submit"><i className="fas fa-save py-1"></i>Save Changes</button>
+                    <button className="btn btn-success" type="submit" onClick={update}><i className="fas fa-save py-1"></i>Save Changes</button>
                     </form>
                     <br/>
                     <hr/>
