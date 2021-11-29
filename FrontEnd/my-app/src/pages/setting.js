@@ -18,6 +18,7 @@ function AccountSetting(){
     useEffect(()=>{
         console.log("before get user")
         getUser()
+        getPayment()
     }, []);
     const getUser = () =>{
         try{
@@ -25,14 +26,7 @@ function AccountSetting(){
             .then((response) => {
                 console.log(response);
                 setUsers(response.data.data.user)
-                if (user.payment_id == ""){
-                    setHavePayment(false)
-                    setPaymentNumber("test XXXXXX")
-                    setPaymentName("test no payment")
-                }else{
-                    setPaymentNumber("test 000000")
-                    setPaymentName("test have payment")
-                }
+            
             })
         }
         catch(error){
@@ -40,6 +34,16 @@ function AccountSetting(){
 
         }
         
+    }
+
+    const getPayment = () =>{
+        axios.get(`http://localhost:8080/bababook/user/${userId}/payment`)
+        .then((response) => {
+            console.log("payment", response);
+            setPaymentName(response.data.data.payment.card_name)
+            setPaymentNumber(response.data.data.payment.card_number)
+            // alert("You already have payment detail")
+        })
     }
 
     const handleChangeInput = (e) => {
@@ -62,9 +66,7 @@ function AccountSetting(){
         }
     }
 
-    const getPayment = () => {
-        
-    }
+
 
 
     const test = ()  =>{
@@ -196,7 +198,7 @@ function AccountSetting(){
                     <div className="form-group pub-item">
                         <h3>Payment</h3>
                         <h3><i className="fas fa-credit-card py-1"></i> {paymentName}</h3>
-                        <h3><i className="fas fa-credit-card py-1"></i> {() => test}</h3>
+                        <h3><i className="fas fa-credit-card py-1"></i> {paymentNumber}</h3>
                         <h3><a href={`/user/${userId}/payment`} rel="noopener noreferrer"><i className="fas fa-plus py-1"></i> Add Payment Method</a></h3>
                     </div>
                 </div>

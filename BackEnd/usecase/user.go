@@ -126,14 +126,20 @@ func (useCase *userUseCase) GetAllShelfByUserId(c context.Context, userId string
 }
 
 func (useCase *userUseCase) CreatePayment(c context.Context, userId string, payment entity.Payment) error {
-	paymentId, err := useCase.userRepo.CreatePayment(c, payment)
-	if err != nil {
-		return err
-	}
 	user, err := useCase.userRepo.GetById(c, userId)
 	if err != nil {
 		return err
 	}
+
+	check, err := useCase.userTransRepo.CheckPayment(c, user.PaymentId)
+	if check{
+		return errors.New("This user already have payment details. You have to edit instead of create")
+	}
+	paymentId, err := useCase.userRepo.CreatePayment(c, payment)
+	if err != nil {
+		return err
+	}
+
 	err = useCase.userRepo.UpdatePayment(c, userId, user.Username, paymentId)
 	return err
 }
