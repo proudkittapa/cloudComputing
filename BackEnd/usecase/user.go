@@ -240,6 +240,9 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 		return 0, err
 	}
 	check, err := useCase.userTransRepo.CheckPayment(c, user.PaymentId)
+	if err != nil{
+		return 0, err
+	}
 	if !check{
 		return 0, errors.New("No payment added in this account")
 	}

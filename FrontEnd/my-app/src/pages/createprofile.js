@@ -18,7 +18,7 @@ function CreateProfile(){
     }
 
     const CreateUser = () => {
-        const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:user.role, username:user.username}
+        const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:"User", username:user.username}
         axios.post(`http://localhost:8080/bababook/user`, userTemp)
         .then((response) =>{
             console.log("response", response)
