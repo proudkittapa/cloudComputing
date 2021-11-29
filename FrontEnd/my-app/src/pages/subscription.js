@@ -38,7 +38,6 @@ function Subscription(){
             axios.post(`http://localhost:8080/bababook/user/${userId}/subscription`, {})
             .then((response) => {
                 console.log(response);
-                setUsers(response.data.data.user)
                 alert("subscribe")
                 setStatus("successfull")
             })
