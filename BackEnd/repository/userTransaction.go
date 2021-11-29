@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -210,12 +211,12 @@ func (repo *UserTransactionRepository) CheckPayment(ctx context.Context, payment
 				S: aws.String(paymentId),
 			},
 		},
-		FilterExpression: aws.String("#uid = :id"),
+		FilterExpression: aws.String("#pid = :id"),
 	}
 
 	result, err := repo.db.Scan(input)
 	if err != nil {
-		return false, nil
+		return false, err
 	}
 
 	for _, i := range result.Items {
@@ -224,14 +225,15 @@ func (repo *UserTransactionRepository) CheckPayment(ctx context.Context, payment
 		err = dynamodbattribute.UnmarshalMap(i, &payment)
 
 		if err != nil {
-			return false, nil
+			return false, err
 		}
-
+		fmt.Println(payment.Exp)
 		splitedExp := strings.Split(payment.Exp, "/")
 		cardExp := splitedExp[1] + splitedExp[0]
 		if cardExp >= time.Now().Format("0601") {
 			Payments = append(Payments, payment)
 		}
+		fmt.Println(Payments)
 
 	}
 	return len(Payments) != 0, nil

@@ -543,6 +543,7 @@ func (repo *UserRepository) MockUser(c context.Context, numOfUser int) error {
 			Price:       (rand.Float32() * (1000 - 100)) + 100,
 			Rating:      (rand.Float32() * (5 - 1)) + 1,
 			Description: "lorem",
+			Url:         "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/SampleBook0.pdf",
 			Img:         "https://bababook-bucket.s3.ap-southeast-1.amazonaws.com/cloudComputing/Mock+User/Book" + strconv.Itoa(i) + ".jpg",
 		}
 		bookRepo.CreateBook(c, Book)
