@@ -47,8 +47,11 @@ func (useCase *userUseCase) Create(c context.Context, user entity.User) (string,
 	if err != nil {
 		return "", err
 	}
-
-	err = useCase.CreateShelf(c, id, "Your Shelf")
+	shelf := entity.Shelf{
+		Name:    "Your Shelf",
+		Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
+	}
+	err = useCase.CreateShelf(c, id, shelf)
 
 	return id, err
 }
@@ -100,7 +103,12 @@ func (useCase *userUseCase) AddBook(c context.Context, bookId string, userId str
 			return errors.New("Insufficient balance")
 		}
 	}
-	//TODO add book to default shelf but how to get book id
+
+	shelfId, err := useCase.userTransRepo.GetDefaultShelfByUserId(c, userId)
+	if err != nil{
+		return err
+	}
+	err = useCase.bookRepo.AddBookToShelf(c, shelfId, bookId)
 	return err
 }
 func (useCase *userUseCase) InitUserDB() error {
@@ -130,8 +138,8 @@ func (useCase *userUseCase) CreatePayment(c context.Context, userId string, paym
 	return err
 }
 
-func (useCase *userUseCase) CreateShelf(c context.Context, userId string, shelfName string) error {
-	if shelfName == ""{
+func (useCase *userUseCase) CreateShelf(c context.Context, userId string, shelf entity.Shelf) error {
+	if shelf.Name == ""{
 		return errors.New("Shelf name can't be empty")
 	}
 	_, err := useCase.userRepo.GetById(c, userId)
@@ -140,11 +148,11 @@ func (useCase *userUseCase) CreateShelf(c context.Context, userId string, shelfN
 	}
 	shelves, err := useCase.userTransRepo.GetAllShelfByUserId(c, userId)
 	for _, s := range shelves {
-		if s.Name == shelfName {
+		if s.Name == shelf.Name {
 			return errors.New("Shelf name already existed")
 		}
 	}
-	shelfId, err := useCase.bookRepo.CreateShelf(c, shelfName)
+	shelfId, err := useCase.bookRepo.CreateShelf(c, shelf)
 	if err != nil {
 		return err
 	}
@@ -233,3 +241,10 @@ func (useCase *userUseCase) AddBalance(c context.Context, userId string, balance
 	}
 	return currentBalance, err
 }
+
+func (useCase *userUseCase) GetPayment(c context.Context, id string)(entity.Payment, error){
+	user, err := useCase.userRepo.GetById(c, id)
+	payment, err := useCase.userRepo.GetPaymentById(c, user.PaymentId)
+	return payment, err
+}
+

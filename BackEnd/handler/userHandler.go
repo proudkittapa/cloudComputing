@@ -33,7 +33,7 @@ func NewUserHandler(e *echo.Group, UserUseCase entity.UserUseCase) {
 
 	e.POST("/user/:userId/payment", handler.CreatePayment)
 	e.PUT("/user/:userId/payment", handler.AddBalance)
-	//TODO get payment
+	e.GET("/user/:userId/payment", handler.GetPayment)
 
 	e.POST("/user/:userId/book/:bookId/shelf/:shelfId", handler.AddBookToShelf)
 
@@ -375,7 +375,7 @@ func (handler *UserHandler) CreateShelf(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 
-	err := handler.UserUseCase.CreateShelf(ctx, userId, shelf.Name)
+	err := handler.UserUseCase.CreateShelf(ctx, userId, shelf)
 	if err != nil{
 		errMess := err.Error()
 
@@ -599,6 +599,32 @@ func (handler *UserHandler) AddBalance(c echo.Context) error {
 		}{
 			Message: "Balance is updated",
 			CurrentBalance: balanceLeft,
+		},
+	}
+	return c.JSON(http.StatusOK, response)
+}
+
+func (handler *UserHandler) GetPayment(c echo.Context) error {
+	ctx := c.Request().Context()
+	id := c.Param("userId")
+	payment, err := handler.UserUseCase.GetPayment(ctx, id)
+	if err != nil {
+		errMessage := err.Error()
+		return c.JSON(http.StatusInternalServerError, entity.ResponseError{
+			Error: struct {
+				Code    int    "json:\"code\""
+				Message string "json:\"message\""
+			}{
+				Code:    404,
+				Message: errMessage,
+			},
+		})
+	}
+	response := entity.ResponseSuccess{
+		Data: struct {
+			Payment entity.Payment "json:\"payment\""
+		}{
+			Payment: payment,
 		},
 	}
 	return c.JSON(http.StatusOK, response)

@@ -278,15 +278,16 @@ func (repo *BookRepository) CreateBookDB() error {
 	return err
 }
 
-func (repo *BookRepository) CreateShelf(c context.Context, shelfName string) (string, error) {
+func (repo *BookRepository) CreateShelf(c context.Context, shelf entity.Shelf) (string, error) {
 	books := entity.BooksId{
 		Books: []string{},
 	}
-	shelf := entity.Shelf{
-		ShelfId: GenerateUUID(),
-		Name:    shelfName,
-		Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
-	}
+	shelf.ShelfId = GenerateUUID()
+	//shelf := entity.Shelf{
+	//	ShelfId: GenerateUUID(),
+	//	Name:    shelfName,
+	//	Img:     "https://st.depositphotos.com/1000441/1359/i/600/depositphotos_13590596-stock-photo-bookshelf.jpg",
+	//}
 	//insert to table book
 
 	shelfAv, err := dynamodbattribute.MarshalMap(shelf)

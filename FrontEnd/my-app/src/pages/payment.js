@@ -11,16 +11,28 @@ function Payment(){
     const [user, setUsers] = useState({})
     const [payment, setPayment] = useState({})
     const [status, setStatus] = useState("")
+    const [havePayment, setHavePayment] = useState(false)
 
     let {userId} = useParams()
     useEffect(()=>{
         getUser()
+        getPayment()
     }, []);
     const getUser = () =>{
         axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
+        })
+        
+    }
+
+    const getPayment = () =>{
+        axios.get(`http://localhost:8080/bababook/user/${userId}/payment`)
+        .then((response) => {
+            console.log("payment", response);
+            setHavePayment(true)
+            alert("You already have payment detail")
         })
     }
 
@@ -43,7 +55,10 @@ function Payment(){
     if (status == "successful"){
         return <Redirect to= {{pathname:`/home/${userId}`}}/>
     }
-    
+
+    if (havePayment){
+        return <Redirect to= {{pathname:`/home/${userId}`}}/>
+    }
    
     return(
         <body>

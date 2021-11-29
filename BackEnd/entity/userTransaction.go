@@ -24,6 +24,7 @@ type UserTransactionRepository interface {
 	GetAllShelfByUserId(c context.Context, userId string) ([]Shelf, error)
 	CreateSubscriptionDB() error
 	CreatePaymentDB() error
+	GetDefaultShelfByUserId(c context.Context, userId string) (string, error)
 }
 
 type UserTransactionUseCase interface {

@@ -1,0 +1,25 @@
+.btn-sub{
+    background-color: #4db6ac;
+    color: #ffffff;
+}
+
+.btn-sub:hover{
+    background-color: #1c8a7f;
+    color: #ffffff;
+}
+
+.card-title{
+    padding-top: 2rem;
+    color: #4db6ac;
+}
+
+.card-img-top{
+    object-fit: cover;
+    height: 350px;
+}
+
+.card-sub{
+    background-color: #e3eceb;
+    width: 75%;
+    margin: auto;
+}

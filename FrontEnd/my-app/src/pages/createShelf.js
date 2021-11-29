@@ -13,6 +13,7 @@ function CreateShelf(){
     const [user, setUsers] = useState({})
     const [shelf, setShelf] = useState("")
     const [status, setStatus] = useState("")
+    const [imgFile, setImgFile] = useState({})
 
     let {userId} = useParams()
     useEffect(()=>{
@@ -26,8 +27,24 @@ function CreateShelf(){
         })
     }    
 
-    const newShelf = (e) =>{
-        const shelfName = {name:shelf}
+    const newShelf = async(e) =>{
+
+        const url = await generateUploadURL()
+        var options = {
+            headers: {
+            'Content-Type': "multipart/form-data"
+            }
+        };
+        console.log(url)
+
+        axios.put(url, imgFile, options).then((response) => {
+            console.log("response")
+            console.log(response)
+        })
+        const imgURL = url.split('?')[0]
+
+
+        const shelfName = {name:shelf, img:imgURL}
         e.preventDefault()
 
         console.log("shelf", shelf)
@@ -40,6 +57,12 @@ function CreateShelf(){
 
     const handleChangeInput = (e) => {
         setShelf(e.target.value)
+    }
+
+    const handleImageFile = (e) =>{
+        // e.preventDefault()
+        const value = e.target.files[0]
+        setImgFile(value)
     }
     
     if (status == "successful"){
@@ -130,7 +153,7 @@ function CreateShelf(){
                 <br/>
                 <div className="pub-item">
                     <h3>Upload Bookshelf Picutre</h3>
-                    <input type="file" className="form-control" id="img_url"  accept="image/*"/>
+                    <input type="file" className="form-control" id="img_url"  accept="image/*" onChange={handleImageFile}/>
                 </div>
 
                 <br/>

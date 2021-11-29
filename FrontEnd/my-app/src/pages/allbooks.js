@@ -124,7 +124,7 @@ function AllBook(){
                     <div class="container home-bar d-flex">
                         {authors.map((item, index) =>{
                             return(
-                            <a href="">
+                            <a href="" key={index}>
                                 <div><img class="home-bar-item user" src={item.img}/></div>
                             </a>
                             )

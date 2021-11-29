@@ -25,6 +25,8 @@ type UserRepository interface {
 
 	CreatePayment(c context.Context, payment Payment) (string, error) //TODO add get payment by id
 	UpdatePayment(c context.Context, userId string, username string, paymentId string) error
+	GetPaymentById(c context.Context, id string) (Payment, error)
+
 	MockUser(c context.Context, numOfUser int) error
 	CreateUserShelfDB() error
 	CreateShelfDB() error
@@ -43,7 +45,7 @@ type UserUseCase interface {
 	AddBook(c context.Context, bookId string, userId string) error
 
 	GetAllShelfByUserId(c context.Context, userId string) ([]Shelf, error)
-	CreateShelf(c context.Context, userId string, shelfName string) error
+	CreateShelf(c context.Context, userId string, shelf Shelf) error
 	AddBookToShelf(c context.Context, shelfId string, bookId string) error
 
 	CreateSubscription(c context.Context, userId string) error
@@ -58,4 +60,6 @@ type UserUseCase interface {
 
 	GetAllAuthor(c context.Context) ([]User, error)
 	GetAllUsers(c context.Context) ([]User, error)
+
+	GetPayment(c context.Context, id string)(Payment, error)
 }

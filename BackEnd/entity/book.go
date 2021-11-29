@@ -20,7 +20,7 @@ type BookRepository interface {
 	UpdateBook(c context.Context, book Book) error
 	DeleteBook(c context.Context, bookId string, userName string) error
 
-	CreateShelf(c context.Context, shelfName string) (string, error)       //Create New shelf
+	CreateShelf(c context.Context, shelf Shelf) (string, error)       //Create New shelf
 	AddBookToShelf(c context.Context, shelfId string, bookId string) error //Add book to existing shelf
 
 	GetBooksIdFromShelf(c context.Context, shelfId string) (BooksId, error) //Get all books(id) from shelf

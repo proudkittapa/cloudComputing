@@ -65,7 +65,7 @@ function Publish(){
         })
         const bookURL = BookUrl.split('?')[0]
 
-        const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId}
+        const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId, url:BookUrl}
         console.log("in create book", bookPost)
         try{
             axios.post(`http://localhost:8080/bababook/book`, bookPost)

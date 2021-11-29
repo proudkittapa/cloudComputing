@@ -127,11 +127,11 @@ function BookShelf(){
                     </div>
                     {shelf.map((item, index) => {
                         return(
-                            <div class="col col-lg-3 d-flex align-items-stretch" key={index}><Link to={{pathname:`/user/${userId}/shelf/${item.id}`}}>
+                            <div class="col col-lg-3 d-flex align-items-stretch" key={index}><Link to={{pathname:`/user/${userId}/shelf/${item.shelf_id}`}}>
                             <div class="card card-body flex-fill card-book">
                                 <a href="tag_a.asp">
                                 <div class="ratio ratio-1x1 rounded">
-                                    <img src="https://www.gamemonday.com/wp-content/uploads/2021/10/Botworld-Adventure-13102021-1.jpg" class="img mx-auto d-block"/>
+                                    <img src={item.img} class="img mx-auto d-block"/>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{item.name}</h5>
