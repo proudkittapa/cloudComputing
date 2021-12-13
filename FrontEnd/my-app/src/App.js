@@ -24,20 +24,25 @@ import CreateShelf from './pages/createShelf';
 import AccountSetting from './pages/setting';
 import Subscription from './pages/subscription';
 import Read from './pages/read';
+import Author from './pages/author';
+import Error from './pages/error'
 
 function App() {
     return (
         // <TestAxios></TestAxios>
         <Router>
             <Switch>
-                {/* <Route exact path="/">
-                   <Redirect to="/user/:userId/allBook" />
-               </Route> */}
+                <Route exact path="/">
+                    <CreateProfile />
+                </Route>
                 <Route exact path="/user/:userId/book/:bookId">
                     <Book />
                 </Route>
                 <Route exact path="/user/:userId">
                     <Profile />
+                </Route>
+                <Route exact path="/user/:userId/author/:authorId">
+                    <Author />
                 </Route>
                 <Route exact path="/user/:userId/history">
                     <History />
@@ -57,6 +62,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/allBook">
                     <AllBook />
+                </Route>
+                <Route exact path="/user/:userId/error">
+                    <Error />
                 </Route>
                 <Route exact path="/user/:userId/shelf/:shelfId">
                     <BookShelfList />
@@ -79,6 +87,7 @@ function App() {
                 <Route exact path="/user/:userId/book/:bookId/read">
                     <Read />
                 </Route>
+                <Route component={Error}/>
             </Switch>
         </Router>
     )

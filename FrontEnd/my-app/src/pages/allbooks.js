@@ -122,12 +122,15 @@ function AllBook(){
                 
                 <div className="container content">
                     <h3>Featured Author</h3>
+                    {/* <h3>{process.env.REACT_APP_TEST_ENV}</h3> */}
                     <div class="container home-bar d-flex">
                         {authors.map((item, index) =>{
                             return(
+                            <Link to={{pathname:`/user/${userId}/author/${item.user_id}`}}>
                             <a href="" key={index}>
                                 <div><img class="home-bar-item user" src={item.img}/></div>
                             </a>
+                            </Link>
                             )
                         })}
                         
