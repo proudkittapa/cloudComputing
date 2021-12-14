@@ -28,6 +28,7 @@ function AllBook(){
     }
 
     const getAllBooks = () => {
+        console.log("getAllBooks")
         axios.get(`http://172.38.20.142:8080/bababook/book`)
         .then((response) =>{
             setBooks(response.data.data.books)
