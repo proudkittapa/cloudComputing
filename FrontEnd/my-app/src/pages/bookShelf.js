@@ -15,7 +15,7 @@ function BookShelf(){
         getShelf()
     }, []);
     const getUser = () =>{
-        axios.get(`http://localhost:8080/bababook/user/${userId}`)
+        axios.get(`http://52.221.200.38:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log("getUsers", response);
             setUsers(response.data.data.user)
@@ -23,7 +23,7 @@ function BookShelf(){
     }
 
     const getShelf = () => {
-        axios.get(`http://localhost:8080/bababook/user/${userId}/shelf`)
+        axios.get(`http://52.221.200.38:8080/bababook/user/${userId}/shelf`)
         .then((response) => {
             console.log("getShelf response", response)
             setShelves(response.data.data.shelves)
