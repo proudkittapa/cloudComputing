@@ -12,6 +12,7 @@ import (
 	repo "github.com/proudkittapa/cloudComputing/repository"
 	"github.com/proudkittapa/cloudComputing/usecase"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -28,14 +29,15 @@ func main() {
 	svc := dynamodb.New(sess)
 	//fmt.Println("svc", svc)
 	e := echo.New()
-	//e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-	//	AllowOrigins:     []string{"http://52.221.200.38:3000/"},
-	//	AllowCredentials: true,
-	//	AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
-	//	AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer"},
-	//	ExposeHeaders: []string{"*"},
-	//}))
-	e.Use(middleware.CORS())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins:     []string{"http://18.138.251.129:3000/", "http://18.138.251.129:3000"},
+		AllowCredentials: true,
+		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
+		AllowHeaders: []string{"*"},
+		//AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer"},
+		ExposeHeaders: []string{"*"},
+	}))
+	//e.Use(middleware.CORS())
 	handlerGroup := e.Group("/bababook")
 	// authGroup := e.Group("/oauth")
 
