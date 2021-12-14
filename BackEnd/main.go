@@ -34,7 +34,7 @@ func main() {
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete, http.MethodOptions},
 		//AllowHeaders: []string{"*"},
-		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer"},
+		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer", "X-Requested-With", "Vary", "Date", "Transfer-Encoding"},
 		//ExposeHeaders: []string{"*"},
 	}))
 	//e.Use(middleware.CORS())
