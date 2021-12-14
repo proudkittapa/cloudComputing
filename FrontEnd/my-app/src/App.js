@@ -26,6 +26,7 @@ import Subscription from './pages/subscription';
 import Read from './pages/read';
 import Author from './pages/author';
 import Error from './pages/error'
+import Test from './pages/test'
 
 function App() {
     return (
@@ -86,6 +87,9 @@ function App() {
                 </Route>
                 <Route exact path="/user/:userId/book/:bookId/read">
                     <Read />
+                </Route>
+                <Route exact path="/test">
+                    <Test />
                 </Route>
                 {/* <Route component={Error}/> */}
             </Switch>
