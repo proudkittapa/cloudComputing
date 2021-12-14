@@ -30,7 +30,7 @@ func main() {
 	//fmt.Println("svc", svc)
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins:     []string{"http://52.221.200.38:3000"},
+		AllowOrigins:     []string{"http://52.221.200.38:3000/"},
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer"},
