@@ -34,7 +34,7 @@ func main() {
 		AllowOrigins:     []string{"http://52.221.200.38:3000", "http://52.221.200.38:8080", "http://172.38.1.98:3000"},
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
-		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods},
 	}))
 	handlerGroup := e.Group("/bababook")
 	// authGroup := e.Group("/oauth")
