@@ -55,5 +55,5 @@ func main() {
 	handler.NewUserHandler(handlerGroup, userUseCase)
 	handler.NewUserTransactionHandler(handlerGroup, userTransactionUseCase)
 	// handler.NewAuthHandler(authGroup)
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.StartAutoTLS(":8080"))
 }
