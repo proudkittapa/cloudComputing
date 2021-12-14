@@ -20,7 +20,7 @@ function CreateShelf(){
         getUser()
     }, []);
     const getUser = () =>{
-        axios.get(`http://52.221.200.38:8080/bababook/user/${userId}`)
+        axios.get(`http://172.38.20.142:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -47,7 +47,7 @@ function CreateShelf(){
 
         console.log("shelf", shelf)
         
-        axios.post(`http://52.221.200.38:8080/bababook/user/${userId}/shelf`, shelfName)
+        axios.post(`http://172.38.20.142:8080/bababook/user/${userId}/shelf`, shelfName)
         .then((response) => {
             setStatus("successful")
             console.log("createShelf", response)

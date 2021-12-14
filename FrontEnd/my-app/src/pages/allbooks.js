@@ -20,7 +20,7 @@ function AllBook(){
         getAuthors()
     }, []);
     const getUser = () =>{
-        axios.get(`http://52.221.200.38:8080/bababook/user/${userId}`)
+        axios.get(`http://172.38.20.142:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -28,7 +28,7 @@ function AllBook(){
     }
 
     const getAllBooks = () => {
-        axios.get(`http://52.221.200.38:8080/bababook/book`)
+        axios.get(`http://172.38.20.142:8080/bababook/book`)
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)
@@ -38,7 +38,7 @@ function AllBook(){
     }
 
     const getAuthors = () =>{
-        axios.get(`http://52.221.200.38:8080/bababook/role/authors`)
+        axios.get(`http://172.38.20.142:8080/bababook/role/authors`)
         .then((response) => {
             console.log("authors", response);
             setAuthors(response.data.data.authors)
