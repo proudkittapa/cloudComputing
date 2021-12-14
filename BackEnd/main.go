@@ -34,6 +34,7 @@ func main() {
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, "User-Agent", "Sec-Fetch-Mode", "Referer"},
+		ExposeHeaders: []string{"*"},
 	}))
 	handlerGroup := e.Group("/bababook")
 	// authGroup := e.Group("/oauth")
