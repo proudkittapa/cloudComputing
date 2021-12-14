@@ -169,6 +169,7 @@ func (handler *UserHandler) GetById(c echo.Context) error {
 
 func (handler *UserHandler) Create(c echo.Context) error {
 	ctx := c.Request().Context()
+	fmt.Println("c", c)
 	var user entity.User
 	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, err)

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -28,7 +27,6 @@ func main() {
 	svc := dynamodb.New(sess)
 	//fmt.Println("svc", svc)
 	e := echo.New()
-	fmt.Println("echo", e)
 	//e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 	//	AllowOrigins:     []string{"http://52.221.200.38:3000", "http://52.221.200.38:8080", "http://172.38.1.98:3000", "http://172.38.1.98:8080", "http://ec2-52-221-200-38.ap-southeast-1.compute.amazonaws.com:3000/"},
 	//	AllowCredentials: true,
