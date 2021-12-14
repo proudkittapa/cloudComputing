@@ -29,7 +29,7 @@ function AllBook(){
 
     const getAllBooks = () => {
         console.log("getAllBooks")
-        axios.get(`http://172.38.20.142:8080/bababook/book`)
+        axios.get(`http://172.38.20.142:8080/bababook/book`, { crossdomain: true })
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)
