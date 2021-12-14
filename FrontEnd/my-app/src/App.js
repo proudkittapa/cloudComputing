@@ -87,7 +87,7 @@ function App() {
                 <Route exact path="/user/:userId/book/:bookId/read">
                     <Read />
                 </Route>
-                <Route component={Error}/>
+                {/* <Route component={Error}/> */}
             </Switch>
         </Router>
     )
