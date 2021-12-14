@@ -29,6 +29,7 @@ func NewBookHandler(e *echo.Group, BookUseCase entity.BookUseCase) {
 
 func (bookHandler *BookHandler) GetAll(c echo.Context) error {
 	ctx := c.Request().Context()
+	fmt.Println("c", c)
 	books, err := bookHandler.BookUseCase.GetAll(ctx)
 	//fmt.Println("books", books)
 	if err != nil {
