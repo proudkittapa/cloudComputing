@@ -34,7 +34,7 @@ function AllBook(){
             setBooks(response.data.data.books)
             console.log("books", books)
         }).catch(function (error) {
-            console.log("error", error.response)
+            console.log("error", error)
         })
     }
 
