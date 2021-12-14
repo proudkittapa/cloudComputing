@@ -33,14 +33,9 @@ function AllBook(){
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)
-        }).catch(error => {
-            if (!error.response) {
-                // network error
-                this.errorStatus = 'Error: Network Error';
-            } else {
-                this.errorStatus = error.response.data.message;
-            }
-          })
+        }).catch(function (error) {
+            console.log("error", error.response)
+        })
     }
 
     const getAuthors = () =>{
