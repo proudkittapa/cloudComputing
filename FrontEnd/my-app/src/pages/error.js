@@ -16,7 +16,7 @@ function Error(){
         getUser()
     }, []);
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)

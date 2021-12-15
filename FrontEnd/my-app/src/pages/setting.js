@@ -25,7 +25,7 @@ function AccountSetting(){
     }, []);
     const getUser = () =>{
         try{
-            axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+            axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}`)
             .then((response) => {
                 console.log(response);
                 setUsers(response.data.data.user)
@@ -40,7 +40,7 @@ function AccountSetting(){
     }
 
     const getPayment = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}/payment`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}/payment`)
         .then((response) => {
             console.log("payment", response);
             setPaymentName(response.data.data.payment.card_name)
@@ -89,7 +89,7 @@ function AccountSetting(){
         const userTemp = {...userUpdate, full_name:tempFullName, age:+user.age, email:tempEmail, role:user.role, username:user.username, img:realURL}
         console.log(userTemp)
         try{
-            axios.put(`http://18.138.251.129:8080/bababook/user/${userId}`, userTemp)
+            axios.put(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}`, userTemp)
             .then((response) =>{
                 console.log("response", response)
                 setStatus("successful")

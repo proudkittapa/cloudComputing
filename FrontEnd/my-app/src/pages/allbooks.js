@@ -20,7 +20,7 @@ function AllBook(){
         getAuthors()
     }, []);
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -41,7 +41,7 @@ function AllBook(){
     }
 
     const getAuthors = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/role/authors`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/role/authors`)
         .then((response) => {
             console.log("authors", response);
             setAuthors(response.data.data.authors)

@@ -20,7 +20,7 @@ function Publish(){
         getUser()
     }, []);
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -73,7 +73,7 @@ function Publish(){
         const bookPost = {...book, price:+book.price, name:book.name, description:book.description, img:imgURL, user_id:userId, url:bookURL}
         console.log("in create book", bookPost)
         try{
-            axios.post(`http://18.138.251.129:8080/bababook/book`, bookPost)
+            axios.post(`http://${process.env.REACT_APP_IP}:8080/bababook/book`, bookPost)
             .then((response) =>{
                 alert("book is published")
                 setId(response.data.data.id)
