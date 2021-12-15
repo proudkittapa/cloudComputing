@@ -30,7 +30,7 @@ function AllBook(){
     
     const getAllBooks = () => {
         console.log("getAllBooks")
-        axios.get(`http://${process.env.REACT_IP}:8080/bababook/book`)
+        axios.get(`http://${process.env.REACT_APP_IP}:8080/bababook/book`)
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)
