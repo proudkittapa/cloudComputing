@@ -13,7 +13,7 @@ function Home(){
         getUser()
     }, []);
     const getUser = () =>{
-        axios.get(`http://172.38.20.142:8080/bababook/user/${userId}`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
