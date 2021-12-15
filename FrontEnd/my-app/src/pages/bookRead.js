@@ -5,11 +5,12 @@ import '../css/bookdisplay.css'
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router'
 
-function Book(){
+function BookRead(){
     const [bookItem, setBookItems] = useState({})
     const [user, setUsers] = useState({})
     const [author, setAuthor] = useState({})
     const [addMessage, setAddMessage] = useState("Add Book")
+    const [clickRead, setClickRead] = useState(false)
 
     const [error, setError] = useState("");
     let {userId, bookId} = useParams()
@@ -59,6 +60,10 @@ function Book(){
         
     }
 
+    const read = () =>{
+        console.log("url", bookItem.url)
+        setClickRead(true)
+    }
 
     if (addMessage == "Added"){
         return <Redirect to= {{pathname:`/user/${userId}/bookShelf`}}/>
@@ -68,7 +73,10 @@ function Book(){
         return <Redirect to= {{pathname:`/home/${userId}`}}/>
     }
 
+    if (clickRead){
+        return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}/read`}}/>
 
+    }
     return(
         <body>
             <nav class="navbar border-bottom">
@@ -171,6 +179,7 @@ function Book(){
                                     <h3 class="py-1 px-3">{(Math.round([bookItem.price] * 100) / 100).toFixed(2)} THB</h3>
                                 </div>
                                 <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button> 
+                                <button class="btn btn-sub" type="submit" onClick={read}><i class="fas fa-book-open py-1"></i> Read</button>
                             </div>
                         </div>
                     </div>
@@ -188,5 +197,5 @@ function Book(){
     )
 }
 
-export default Book
+export default BookRead
 

@@ -127,7 +127,7 @@ function BookShelfList(){
                         {books && (books.map((item, index) => {
                             return(
                                 <tr key={index}>
-                                <Link to={{pathname:`/user/${userId}/book/${item.book_id}`}}>
+                                <Link to={{pathname:`/user/${userId}/bookRead/${item.book_id}`}}>
                                 <td><a href="">{item.name}</a></td>
                                 </Link>
                                 <td><a href="">{item.author_name}</a></td>
