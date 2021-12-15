@@ -36,7 +36,8 @@ func main() {
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete, http.MethodOptions, http.MethodConnect},
 		//AllowHeaders: []string{"*"},
-		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, echo.HeaderAccessControlExposeHeaders, echo.HeaderAccessControlRequestMethod,"User-Agent", "Sec-Fetch-Mode", "Referer", "X-Requested-With", "Vary", "Date", "Transfer-Encoding"},
+		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, echo.HeaderAccessControlExposeHeaders, echo.HeaderAccessControlRequestMethod},
+		//AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAllow, echo.HeaderContentLength, echo.HeaderContentEncoding, echo.HeaderAccessControlAllowOrigin, echo.HeaderAccessControlAllowMethods, echo.HeaderAccessControlRequestHeaders, echo.HeaderAccessControlExposeHeaders, echo.HeaderAccessControlRequestMethod,"User-Agent", "Sec-Fetch-Mode", "Referer", "X-Requested-With", "Vary", "Date", "Transfer-Encoding"},
 		//ExposeHeaders: []string{"*"},
 	}))
 	//e.Use(middleware.CORS())
