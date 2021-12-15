@@ -20,7 +20,7 @@ function CreateProfile(){
     const CreateUser = () => {
         const userTemp = {...user, full_name:user.full_name, age:+user.age, email:user.email, role:"User", username:user.username}
         console.log("in create user", userTemp)
-        axios.post(`http://localhost:8080/bababook/user`, userTemp)
+        axios.post(`http://18.138.251.129:8080/bababook/user`, userTemp)
         .then((response) =>{
             console.log("response", response)
             setUserId(response.data.data.id)

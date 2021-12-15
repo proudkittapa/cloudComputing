@@ -19,7 +19,7 @@ function AddMoney(){
         getUser()
     }, []);
     const getUser = () =>{
-        axios.get(`http://localhost:8080/bababook/user/${userId}`)
+        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -30,7 +30,7 @@ function AddMoney(){
         console.log("balance", balance)
         e.preventDefault()
         const balancePut = {balance:+balance}
-        axios.put(`http://localhost:8080/bababook/user/${userId}/payment`, balancePut)
+        axios.put(`http://18.138.251.129:8080/bababook/user/${userId}/payment`, balancePut)
         .then((response) => {
             setStatus("successful")
             console.log("addBalance", response)

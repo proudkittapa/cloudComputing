@@ -19,7 +19,7 @@ function Subscription(){
     }, []);
     const getUser = () =>{
         try{
-            axios.get(`http://localhost:8080/bababook/user/${userId}`)
+            axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
             .then((response) => {
                 console.log(response);
                 setUsers(response.data.data.user)
@@ -34,7 +34,7 @@ function Subscription(){
 
     const checkSubscription = () =>{
         try{
-            axios.get(`http://localhost:8080/bababook/user/${userId}/subscription`)
+            axios.get(`http://18.138.251.129:8080/bababook/user/${userId}/subscription`)
             .then((response) => {
                 console.log("sub",response);
                 setSubscribe(response.data.data.subscription)
@@ -51,7 +51,7 @@ function Subscription(){
 
     const clickSubscribe = async(e) =>{
         try{
-            axios.post(`http://localhost:8080/bababook/user/${userId}/subscription`, {})
+            axios.post(`http://18.138.251.129:8080/bababook/user/${userId}/subscription`, {})
             .then((response) => {
                 console.log("sub",response);
                 alert("subscribe")
