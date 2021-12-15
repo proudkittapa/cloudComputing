@@ -9,10 +9,10 @@ function BookRead(){
     const [bookItem, setBookItems] = useState({})
     const [user, setUsers] = useState({})
     const [author, setAuthor] = useState({})
-    const [addMessage, setAddMessage] = useState("Add Book")
+    // const [addMessage, setAddMessage] = useState("Add Book")
     const [clickRead, setClickRead] = useState(false)
 
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     let {userId, bookId} = useParams()
     useEffect(()=>{
         console.log("before get book")
@@ -37,41 +37,11 @@ function BookRead(){
         })
     }
 
-    const addBook = () =>{
-        console.log("in add book")
-        
-        axios.post(`http://18.138.251.129:8080/bababook/user/${userId}/book/${bookId}`, {})
-        .then((response) =>{
-            console.log("response", response)
-            if (response.status === 200){
-                alert("book added to Your Shelf")
-                setAddMessage("Added")
-            }
-        }).catch(function(error) {
-
-            // if (error.response) {
-            //     console.log("1", error.response.data);
-            //     console.log("2", error.response.status);
-            //     console.log("3", error.response.headers);
-            //   }
-            alert(error.response.data.error.message)
-            setError(error.response.data.error.message)
-        })
-        
-    }
-
     const read = () =>{
         console.log("url", bookItem.url)
         setClickRead(true)
     }
 
-    if (addMessage == "Added"){
-        return <Redirect to= {{pathname:`/user/${userId}/bookShelf`}}/>
-    }
-
-    if (error == "Insufficient balance"){
-        return <Redirect to= {{pathname:`/home/${userId}`}}/>
-    }
 
     if (clickRead){
         return <Redirect to= {{pathname:`/user/${userId}/book/${bookId}/read`}}/>
@@ -178,7 +148,7 @@ function BookRead(){
                                     <h3 class="py-1">Price: </h3>
                                     <h3 class="py-1 px-3">{(Math.round([bookItem.price] * 100) / 100).toFixed(2)} THB</h3>
                                 </div>
-                                <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button> 
+                                {/* <button class="btn btn-success" type="submit" onClick={addBook}><i class="fas fa-plus py-1"></i> {addMessage}</button>  */}
                                 <button class="btn btn-sub" type="submit" onClick={read}><i class="fas fa-book-open py-1"></i> Read</button>
                             </div>
                         </div>
