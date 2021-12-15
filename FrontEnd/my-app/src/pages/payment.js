@@ -19,7 +19,7 @@ function Payment(){
         getPayment()
     }, []);
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -28,7 +28,7 @@ function Payment(){
     }
 
     const getPayment = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}/payment`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}/payment`)
         .then((response) => {
             console.log("payment", response);
             setHavePayment(true)
@@ -45,7 +45,7 @@ function Payment(){
     const createPayment = () =>{
         const paymentPost = {...payment, card_name:payment.card_name, card_number:payment.card_number, exp:payment.exp, ccv:payment.ccv}
         console.log("paymentPost", paymentPost)
-        axios.post(`http://18.138.251.129:8080/bababook/user/${userId}/payment`, paymentPost)
+        axios.post(`http://localhost:8080/bababook/user/${userId}/payment`, paymentPost)
         .then((response) => {
             setStatus("successful")
             console.log("CreatePayment", response)

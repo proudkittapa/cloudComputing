@@ -30,7 +30,7 @@ function AllBook(){
     
     const getAllBooks = () => {
         console.log("getAllBooks")
-        axios.get(`http://18.138.251.129:8080/bababook/book`)
+        axios.get(`http://${process.env.ip}:8080/bababook/book`)
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)

@@ -15,14 +15,14 @@ function Author(){
         getAuthor()
     }, []);
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
         })
     }
     const getAuthor = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${authorId}`)
+        axios.get(`http://localhost:8080/bababook/user/${authorId}`)
         .then((response) => {
             console.log(response);
             setAuthor(response.data.data.user)

@@ -18,4 +18,4 @@ export const getAllMoney = () => axios.get("http://127.0.0.1:8082/pos/product/mo
 export const getMoney = (id) => axios.get(`http://127.0.0.1:8082/pos/product/money/${id}`)
 export const deleteMoney = (id) => axios.delete(`http://127.0.0.1:8082/pos/product/money/${id}`)
 
-export const getBookById = (id, data) => axios.get(`http://18.138.251.129:8080/bababook/book/${id}`, data)
+export const getBookById = (id, data) => axios.get(`http://localhost:8080/bababook/book/${id}`, data)

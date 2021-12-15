@@ -19,7 +19,7 @@ function Book(){
         getUser()
     }, []);
     const getBook = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/book/${bookId}`)
+        axios.get(`http://localhost:8080/bababook/book/${bookId}`)
         .then((response) => {
             console.log(response);
             const temp = response.data.data.book;
@@ -29,7 +29,7 @@ function Book(){
         })
     }
     const getUser = () =>{
-        axios.get(`http://18.138.251.129:8080/bababook/user/${userId}`)
+        axios.get(`http://localhost:8080/bababook/user/${userId}`)
         .then((response) => {
             console.log(response);
             setUsers(response.data.data.user)
@@ -39,7 +39,7 @@ function Book(){
     const addBook = () =>{
         console.log("in add book")
         
-        axios.post(`http://18.138.251.129:8080/bababook/user/${userId}/book/${bookId}`, {})
+        axios.post(`http://localhost:8080/bababook/user/${userId}/book/${bookId}`, {})
         .then((response) =>{
             console.log("response", response)
             if (response.status === 200){
