@@ -74,7 +74,7 @@ body {
   font-weight: Bold;
   font-size: 50px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_19 {
   width: 117px;
@@ -103,7 +103,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_21 {
   width: 167px;
@@ -124,7 +124,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_23 {
   width: 98px;
@@ -136,7 +136,7 @@ body {
   font-weight: Bold;
   font-size: 40px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_24 {
   width: 105px;
@@ -148,7 +148,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_25 {
   width: 110px;
@@ -160,7 +160,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_26 {
   width: 93px;
@@ -172,7 +172,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_27 {
   width: 84px;
@@ -184,7 +184,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_28 {
   width: 119px;
@@ -196,7 +196,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_29 {
   width: 126px;
@@ -208,7 +208,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_30 {
   width: 143px;
@@ -247,7 +247,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_34 {
   width: 193px;
@@ -259,7 +259,7 @@ body {
   font-weight: Bold;
   font-size: 50px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_47 {
   width: 358px;
@@ -294,7 +294,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .v18_188 {
@@ -328,7 +328,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 
@@ -361,7 +361,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_194 {
   width: 358px;
@@ -396,7 +396,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .v18_198 {
@@ -428,7 +428,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .v18_201 {
@@ -461,7 +461,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v18_203 {
   width: 358px;
@@ -496,7 +496,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .v18_207 {
@@ -529,7 +529,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .v18_210 {
@@ -562,7 +562,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 
 .genReport {
@@ -575,7 +575,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .format {
@@ -588,13 +588,13 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .formatInput {
   width: 100px;
   height: 42px;
-  padding-left: 10px;
+  paddingLeft: 10px;
   color: rgba(0,0,0,1);
   font-family: Marvel;
   font-weight: Bold;
@@ -622,13 +622,13 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .frominput {
   width: 190px;
   height: 42px;
-  padding-left: 10px;
+  paddingLeft: 10px;
   color: rgba(0,0,0,1);
   font-family: Marvel;
   font-weight: Bold;
@@ -656,13 +656,13 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .untilinput {
   width: 190px;
   height: 42px;
-  padding-left: 10px;
+  paddingLeft: 10px;
   color: rgba(0,0,0,1);
   font-family: Marvel;
   font-weight: Bold;
@@ -690,7 +690,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .field {
@@ -703,13 +703,13 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .fieldInput {
   width: 200px;
   height: 42px;
-  padding-left: 10px;
+  paddingLeft: 10px;
   color: rgba(0,0,0,1);
   font-family: Marvel;
   font-weight: Bold;
@@ -737,13 +737,13 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
+  textAlign: left;
 }
 
 .orderInput {
   width: 200px;
   height: 42px;
-  padding-left: 10px;
+  paddingLeft: 10px;
   color: rgba(0,0,0,1);
   font-family: Marvel;
   font-weight: Bold;

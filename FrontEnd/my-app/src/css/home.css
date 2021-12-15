@@ -14,10 +14,10 @@
     padding: 0.125rem 0rem;
     object-fit: cover; 
     border-radius: 10%;
-    min-height: 160px;
-    min-width: 160px;
+    minHeight: 160px;
+    minWidth: 160px;
     max-height: 160px;
-    max-width: 160px;
+    maxWidth: 160px;
 }
 
 .book {

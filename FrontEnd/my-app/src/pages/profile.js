@@ -98,15 +98,15 @@ function Profile(){
 
                 <div class="container content">
                     <div class="container-fluid" >
-                        <h3 style={{"padding-left":"5%"}} >Profile</h3>
+                        <h3 style={{"paddingLeft":"5%"}} >Profile</h3>
                         <div class="row row-cols-1 row-cols-lg-2 g-5">
-                            <div class="col-4" style={{padding:'0px 5% 0px 2%', 'min-width': '250px'}}>
+                            <div class="col-4" style={{padding:'0px 5% 0px 2%', 'minWidth': '250px'}}>
                                 <a>
                                     <div class="authorimg" >
-                                        <div class="container" style={{padding:'20px', margin: '20px', 'text-align': 'center' }}>
+                                        <div class="container" style={{padding:'20px', margin: '20px', 'textAlign': 'center' }}>
                                             <div class="ratio ratio-1x1 rounded" >
                                                 <img src={user.img}
-                                                        class="img mx-auto d-block" style={{'min-width': '250px', 'min-height': '250px'}}/>
+                                                        class="img mx-auto d-block" style={{'minWidth': '250px', 'minHeight': '250px'}}/>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@ function Profile(){
                             </div>
 
                             <div class="col-8">
-                                <div class="container" style={{padding:'20px', margin: '20px', 'text-align': 'left'}}>
+                                <div class="container" style={{padding:'20px', margin: '20px', 'textAlign': 'left'}}>
                                     <div class="row g-5">
                                         <div class="col">
                                             <div class="d-flex align-items-baseline">
@@ -148,7 +148,7 @@ function Profile(){
                         <div class="row">
                             <div class="col col-lg-3 d-flex align-items-stretch mx-auto">
                                 <div class="container-fluid" ><h4 class="text-center">Fav Bookshelf</h4>
-                                    <div class="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                                    <div class="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                                         <a href="tag_a.asp">
                                             <div class="shelfimg">
                                                 <div class="ratio ratio-1x1 rounded">
@@ -167,7 +167,7 @@ function Profile(){
 
                             <div class="col col-lg-3 d-flex align-items-stretch mx-auto ">
                                 <div class="container-fluid"><h4 class="text-center">Fav Author</h4>
-                                    <div class="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                                    <div class="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                                         <a href="tag_a.asp">
                                             <div class="authorimg">
                                                 <div class="ratio ratio-1x1 rounded">
@@ -186,7 +186,7 @@ function Profile(){
 
                             <div class="col col-lg-3 d-flex align-items-stretch mx-auto">
                                 <div class="container-fluid"><h4 class="text-center">My work</h4>
-                                    <div class="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                                    <div class="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                                         <a href="tag_a.asp">
                                             <div class="shelfimg">
                                                 <div class="ratio ratio-1x1 rounded">

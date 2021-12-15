@@ -74,7 +74,7 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_549 {
     width: 167px;
@@ -113,7 +113,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_494 {
     width: 98px;
@@ -125,7 +125,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_495 {
     width: 98px;
@@ -137,7 +137,7 @@
     font-weight: Bold;
     font-size: 40px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_496 {
     width: 105px;
@@ -149,7 +149,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_497 {
     width: 110px;
@@ -161,7 +161,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_498 {
     width: 93px;
@@ -173,7 +173,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_499 {
     width: 84px;
@@ -185,7 +185,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_500 {
     width: 119px;
@@ -197,7 +197,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_501 {
     width: 126px;
@@ -209,7 +209,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_502 {
     width: 143px;
@@ -248,7 +248,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_505 {
     width: 259px;
@@ -287,7 +287,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v17_508 {
     width: 193px;
@@ -299,7 +299,7 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
 
   .order1{
@@ -341,7 +341,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_510 {
     width: 492px;
@@ -350,8 +350,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -373,7 +373,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_512 {
     width: 518px;
@@ -399,7 +399,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_514 {
     width: 492px;
@@ -425,7 +425,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_516 {
     width: 518px;
@@ -434,8 +434,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -457,7 +457,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_518 {
     width: 445px;
@@ -466,8 +466,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(245,201,88,1);
     opacity: 1;
     position: absolute;
@@ -489,7 +489,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_520 {
     width: 957px;
@@ -515,7 +515,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_522 {
     width: 966px;
@@ -524,8 +524,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -547,7 +547,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_524 {
     width: 168px;
@@ -556,8 +556,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -579,7 +579,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_526 {
     width: 132px;
@@ -588,8 +588,8 @@
     font-family: Marvel;
     font-weight: Bold;
     font-size: 30px;
-    padding-left: 10px;
-    padding-top: 2px;
+    paddingLeft: 10px;
+    paddingTop: 2px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -661,7 +661,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_532 {
     width: 16px;
@@ -673,7 +673,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_533 {
     width: 345px;
@@ -685,7 +685,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_534 {
     width: 492px;
@@ -711,7 +711,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_536 {
     width: 966px;
@@ -737,7 +737,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_538 {
     width: 168px;
@@ -763,7 +763,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_540 {
     width: 132px;
@@ -839,7 +839,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_546 {
     width: 16px;
@@ -851,7 +851,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .name {
     color: #fff;

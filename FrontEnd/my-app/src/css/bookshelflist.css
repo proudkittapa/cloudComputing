@@ -10,7 +10,7 @@
 }
 
 #booklist th, #booklist td{
-    max-width: 418px;
+    maxWidth: 418px;
     overflow-x: wrap;
     word-wrap:break-word;
 }

@@ -15,14 +15,14 @@
     }
 
     .navbar {
-        min-height: 5rem;
+        minHeight: 5rem;
         background-color: lightblue;
-        padding-left: 2rem;
+        paddingLeft: 2rem;
         padding-right: 2rem;
     }
 
     .flex-fill{
-        padding-left: 2rem;
+        paddingLeft: 2rem;
         padding-right: 2rem;
     }
 
@@ -31,7 +31,7 @@
     }
 
     .container{
-        padding-top: 2rem;
+        paddingTop: 2rem;
         padding-bottom: 2rem;
     }
 
@@ -46,7 +46,7 @@
     }
 
     .separator{
-        padding-left: 1rem;
+        paddingLeft: 1rem;
         padding-right: 1rem;
     }
 
@@ -60,6 +60,6 @@
     }
 
     .book-desc{
-        text-align: justify;
+        textAlign: justify;
         font-size: 1.125rem;
     }

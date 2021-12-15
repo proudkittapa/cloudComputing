@@ -84,7 +84,7 @@ function History(){
                 <h3> 18 Dec 2020</h3>
                 <div className="row g-3">
                     <div className="col order-first col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="authorimg">
                                 <div className="ratio ratio-1x1 rounded">
@@ -101,7 +101,7 @@ function History(){
                     </div>
 
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="shelfimg">
                             <div className="ratio ratio-1x1 rounded">
@@ -120,7 +120,7 @@ function History(){
                 <h3> 18 Dec 2020</h3>
                 <div className="row g-3">
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="shelfimg">
                             <div className="ratio ratio-1x1 rounded">
@@ -137,7 +137,7 @@ function History(){
                 </div>
 
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="shelfimg">
                             <div className="ratio ratio-1x1 rounded">
@@ -155,7 +155,7 @@ function History(){
                 </div>
 
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="authorimg">
                             <div className="ratio ratio-1x1 rounded">
@@ -173,7 +173,7 @@ function History(){
                 </div>
 
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="shelfimg">
                             <div className="ratio ratio-1x1 rounded">
@@ -191,7 +191,7 @@ function History(){
                 </div>
 
                 <div className="col col-lg-3 d-flex align-items-stretch">
-                    <div className="card card-body flex-fill" style={{'max-width': '250px', margin: '10px', 'padding-top':'20px'}}>
+                    <div className="card card-body flex-fill" style={{'maxWidth': '250px', margin: '10px', 'paddingTop':'20px'}}>
                         <a href="tag_a.asp">
                             <div className="authorimg">
                             <div className="ratio ratio-1x1 rounded">

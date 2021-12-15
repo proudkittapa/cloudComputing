@@ -74,7 +74,7 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_178 {
     width: 117px;
@@ -103,7 +103,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_180 {
     width: 167px;
@@ -125,7 +125,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_182 {
     width: 98px;
@@ -137,7 +137,7 @@
     font-weight: Bold;
     font-size: 40px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_183 {
     width: 105px;
@@ -149,7 +149,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_184 {
     width: 110px;
@@ -161,7 +161,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_185 {
     width: 93px;
@@ -173,7 +173,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_186 {
     width: 84px;
@@ -185,7 +185,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_187 {
     width: 119px;
@@ -197,7 +197,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_188 {
     width: 126px;
@@ -209,7 +209,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_189 {
     width: 143px;
@@ -248,7 +248,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_192 {
     width: 259px;
@@ -281,7 +281,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_198 {
     width: 193px;
@@ -293,7 +293,7 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v6_276 {
     width: 345px;
@@ -305,12 +305,12 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_277 {
     width: 492px;
     height: 42px;
-    padding-left: 10px;
+    paddingLeft: 10px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -337,12 +337,12 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_279 {
     width: 462px;
     height: 42px;
-    padding-left: 10px;
+    paddingLeft: 10px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -370,7 +370,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_283 {
     width: 124px;
@@ -382,12 +382,12 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_282 {
     width: 323px;
     height: 42px;
-    padding-left: 10px;
+    paddingLeft: 10px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -407,7 +407,7 @@
 
   .addname {
     width: 800px;
-    min-height: 0px;
+    minHeight: 0px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -433,12 +433,12 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_285 {
     width: 132px;
     height: 42px;
-    padding-left: 10px;
+    paddingLeft: 10px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -465,12 +465,12 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_287 {
     width: 168px;
     height: 42px;
-    padding-left: 10px;
+    paddingLeft: 10px;
     color: rgba(0,0,0,1);
     font-family: Marvel;
     font-weight: Bold;
@@ -497,7 +497,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v6_289 {
     width: 30px;
@@ -582,7 +582,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
 
 
@@ -630,7 +630,7 @@
 
   .category{
     width: 700px;
-    min-height: 45px;
+    minHeight: 45px;
     opacity: 1;
     position: relative;
     top: 177px;
@@ -641,7 +641,7 @@
 
   .ingredient{
     width: 1000px;
-    min-height: 55px;
+    minHeight: 55px;
     opacity: 1;
     position: relative;
     top: 180px;
@@ -652,7 +652,7 @@
 
   .ingredientAdd{
     width: 1000px;
-    min-height: 55px;
+    minHeight: 55px;
     opacity: 1;
     position: relative;
     top: 0px;

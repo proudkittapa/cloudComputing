@@ -89,7 +89,7 @@ body {
   font-weight: Bold;
   font-size: 50px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_12 {
   width: 117px;
@@ -118,7 +118,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_14 {
   width: 163px;
@@ -130,8 +130,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_14:hover {
@@ -149,7 +149,7 @@ body {
   font-weight: Bold;
   font-size: 40px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_15 {
   width: 163px;
@@ -161,8 +161,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_15:hover {
@@ -180,8 +180,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_19:hover {
@@ -199,8 +199,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_20:hover {
@@ -219,7 +219,7 @@ body {
   font-weight: Bold;
   font-size: 20px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_17 {
   width: 163px;
@@ -231,8 +231,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_17:hover {
@@ -250,8 +250,8 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: left;
-  padding-left: 20px;
+  textAlign: left;
+  paddingLeft: 20px;
 }
 
 .v6_18:hover {
@@ -299,7 +299,7 @@ body {
   font-weight: Bold;
   font-size: 30px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_26 {
   width: 504px;
@@ -311,7 +311,7 @@ body {
   font-weight: Regular;
   font-size: 80px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }
 .v6_32 {
   width: 250x;
@@ -323,5 +323,5 @@ body {
   font-weight: Bold;
   font-size: 50px;
   opacity: 1;
-  text-align: center;
+  textAlign: center;
 }

@@ -74,7 +74,7 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_66 {
     width: 117px;
@@ -103,7 +103,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_69 {
     width: 98px;
@@ -115,7 +115,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_70 {
     width: 98px;
@@ -127,7 +127,7 @@
     font-weight: Bold;
     font-size: 40px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_71 {
     width: 105px;
@@ -139,7 +139,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_72 {
     width: 110px;
@@ -151,7 +151,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_73 {
     width: 93px;
@@ -163,7 +163,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_74 {
     width: 84px;
@@ -175,7 +175,7 @@
     font-weight: Bold;
     font-size: 20px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_75 {
     width: 119px;
@@ -187,7 +187,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_76 {
     width: 126px;
@@ -199,7 +199,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_77 {
     width: 143px;
@@ -238,7 +238,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
 
   .v14_81 {
@@ -270,7 +270,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .v14_83 {
     width: 193px;
@@ -282,11 +282,11 @@
     font-weight: Bold;
     font-size: 50px;
     opacity: 1;
-    text-align: center;
+    textAlign: center;
   }
   .orderArea{
     width: 1150px;
-    min-height: 120px;
+    minHeight: 120px;
     position: relative;
     top: 150px;
     left: 280px;
@@ -294,7 +294,7 @@
   }
   .orders{
     width: 1150px;
-    min-height: 110px;
+    minHeight: 110px;
     position: relative;
     top: 0px;
     left: 0px;
@@ -312,7 +312,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v14_85 {
     width: 492px;
@@ -322,8 +322,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 5px;
+    paddingLeft: 10px;
+    paddingTop: 5px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -353,7 +353,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_137 {
     width: 518px;
@@ -363,8 +363,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -386,7 +386,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_139 {
     width: 492px;
@@ -396,8 +396,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -419,7 +419,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_141 {
     width: 518px;
@@ -429,8 +429,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -452,7 +452,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_145 {
     width: 445px;
@@ -462,8 +462,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(245,201,88,1);
     opacity: 1;
     position: absolute;
@@ -485,7 +485,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
 
   .latitude {
@@ -498,7 +498,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_143 {
     width: 300px;
@@ -508,8 +508,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -532,7 +532,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
 
   .longitudeInput {
@@ -543,8 +543,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 0px;
+    paddingLeft: 10px;
+    paddingTop: 0px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -567,7 +567,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v14_87 {
     width: 966px;
@@ -577,8 +577,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 5px;
+    paddingLeft: 10px;
+    paddingTop: 5px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -600,7 +600,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_113 {
     width: 168px;
@@ -610,8 +610,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 5px;
+    paddingLeft: 10px;
+    paddingTop: 5px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -633,7 +633,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_107 {
     width: 132px;
@@ -643,8 +643,8 @@
     font-weight: Bold;
     font-size: 25px;
     border:none;
-    padding-left: 10px;
-    padding-top: 5px;
+    paddingLeft: 10px;
+    paddingTop: 5px;
     background: rgba(228,228,228,1);
     opacity: 1;
     position: absolute;
@@ -716,7 +716,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_120 {
     width: 16px;
@@ -728,7 +728,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_121 {
     width: 345px;
@@ -740,7 +740,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_122 {
     width: 492px;
@@ -766,7 +766,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_124 {
     width: 966px;
@@ -792,7 +792,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_126 {
     width: 168px;
@@ -818,7 +818,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_128 {
     width: 132px;
@@ -894,7 +894,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .v17_134 {
     width: 16px;
@@ -906,7 +906,7 @@
     font-weight: Bold;
     font-size: 30px;
     opacity: 1;
-    text-align: left;
+    textAlign: left;
   }
   .name {
     color: #fff;

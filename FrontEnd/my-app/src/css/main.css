@@ -73,7 +73,7 @@ a:hover{
 /* ---------- Nav Bar CSS ---------- */
 
 .navbar {
-    min-height: 5rem;
+    minHeight: 5rem;
     width: 100%;
     background-color: #e3eceb;
     padding: 0rem 2rem;
@@ -138,7 +138,7 @@ a:hover{
 
 .sidebar{
     height: auto;
-    min-width: 104px;
+    minWidth: 104px;
     background-color: #e3eceb;
     font-size: 2rem;
 }
@@ -154,7 +154,7 @@ a:hover{
 }
 
 .book-desc{
-    text-align: justify;
+    textAlign: justify;
     font-size: 1.125rem;
 }
 
