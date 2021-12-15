@@ -25,7 +25,7 @@ function History(){
 
                         <a href="/">
                             <svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 64 64" style={{'enable-background':'new 0 0 64 64', width:'32px', height:'32px', xmlSpace:"preserve"}}>
+                            viewBox="0 0 64 64" style={{'enableBackground':'new 0 0 64 64', width:'32px', height:'32px', xmlSpace:"preserve"}}>
                                 <polyline className="st0" points="31.63,44.51 54.52,61.28 54.5,61 54.5,2.5 9.5,2.5 9.5,61 9.48,61.28 32.23,44.61 "/>
                                 <polygon className="st1" points="32,11.55 35.89,19.42 44.58,20.69 38.29,26.82 39.77,35.47 32,31.39 24.23,35.47 25.71,26.82
                                     19.42,20.69 28.11,19.42 "/>
