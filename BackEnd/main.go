@@ -23,7 +23,7 @@ func main() {
 	})
 
 	if err != nil {
-		log.Fatalf("Got error get new session: %s", err)
+		log.Println("Got error get new session: %s", err)
 	}
 
 	svc := dynamodb.New(sess)
@@ -32,7 +32,7 @@ func main() {
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		//AllowOrigins:     []string{"http://18.138.251.129:3000/", "http://18.138.251.129:3000", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000/", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000"},
 		//AllowOrigins: []string{"*"},
-		AllowOrigins: []string{"http://localhost:3000/", "http://localhost:3000", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000/", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000", "http://bababook-lb-541570129.ap-southeast-1.elb.amazonaws.com/","http://bababook-lb-541570129.ap-southeast-1.elb.amazonaws.com", "http://18.138.251.129:3000", "http://18.138.251.129:3000/"},
+		AllowOrigins: []string{"http://localhost:3000/", "http://localhost:3000", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000/", "http://ec2-18-138-251-129.ap-southeast-1.compute.amazonaws.com:3000", "http://bababook-lb-541570129.ap-southeast-1.elb.amazonaws.com/","http://bababook-lb-541570129.ap-southeast-1.elb.amazonaws.com", "http://18.138.251.129:3000", "http://18.138.251.129:3000/", },
 		AllowCredentials: true,
 		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete, http.MethodOptions, http.MethodConnect},
 		//AllowHeaders: []string{"*"},
