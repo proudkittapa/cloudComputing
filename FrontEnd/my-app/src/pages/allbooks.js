@@ -34,9 +34,10 @@ function AllBook(){
         .then((response) =>{
             setBooks(response.data.data.books)
             console.log("books", books)
-        }).catch(function (error) {
-            console.log("error", error)
         })
+        // }).catch(function (error) {
+        //     console.log("error", error)
+        // })
     }
 
     const getAuthors = () =>{
